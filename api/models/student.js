@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const studentSchema = new mongoose.Schema({
   // id: {
@@ -32,13 +33,17 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  idCohorte: {
-    type: Number,
-    required: true,
-  },
+  // idCohorte: {
+  //   type: Schema.Types.ObjectId, 
+  //   ref: 'Cohorte'
+  // },
   idModule: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId, 
+    ref: 'Module'
+  },
+  idGroup: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Group'
   },
 });
 

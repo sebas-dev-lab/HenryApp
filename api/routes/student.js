@@ -42,4 +42,18 @@ router.post("/create", (req, res) => {
 	});
 });
 
+router.delete("/:name", (req, res) => {
+	//definir atributo unico para buscar
+	
+	const {name} = req.params;
+
+	Student.deleteOne({name: name}, function(err, deleted) {
+		if(err) {
+			console.log(err)
+			return
+		};
+		res.status(200).json({msg: 'Ok'})
+	})
+})
+
 module.exports = router;
