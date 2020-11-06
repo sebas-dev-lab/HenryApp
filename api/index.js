@@ -1,19 +1,19 @@
-const express = require("express");
-const morgan = require("morgan");
-var cors = require("cors");
-const app = express();
+const app = require("./app");
+const mongoose = require("mongoose");
 
-//settings
-app.set("port", process.env.PORT || 3001);
+mongoose
+	.connect("mongodb://localhost/HenryApp", {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => {
+		app.listen(app.get("port"), () => {
+			console.log(`Server on port ${app.get("port")}`);
+		});
+	});
 
-//middlewares
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(cors());
-
-//routes
-
-//starting server
-app.listen(app.get("port"), () => {
-  console.log(`Server on port ${app.get("port")}`);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+	console.log("DB connected");
 });
