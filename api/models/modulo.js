@@ -13,6 +13,10 @@ const moduloSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  recursos: {
+    type: String,
+    required: true,
+  },
 });
 
 const Modulo = mongoose.model("Modulo", moduloSchema);

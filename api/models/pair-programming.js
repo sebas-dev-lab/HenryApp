@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 
 const pair_programmingSchema = new mongoose.Schema({
+  idGrupo: {
+    type: String,
+    required: true,
+  },
+
   idStudent: {
     type: String,
     required: true,
   },
 
-  idInstructor: {
+  idPm: {
     type: String,
     required: true,
   },
