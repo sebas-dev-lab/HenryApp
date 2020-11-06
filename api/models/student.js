@@ -32,8 +32,12 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  cohorte: {
+  idCohorte: {
     type: Number,
+    required: true,
+  },
+  idModulo: {
+    type: String,
     required: true,
   },
 });

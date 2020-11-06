@@ -5,6 +5,7 @@ const moduloSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   idCohorte: {
     type: Number,
     required: true,

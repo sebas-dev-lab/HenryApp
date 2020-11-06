@@ -6,10 +6,12 @@ const pair_programmingSchema = new mongoose.Schema({
     required: true,
   },
 
-  idStudent: {
-    type: String,
-    required: true,
-  },
+  idStudent: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 
   idPm: {
     type: String,
