@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const grupoSchema = new mongoose.Schema({
+const groupSchema = new mongoose.Schema({
   idStudent: [
     {
       type: String,
@@ -9,6 +9,6 @@ const grupoSchema = new mongoose.Schema({
   ],
 });
 
-const Grupo = mongoose.model("Grupo", grupoSchema);
+const Group = mongoose.model("Group", groupSchema);
 
-module.exports = Grupo;
+module.exports = Group;

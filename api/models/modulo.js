@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const moduloSchema = new mongoose.Schema({
+const moduleSchema = new mongoose.Schema({
   idStudent: {
     type: String,
     required: true,
@@ -14,12 +14,13 @@ const moduloSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  recursos: {
+
+  means: {
     type: String,
     required: true,
   },
 });
 
-const Modulo = mongoose.model("Modulo", moduloSchema);
+const Module = mongoose.model("Module", moduleSchema);
 
-module.exports = Modulo;
+module.exports = Module;

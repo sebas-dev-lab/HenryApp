@@ -36,7 +36,7 @@ const studentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  idModulo: {
+  idModule: {
     type: String,
     required: true,
   },

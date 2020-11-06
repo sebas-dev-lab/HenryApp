@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const pair_programmingSchema = new mongoose.Schema({
-  idGrupo: {
+  idGroupe: {
     type: String,
     required: true,
   },
