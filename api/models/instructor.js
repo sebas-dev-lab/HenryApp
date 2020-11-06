@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const sinstructorSchema = new mongoose.Schema({
+const instructorSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
