@@ -8,6 +8,7 @@ router.get("/all", (req, res) => {
 	Student.find(function (err, students) {
 		if (err) return console.error(err);
 	})
+		.populate("idCohorte")
 		.then((students) => {
 			res.status(200).send(students);
 		})
@@ -19,9 +20,8 @@ router.get("/all", (req, res) => {
 router.get("/", (req, res) => {
 	const { name } = req.body;
 
-	Student.findOne({ name: name }, function (err, students) {
-		if (err) return console.error(err);
-	})
+	Student.findOne({ name: name })
+		.populate("idCohorte")
 		.then((students) => {
 			res.status(200).json({ msg: "OK", students });
 		})
