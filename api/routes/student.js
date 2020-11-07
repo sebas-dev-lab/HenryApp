@@ -2,11 +2,11 @@ const express = require("express");
 const router = express();
 
 const Student = require("../models/student");
+const Cohort = require("../models/cohort");
 
 router.get("/all", (req, res) => {
 	Student.find(function (err, students) {
 		if (err) return console.error(err);
-		return students;
 	})
 		.then((students) => {
 			res.status(200).send(students);
@@ -21,10 +21,9 @@ router.get("/", (req, res) => {
 
 	Student.findOne({ name: name }, function (err, students) {
 		if (err) return console.error(err);
-		return students;
 	})
 		.then((students) => {
-			res.status(200).send(students);
+			res.status(200).json({ msg: "OK", students });
 		})
 		.catch((err) => {
 			console.log(err);
@@ -44,16 +43,32 @@ router.post("/create", (req, res) => {
 
 router.delete("/:name", (req, res) => {
 	//definir atributo unico para buscar
-	
-	const {name} = req.params;
 
-	Student.deleteOne({name: name}, function(err, deleted) {
-		if(err) {
-			console.log(err)
-			return
-		};
-		res.status(200).json({msg: 'Ok'})
-	})
-})
+	const { name } = req.params;
+
+	Student.deleteOne({ name: name }, function (err, deleted) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		res.status(200).json({ msg: "Ok" });
+	});
+});
+
+router.put("/cohort/:student/:cohort", (req, res) => {
+	const { student, cohort } = req.params;
+
+	Cohort.findOne({ name: cohort }, function (err, cohort) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		Student.update({ name: student }, { $set: { idCohorte: cohort } }).then(
+			() => {
+				res.status(200).json({ msg: "Ok" });
+			}
+		);
+	});
+});
 
 module.exports = router;

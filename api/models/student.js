@@ -33,10 +33,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // idCohorte: {
-  //   type: Schema.Types.ObjectId, 
-  //   ref: 'Cohorte'
-  // },
+  idCohorte: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Cohort'
+  },
   idModule: {
     type: Schema.Types.ObjectId, 
     ref: 'Module'
