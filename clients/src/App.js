@@ -3,6 +3,7 @@ import './App.css';
 import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
+import Login from './Componentes/Login.jsx';
 
 function App() {
   return (
@@ -33,7 +34,14 @@ function App() {
         </Route>
         {/* ADMIN */}
       </Switch>
+        
+      <Route path='/login'
+      render={() => <Login/>}
+      />
+
     </div>
+
+
 
   
     

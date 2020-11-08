@@ -6,6 +6,7 @@ import home from '../multimedia/Home3.jpg'
 
 
 
+
 const Home = ()=>{
     return(
       <div className={s.cont_prin}>        
@@ -16,6 +17,7 @@ const Home = ()=>{
                 <Link href="/alumnos" color="inherit"> Alumno </Link>
                 <Link href="/instructor" color="inherit"> Instructor </Link>
                 <Link href="/admin" color="inherit"> Admin </Link>
+                <Link href="/login" color="inherit"> Login </Link>
               </Typography>
             </Toolbar>
         </AppBar>
