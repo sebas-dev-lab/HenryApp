@@ -2,15 +2,13 @@ const mongoose = require("mongoose");
 
 const feedbackSchema = new mongoose.Schema({
   idStudent: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'Student',
   },
-
   comment: {
     type: String,
     required: true,
   },
-
   qualification: {
     type: Number,
     required: true,

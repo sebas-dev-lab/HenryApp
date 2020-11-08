@@ -12,14 +12,12 @@ const adminSchema = new mongoose.Schema({
   DNI: {
     type: Number,
     required: true,
-    unique: true,
   },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-
   password: {
     type: String,
     required: true,
