@@ -16,7 +16,6 @@ const studentSchema = new mongoose.Schema({
   DNI: {
     type: Number,
     required: true,
-    unique: true,
   },
   isPM: {
     type: Boolean,
@@ -34,11 +33,9 @@ const studentSchema = new mongoose.Schema({
   },
   idCohorte: {
     type: Number,
-    required: true,
   },
   idModule: {
     type: String,
-    required: true,
   },
 });
 
