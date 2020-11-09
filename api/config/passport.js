@@ -4,9 +4,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 //----- Modelos-----
-const Student = require("../api/models/student");
-const Admin = require("../api/models/admin");
-const Instructor = require("../api/models/instructor");
+const Student = require("../models/student");
+const Admin = require("../models/admin");
+const Instructor = require("../models/instructor");
 
 const User = {
   Admin,
@@ -22,8 +22,14 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    async (email, password, done) => {
-      const user = await User.findOne({ where: { email: email } });
+    async (email, password, done, status) => {
+      // let status = status;
+      //prettier-ignore
+      if (status === "Admin") var usuario= Admin
+      if (status === "Student") var usuario = Student;
+      if (status === "Instructor") var usuario = Instructor;
+
+      const user = await usuario.findOne({ where: { email: email } });
       if (!user) {
         return done(null, false, {
           message: "Not User Found.",
@@ -50,4 +56,4 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-module.exports = app;
+module.exports = passport;
