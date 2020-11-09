@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Dni: {
+  dni: {
     type: Number,
     required: true,
     unique: true,
