@@ -24,6 +24,10 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Admin",
+  },
 });
 
 //------Encriptando el password--------

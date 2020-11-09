@@ -29,6 +29,11 @@ const instructorSchema = new Schema({
     type: Number,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Instructor",
+    required: true,
+  }
 });
 //------Encriptando el password--------
 //prettier-ignore

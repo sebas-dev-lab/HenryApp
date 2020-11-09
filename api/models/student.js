@@ -45,6 +45,10 @@ const studentSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "Group",
   },
+  status: {
+    type: String,
+    default: "Student",   
+  },
 });
 //------Encriptando el password--------
 //prettier-ignore
