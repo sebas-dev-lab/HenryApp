@@ -1,22 +1,27 @@
 const mongoose = require("mongoose");
 
 const pair_programmingSchema = new mongoose.Schema({
-  idGroupe: {
-    type: String,
-    required: true,
+  _id:{
+    type:String,
+    unique:true,
+    required:true
   },
-
-  idStudent: [
+  Group: 
     {
-      type: String,
-      required: true,
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Group'
+  },
+  Students: [
+    {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Student'
     },
   ],
-
-  idPm: {
-    type: String,
-    required: true,
-  },
+  Pm: [
+    {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Student'
+  }],
 });
 
 const Pair_programming = mongoose.model(
