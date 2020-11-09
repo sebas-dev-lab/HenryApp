@@ -22,20 +22,16 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    async (email, password, done, status) => {
-      // let status = status;
-      //prettier-ignore
-      if (status === "Admin") var usuario= Admin
-      if (status === "Student") var usuario = Student;
-      if (status === "Instructor") var usuario = Instructor;
-
-      const user = await usuario.findOne({ where: { email: email } });
+    async (email, password, done) => {
+      const user = await User.findOne({ email: email });
+      console.log(user);
       if (!user) {
         return done(null, false, {
           message: "Not User Found.",
         });
       } else {
         const match = await user.matchPassword(password);
+        console.log(match);
         if (match) {
           return done(null, user);
         } else {
