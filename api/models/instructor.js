@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
-const instructorSchema = new mongoose.Schema({
+const instructorSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -29,7 +30,16 @@ const instructorSchema = new mongoose.Schema({
     required: true,
   },
 });
+//------Encriptando el password--------
+//prettier-ignore
+instructorSchema.methods.encrypPassword = async password => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+};
 
-const Instructor = mongoose.model("Instructor", instructorSchema);
+//------Comparando password----
+instructorSchema.methods.matchPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
-module.exports = Instructor;
+module.exports = model("Instructor", instructorSchema);

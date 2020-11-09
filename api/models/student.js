@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const bcrypt = require("bcryptjs");
 const studentSchema = new mongoose.Schema({
   // id: {
   // 	type: Number,
@@ -34,18 +34,29 @@ const studentSchema = new mongoose.Schema({
     required: true,
   },
   idCohorte: {
-    type: Schema.Types.ObjectId, 
-    ref: 'Cohort'
+    type: Schema.Types.ObjectId,
+    ref: "Cohort",
   },
   idModule: {
-    type: Schema.Types.ObjectId, 
-    ref: 'Module'
+    type: Schema.Types.ObjectId,
+    ref: "Module",
   },
   idGroup: {
-    type: Schema.Types.ObjectId, 
-    ref: 'Group'
+    type: Schema.Types.ObjectId,
+    ref: "Group",
   },
 });
+//------Encriptando el password--------
+//prettier-ignore
+studentSchema.methods.encrypPassword = async password => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+};
+
+//------Comparando password----
+studentSchema.methods.matchPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 const Student = mongoose.model("Student", studentSchema);
 

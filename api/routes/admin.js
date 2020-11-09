@@ -7,7 +7,7 @@ router.post("/", (req, res) => {
   const admin = {
     name: "admin",
     lastName: "admin",
-    DNI: 123456,
+    DNI: 22222,
     email: "admin@aasdasdsds.com",
     password: "henry",
   }
