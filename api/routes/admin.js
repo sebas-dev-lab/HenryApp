@@ -1,24 +1,21 @@
 const router = require("express").Router();
 const Admin = require("../models/admin");
 
-router.post("/", (req, res) => {
-  //const { name, lastName, Dni, email, password } = req.body;
-  
-  const admin = {
-    name: "admin",
-    lastName: "admin",
-    DNI: 22222,
-    email: "admin@aasdasdsds.com",
-    password: "henry",
+router.post("/", async (req, res) => {
+  const { name, lastName, dni, email, password } = req.body;
+  if (!name && !lastName && !dni && !email && !password) {
+    return res.status(400).send("Faltan parametros");
+  } else {
+    const emailAdmin = await Admin.findOne({ email: email });
+    if (emailAdmin) {
+      res.status(400).send("Email existente");
+    } else {
+      const newAdmin = new Admin({ name, lastName, dni, email, password });
+      newAdmin.password = await newAdmin.encryptPassword(password);
+      await newAdmin.save();
+      res.status(200).json({ msg: "OK", admin: newAdmin });
+    }
   }
-
-  Admin.create(admin, function (err, newAdmin) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		res.status(200).json({ msg: "OK", admin: newAdmin });
-	});
 });
 
 router.get("/all", (req, res) => {
@@ -33,6 +30,5 @@ router.get("/all", (req, res) => {
       console.log(err);
     });
 });
-
 
 module.exports = router;

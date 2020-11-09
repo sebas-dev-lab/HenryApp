@@ -11,7 +11,7 @@ const adminSchema = new Schema({
     type: String,
     required: true,
   },
-  DNI: {
+  dni: {
     type: Number,
     required: true,
   },
@@ -28,7 +28,7 @@ const adminSchema = new Schema({
 
 //------Encriptando el password--------
 //prettier-ignore
-adminSchema.methods.encrypPassword = async password => {
+adminSchema.methods.encryptPassword = async password => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };

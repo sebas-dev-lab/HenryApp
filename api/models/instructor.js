@@ -10,7 +10,7 @@ const instructorSchema = new Schema({
     type: String,
     required: true,
   },
-  DNI: {
+  Dni: {
     type: Number,
     required: true,
     unique: true,
@@ -32,7 +32,7 @@ const instructorSchema = new Schema({
 });
 //------Encriptando el password--------
 //prettier-ignore
-instructorSchema.methods.encrypPassword = async password => {
+instructorSchema.methods.encryptPassword = async password => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };

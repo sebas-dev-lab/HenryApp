@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  DNI: {
+  Dni: {
     type: Number,
     required: true,
     unique: true,
@@ -48,7 +48,7 @@ const studentSchema = new mongoose.Schema({
 });
 //------Encriptando el password--------
 //prettier-ignore
-studentSchema.methods.encrypPassword = async password => {
+studentSchema.methods.encryptPassword = async password => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };
