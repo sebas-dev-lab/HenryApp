@@ -63,8 +63,8 @@ router.put("/cohort/:student/:cohort", (req, res) => {
 			console.log(err);
 			return;
 		}
-		Student.update({ name: student }, { $set: { idCohorte: cohort } }).then(
-			() => {
+		Student.update({ name: student }, { $set: { idCohorte: cohort } })
+		.then(() => {
 				res.status(200).json({ msg: "Ok" });
 			}
 		);

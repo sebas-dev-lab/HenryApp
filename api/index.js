@@ -5,6 +5,7 @@ mongoose
 	.connect("mongodb://localhost/HenryApp", {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
+		useCreateIndex: true
 	})
 	.then(() => {
 		app.listen(app.get("port"), () => {
