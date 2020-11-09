@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const router = require("./routes/index");
 const passport = require("passport");
-require("./config/passport");
+require("./config/passportAdmin");
+
 const app = express();
 
 //settings
