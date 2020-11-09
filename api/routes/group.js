@@ -53,21 +53,46 @@ router.post("/create", (req, res) => {
 });
 
 //------ Asignar PM al grupo
-router.put("/:group/:pm", (req, res) => {
-  const { group, pm } = req.params;  
+//---- tambien pone el atributo isPM del estudiante en true
 
-	Student.find({ name: pm }, function (err, student) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		Group.updateOne({ name: group }, { $push: { pms: student } })
-			.then(() => {
-				res.status(200).json({ msg: "Ok" });
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	});
+router.put("/:group/pm/:pm", (req, res) => {
+  const { group, pm } = req.params; 
+
+  Student.findOneAndUpdate(
+    { name: pm }, 
+    { $set: { isPM: true}}, 
+    { new: true })
+      .then((student) => {  
+        if(!student){
+          res.status(400).json({msg: "Not Found"})
+          return
+        }        
+        Group.updateOne(
+          { name: group }, 
+          { $push: { pms: student } })
+            .then(() => {
+              res.status(200).json({ msg: "Ok" });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+      })
+      .catch((err) => {
+        console.log(err);  
+      })
 });
+
+router.delete("/:group", (req, res) => {
+  const { group } = req.params;
+
+  Group.deleteOne({ name: group }, function(err, deleted){
+    if(err) {
+      console.log(err);
+      return     
+    }
+    res.status(200).json({msg: "Ok"})
+  });
+});
+
+
 module.exports = router;
