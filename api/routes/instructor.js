@@ -1,21 +1,7 @@
 const express = require("express");
 const router = express();
-const Instructor = require("../models/instructor");
+const User = require("../models/user");
 const Cohort = require("../models/cohort");
-
-/*==== Get all instructors ==== */
-router.get("/", (req, res) => {
-  Instructor.find(function (err, students) {
-    if (err) return console.error(err);
-  })
-    .populate("idCohorte")
-    .then((students) => {
-      res.status(200).send(students);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
 /*====  Post instructor ====== */
 router.post("/", async (req, res) => {
@@ -23,32 +9,42 @@ router.post("/", async (req, res) => {
   if (!name && !lastName && !dni && !email && !password && !cohorte) {
     return res.status(400).send("Faltan parametros");
   } else {
-    const emailInstructor = await Instructor.findOne({ email: email });
-    if (emailInstructor) {
+    const dniInstructor = await User.findOne({ dni: dni });
+    if (dniInstructor) {
       res.status(400).send("Email existente");
     } else {
-      const newInstructor = new Instructor({
+      const newInstructor = new User({
         name,
         lastName,
         dni,
         email,
         password,
-        cohorte,
       });
       newInstructor.password = await newInstructor.encryptPassword(password);
+      newInstructor.role = "instructor";
       await newInstructor.save();
       res.status(200).json({ msg: "OK", admin: newInstructor });
     }
   }
 });
 
+/*==== Get all instructors ==== */
+router.get("/all", (req, res) => {
+  User.find({ role: "instructor" })
+    .populate("cohorte")
+    .then((instructor) => {
+      res.status(200).send(instructor);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 /*===== Delete Instructor ====== */
-router.delete("/:name", (req, res) => {
-  //definir atributo unico para buscar
+router.delete("/:dni", (req, res) => {
+  const { dni } = req.params;
 
-  const { name } = req.params;
-
-  Student.deleteOne({ name: name }, function (err, deleted) {
+  User.deleteOne({ dni: dni }, function (err, deleted) {
     if (err) {
       console.log(err);
       return;

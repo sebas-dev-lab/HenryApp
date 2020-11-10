@@ -4,17 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 //----- Modelos-----
-const Student = require("../models/student");
-const Admin = require("../models/admin");
-const Instructor = require("../models/instructor");
-const User = require("../models/users");
-
-// const User = {
-//   Admin,
-//   Instructor,
-//   Student,
-// };
-
+const User = require("../models/user");
 //-------- Passport Local---------
 
 passport.use(

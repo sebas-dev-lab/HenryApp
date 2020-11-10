@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
-const studentSchema = new mongoose.Schema({
-  // id: {
-  // 	type: Number,
-  // 	required: true,
-  // },
+
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -33,36 +30,43 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  idCohorte: {
-    type: Schema.Types.ObjectId,
+  cohorte: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Cohort",
   },
-  idModule: {
-    type: Schema.Types.ObjectId,
+  module: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Module",
   },
-  idGroup: {
-    type: Schema.Types.ObjectId,
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Group",
   },
-  status: {
+  PP: {
+    type: mongoose.Schema.Types.String,
+    ref: "Pair_programming",
+  },
+  role: {
     type: String,
-    default: "Student",
+    ENUM: ["instructor", "admin", "student"],
+    default: "student",
   },
 });
-studentSchema.plugin(require("mongoose-autopopulate"));
+
+userSchema.plugin(require("mongoose-autopopulate"));
+
 //------Encriptando el password--------
 //prettier-ignore
-studentSchema.methods.encryptPassword = async password => {
+userSchema.methods.encryptPassword = async password => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };
 
 //------Comparando password----
-studentSchema.methods.matchPassword = async function (password) {
+userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-const Student = mongoose.model("Student", studentSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Student;
+module.exports = User;
