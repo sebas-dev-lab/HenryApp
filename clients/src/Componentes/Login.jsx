@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Navbar from './Navbar'
-import  '../styles/Login.css';
+import s from '../styles/login.module.css';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
+import Fondo from './utils/registro.jpg'
 
 export default function Registro() {
     const [data, setData] = useState({
@@ -153,8 +153,15 @@ export default function Registro() {
     return (
         
         <div className="Login">
-            <div className="container">
-            <form className= "sing_in" >
+            <div className={s.container} >
+         <div className={s.hijo1}>
+            <div className={s.text}>
+          <h6>REGISTRO</h6>
+            <img src={Fondo} alt="" style={{ width: "700px" }}/>
+            </div>
+            </div>
+            <div className={s.hijo2}>
+            <form className={s.sing_in} >
                 <div class="form-group">
                     <label >Name</label>
                     <input name="name" onChange={inputsChange_name} type="text" class="form-control" style={{ color: "black", width: "450px" }} placeholder="ingresar nombre" />
@@ -180,10 +187,15 @@ export default function Registro() {
                     <input name="dni" onChange={inputsChange_dni} type="dni" class="form-control" style={{ color: "black", width: "450px" }} placeholder="DNI" />
                     <small className="detail">{errors.dniError}</small>
                 </div>
-                <Button   type="submit" class="submit" onClick={()=>sendData()}>Registrar</Button>
+                <Button  type="submit" class={s.submit} onClick={()=>sendData()}>Registrar</Button>
 
             </form>
+            </div>
         </div>
         </div>
+        
+        
+        
+
     )
 }
