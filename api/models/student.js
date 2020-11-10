@@ -34,18 +34,22 @@ const studentSchema = new mongoose.Schema({
     required: true,
   },
   idCohorte: {
-    type: Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId, 
     ref: 'Cohort'
   },
   idModule: {
-    type: Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId, 
     ref: 'Module'
   },
   idGroup: {
-    type: Schema.Types.ObjectId, 
+    type: mongoose.Schema.Types.ObjectId, 
     ref: 'Group'
   },
-});
+  PP: {
+    type: mongoose.Schema.Types.String, 
+    ref: 'Pair_programming'
+}
+})
 
 const Student = mongoose.model("Student", studentSchema);
 
