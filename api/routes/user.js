@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express();
 
-const Student = require("../models/student");
+const User = require("../models/user");
 const Cohort = require("../models/cohort");
 const Group = require("../models/group");
 
 router.get("/all", (req, res) => {
-	Student.find(function (err, students) {
+	User.find(function (err, students) {
 		if (err) return console.error(err);
 	})
-		.populate("idCohorte")
-		.populate("idGroup")
+		.populate("cohorte")
+		.populate("group")
 		.then((students) => {
 			res.status(200).send(students);
 		})
@@ -22,11 +22,11 @@ router.get("/all", (req, res) => {
 router.get("/", (req, res) => {
 	const { name } = req.body;
 
-	Student.findOne({ name: name })
+	User.findOne({ name: name })
 		.populate("idCohorte")
 		.populate("PP")
-		.then((students) => {
-			res.status(200).json({ msg: "OK", students });
+		.then((user) => {
+			res.status(200).json({ msg: "OK", user });
 		})
 		.catch((err) => {
 			console.log(err);
@@ -34,13 +34,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-	const newStudent = req.body;
-	Student.create(newStudent, function (err, newStudent) {
+	const newUser = req.body;
+	User.create(newUser, function (err, newUser) {
 		if (err) {
 			console.log(err);
 			return;
 		}
-		res.status(200).json({ msg: "OK", student: newStudent });
+		res.status(200).json({ msg: "OK", user: newUser });
 	});
 });
 
@@ -49,7 +49,7 @@ router.delete("/:name", (req, res) => {
 
 	const { name } = req.params;
 
-	Student.deleteOne({ name: name }, function (err, deleted) {
+	User.deleteOne({ name: name }, function (err, deleted) {
 		if (err) {
 			console.log(err);
 			return;
@@ -66,7 +66,7 @@ router.put("/cohort/:student/:cohort", (req, res) => {
 			console.log(err);
 			return;
 		}
-		Student.update({ name: student }, { $set: { idCohorte: cohort } }).then(
+		User.update({ name: student }, { $set: { idCohorte: cohort } }).then(
 			() => {
 				res.status(200).json({ msg: "Ok" });
 			}
@@ -78,7 +78,7 @@ router.put("/group/:student/:group", (req, res) => {
 	const { student, group } = req.params;
 	//asignar grupo al estudiante
 	//sumar el estudiante al array del grupo
-	Student.findOne({ name: student }, function(err, findStudent){	
+	User.findOne({ name: student }, function(err, findStudent){	
 		if(err){
 			res.status(400)
 			return
@@ -94,7 +94,7 @@ router.put("/group/:student/:group", (req, res) => {
 						res.status(400)
 						return
 					}
-					Student.findOneAndUpdate(
+					User.findOneAndUpdate(
 						{ name: student }, 
 						{ $set: { idGroup: group }}, 
 						{new: true}

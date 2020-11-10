@@ -2,7 +2,7 @@ const express = require("express");
 const router = express();
 
 const Group = require("../models/group");
-const Student = require("../models/student");
+const User = require("../models/user");
 const Cohort = require("../models/cohort");
 
 router.get("/all", (req, res) => {
@@ -60,7 +60,7 @@ router.post("/create", (req, res) => {
 router.put("/:group/pm/:pm", (req, res) => {
   const { group, pm } = req.params; 
 
-  Student.findOneAndUpdate(
+  User.findOneAndUpdate(
     { name: pm }, 
     { $set: { isPM: true}}, 
     { new: true })
@@ -71,7 +71,8 @@ router.put("/:group/pm/:pm", (req, res) => {
         }        
         Group.updateOne(
           { name: group }, 
-          { $push: { pms: student } })
+					{ $push: { pms: student } 
+					})
             .then(() => {
               res.status(200).json({ msg: "Ok" });
             })
@@ -106,7 +107,7 @@ router.put("/pm/clean/:group", (req, res) => {
 		)
 		.then((group) => {
 			group.pms.forEach(pm => {	
-				Student.findByIdAndUpdate(
+				User.findByIdAndUpdate(
 					pm, 
 					{ $set: { isPM: false }},
 					{new: true}

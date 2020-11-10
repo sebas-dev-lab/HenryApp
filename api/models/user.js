@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const studentSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   // id: {
   // 	type: Number,
   // 	required: true,
@@ -33,24 +33,29 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  idCohorte: {
+  cohorte: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Cohort'
   },
-  idModule: {
+  module: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Module'
   },
-  idGroup: {
+  group: {
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Group'
   },
   PP: {
     type: mongoose.Schema.Types.String, 
     ref: 'Pair_programming'
-}
+  },
+  role: {
+    type: String,
+    ENUM: ["instructor", "admin", "student"],
+    default: "student"
+  }
 })
 
-const Student = mongoose.model("Student", studentSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Student;
+module.exports = User;
