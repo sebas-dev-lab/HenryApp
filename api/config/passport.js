@@ -1,6 +1,5 @@
 //-----------Autenticaciones-------
 const passport = require("passport");
-//const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 
 //----- Modelos-----
@@ -31,14 +30,6 @@ passport.use(
   )
 );
 
-//---------Passport Serializer
-passport.serializeUser((user, done) => done(null, user.id));
 
-//---------Passport Deserializer
-passport.deserializeUser(function (id, done) {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
 
 module.exports = passport;

@@ -7,9 +7,10 @@ const cors = require("cors");
 const router = require("./routes/index");
 const passport = require("passport");
 require("./config/passport");
+require("./config/passportGoogle");
+require("./config/passportGitHub");
 
 const app = express();
-
 //settings
 app.set("port", process.env.PORT || 3001);
 
@@ -27,6 +28,15 @@ app.use(
     saveUninitialized: true,
   })
 );
+//---------Passport Serializer
+passport.serializeUser((user, done) => done(null, user.id));
+
+//---------Passport Deserializer
+passport.deserializeUser(function (id, done) {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
 app.use(passport.initialize());
 app.use(passport.session());
 

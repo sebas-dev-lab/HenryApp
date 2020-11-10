@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
+const findOrCreate = require("mongoose-findorcreate");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    //required: true,
   },
   lastName: {
     type: String,
-    required: true,
+    //required: true,
   },
   dni: {
     type: Number,
-    required: true,
+    //required: true,
     unique: true,
   },
   isPM: {
@@ -23,12 +24,12 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
+    //required: true,
     unique: true,
   },
   password: {
     type: String,
-    required: true,
+    //required: true,
   },
   cohorte: {
     type: mongoose.Schema.Types.ObjectId,
@@ -51,6 +52,12 @@ const userSchema = new mongoose.Schema({
     ENUM: ["instructor", "admin", "student"],
     default: "student",
   },
+  googleId: {
+    type: String,
+  },
+  githubId: {
+    type: String,
+  },
 });
 
 userSchema.plugin(require("mongoose-autopopulate"));
@@ -67,6 +74,7 @@ userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+userSchema.plugin(findOrCreate);
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
