@@ -47,9 +47,10 @@ const studentSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: "Student",   
+    default: "Student",
   },
 });
+studentSchema.plugin(require("mongoose-autopopulate"));
 //------Encriptando el password--------
 //prettier-ignore
 studentSchema.methods.encryptPassword = async password => {

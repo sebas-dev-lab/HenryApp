@@ -7,12 +7,13 @@ const LocalStrategy = require("passport-local").Strategy;
 const Student = require("../models/student");
 const Admin = require("../models/admin");
 const Instructor = require("../models/instructor");
+const User = require("../models/users");
 
-const User = {
-  Admin,
-  Instructor,
-  Student,
-};
+// const User = {
+//   Admin,
+//   Instructor,
+//   Student,
+// };
 
 //-------- Passport Local---------
 
@@ -23,8 +24,8 @@ passport.use(
       passwordField: "password",
     },
     async (email, password, done) => {
-      const user = await Admin.findOne({ email: email });
-      console.log(user);
+      const user = await User.find();
+
       if (!user) {
         return done(null, false, {
           message: "Not User Found.",

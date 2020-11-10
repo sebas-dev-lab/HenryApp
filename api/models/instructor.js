@@ -10,7 +10,7 @@ const instructorSchema = new Schema({
     type: String,
     required: true,
   },
-  Dni: {
+  dni: {
     type: Number,
     required: true,
     unique: true,
@@ -33,8 +33,9 @@ const instructorSchema = new Schema({
     type: String,
     default: "Instructor",
     required: true,
-  }
+  },
 });
+instructorSchema.plugin(require("mongoose-autopopulate"));
 //------Encriptando el password--------
 //prettier-ignore
 instructorSchema.methods.encryptPassword = async password => {

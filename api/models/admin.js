@@ -29,6 +29,7 @@ const adminSchema = new Schema({
     default: "Admin",
   },
 });
+adminSchema.plugin(require("mongoose-autopopulate"));
 
 //------Encriptando el password--------
 //prettier-ignore
