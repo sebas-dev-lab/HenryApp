@@ -71,4 +71,30 @@ router.put("/cohort/:student/:cohort", (req, res) => {
 	});
 });
 
+
+//-----asignar grupo al estudiante
+
+// router.put(("/assign/:group/:student", (req, res) => {
+//   const { group, student } = req.params;
+//   console.log(group, 'entroo');  
+//   // res.status(200).json({msg:'entro'})
+//   Student.find({ name: student }, function(err, student) {
+//     if(err) {
+//       console.log(err);
+//       return  
+//     }
+//     Group.updateOne({name: group}, { $push: { students: student}})
+//       .then(() => {
+//         res.status(200).json({ msg: "Ok" });
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   })
+//   .catch((err) => {
+//     res.status(400).json({msg: err})
+//   })
+// }));
+
+
 module.exports = router;

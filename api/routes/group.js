@@ -3,6 +3,7 @@ const router = express();
 
 const Group = require("../models/group");
 const Student = require("../models/student");
+const Cohort = require("../models/cohort");
 
 router.get("/all", (req, res) => {
 	Group.find(function (err, groups) {
@@ -13,6 +14,7 @@ router.get("/all", (req, res) => {
 	})
 		.populate("pms")
 		.populate("students")
+		.populate("cohort")
 		.then((groups) => {
 			res.status(200).json({ msg: "Ok", groups });
 		})
@@ -94,29 +96,51 @@ router.delete("/:group", (req, res) => {
   });
 });
 
-//------agreg ar alumnos al grupo
-// router.put(("/assign/:group/:student", (req, res) => {
-//   const { group, student } = req.params;
-//   console.log(group, 'entroo');  
-//   res.status(200).json({msg:'entro'})
-//   Student.find({ name: student }, function(err, student) {
-//     if(err) {
-//       console.log(err);
-//       return  
-//     }
-//     Group.updateOne({name: group}, { $push: { students: student}})
-//       .then(() => {
-//         res.status(200).json({ msg: "Ok" });
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   })
-//   .catch((err) => {
-//     res.status(400).json({msg: err})
-//   })
-// }));
-
 //ruta para eliminar pms
+router.put("/pm/clean/:group", (req, res) => {
+	const { group } = req.params;
+
+	Group.findOneAndUpdate(
+		{ name: group}, 
+		{ $set: { pms: [] }}
+		)
+		.then((group) => {
+			group.pms.forEach(pm => {	
+				Student.findByIdAndUpdate(
+					pm, 
+					{ $set: { isPM: false }},
+					{new: true}
+				)
+			});
+		})
+		.then(() => {
+			res.status(200).json({ msg: "Ok" });
+		})
+		.catch((err) => {
+			console.log(err);			
+		})
+})
+
+//ruta para asignar cohorte
+
+router.put("/cohort/:group/:cohort", (req, res) => {
+	const {group, cohort} = req.params;
+
+	Cohort.findOne({ name: cohort }, function(err, cohort){
+		if(err){
+			console.log(err);
+			res.status(400)
+			return;
+		}
+		Group.findOneAndUpdate(
+			{ name: group}, 
+			{ $set: { cohort: cohort }}
+		)
+			.then((r) => {
+				res.status(200).json({msg:"Ok"})
+			})
+	})
+})
+
 //ruta para asignar estudiantes en bulk
 module.exports = router;

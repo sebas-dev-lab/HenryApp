@@ -8,7 +8,7 @@ const groupSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  cohorte: {
+  cohort: {
     type: Schema.Types.ObjectId,
     ref: "Cohort"
   },
