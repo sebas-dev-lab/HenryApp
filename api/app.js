@@ -8,6 +8,7 @@ const router = require("./routes/index");
 const passport = require("passport");
 require("./config/passport");
 require("./config/passportGoogle");
+require("./config/passportGitHub");
 
 const app = express();
 //settings

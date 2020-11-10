@@ -55,6 +55,9 @@ const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
   },
+  githubId: {
+    type: String,
+  },
 });
 
 userSchema.plugin(require("mongoose-autopopulate"));

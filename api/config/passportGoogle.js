@@ -34,13 +34,3 @@ passport.use(
     }
   )
 );
-
-//---------Passport Serializer
-passport.serializeUser((user, done) => done(null, user.id));
-
-//---------Passport Deserializer
-passport.deserializeUser(function (id, done) {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});

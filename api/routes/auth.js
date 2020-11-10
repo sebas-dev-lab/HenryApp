@@ -22,4 +22,18 @@ router.get(
   })
 );
 
+//--------- Autenticación Github -----------
+router.get(
+  "/github",
+  passport.authenticate("github", {
+    scope: ["email", "profile"],
+  })
+);
+router.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    successRedirect: "http://localhost:3000/",
+    session: false,
+  })
+);
 module.exports = router;
