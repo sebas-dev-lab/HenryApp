@@ -14,15 +14,13 @@ passport.use(
       passwordField: "password",
     },
     async (email, password, done) => {
-      const user = await User.find();
-
+      const user = await User.findOne({ email: email });
       if (!user) {
         return done(null, false, {
           message: "Not User Found.",
         });
       } else {
         const match = await user.matchPassword(password);
-        console.log(match);
         if (match) {
           return done(null, user);
         } else {

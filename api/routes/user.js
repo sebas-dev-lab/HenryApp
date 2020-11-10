@@ -5,6 +5,8 @@ const User = require("../models/user");
 const Cohort = require("../models/cohort");
 const Group = require("../models/group");
 
+/*==== user.js continua siendo rutas de "student" ==== */
+
 /*===== Get all students ===== */
 router.get("/all", (req, res) => {
   User.find({ role: "student" })

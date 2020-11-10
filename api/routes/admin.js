@@ -30,6 +30,18 @@ router.get("/all", (req, res) => {
       console.log(err);
     });
 });
+/*===== Get all users: admin+student+instructor ===== */
+router.get("/users", (req, res) => {
+  User.find()
+    .populate("cohorte")
+    .populate("group")
+    .then((users) => {
+      res.status(200).send(users);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 /*===== Get OneAdmin by dni ===== */
 router.get("/:dni", (req, res) => {
