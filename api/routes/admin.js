@@ -1,31 +1,28 @@
 const router = require("express").Router();
-const Admin = require("../models/admin");
+const User = require("../models/user");
 
-router.post("/", (req, res) => {
-  //const { name, lastName, Dni, email, password } = req.body;
-  
-  const admin = {
-    name: "admin",
-    lastName: "admin",
-    DNI: 123456,
-    email: "admin@aasdasdsds.com",
-    password: "henry",
+/*===== Create Admin ===== */
+router.post("/", async (req, res) => {
+  const { name, lastName, dni, email, password } = req.body;
+  if (!name && !lastName && !dni && !email && !password) {
+    return res.status(400).send("Faltan parametros");
+  } else {
+    const dnilAdmin = await User.findOne({ dni: dni });
+    if (dnilAdmin) {
+      res.status(400).send("DNI existente");
+    } else {
+      const newAdmin = new User({ name, lastName, dni, email, password });
+      newAdmin.role = "admin";
+      newAdmin.password = await newAdmin.encryptPassword(password);
+      await newAdmin.save();
+      res.status(200).json({ msg: "OK", admin: newAdmin });
+    }
   }
-
-  Admin.create(admin, function (err, newAdmin) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		res.status(200).json({ msg: "OK", admin: newAdmin });
-	});
 });
 
+/*=====  Get all admins ===== */
 router.get("/all", (req, res) => {
-  Admin.find(function (err, admins) {
-    if (err) return console.error(err);
-    return admins;
-  })
+  User.find({ role: "admin" })
     .then((admins) => {
       res.status(200).send(admins);
     })
@@ -33,6 +30,43 @@ router.get("/all", (req, res) => {
       console.log(err);
     });
 });
+/*===== Get all users: admin+student+instructor ===== */
+router.get("/users", (req, res) => {
+  User.find()
+    .populate("cohorte")
+    .populate("group")
+    .then((users) => {
+      res.status(200).send(users);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
+/*===== Get OneAdmin by dni ===== */
+router.get("/:dni", (req, res) => {
+  const { dni } = req.params;
+
+  User.findOne({ dni: dni })
+    .then((user) => {
+      res.status(200).json({ msg: "OK", user });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+/*===== Delete students===== */
+router.delete("/:dni", (req, res) => {
+  const { dni } = req.params;
+
+  User.deleteOne({ dni: dni }, function (err, deleted) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    res.status(200).json({ msg: "Ok" });
+  });
+});
 
 module.exports = router;
