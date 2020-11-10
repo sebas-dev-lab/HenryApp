@@ -22,6 +22,7 @@ router.get("/", (req, res) => {
 
 	Student.findOne({ name: name })
 		.populate("idCohorte")
+		.populate("PP")
 		.then((students) => {
 			res.status(200).json({ msg: "OK", students });
 		})
