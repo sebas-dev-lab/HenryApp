@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const adminSchema = new mongoose.Schema({
+const bcrypt = require("bcryptjs");
+
+const adminSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -9,7 +11,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  DNI: {
+  dni: {
     type: Number,
     required: true,
   },
@@ -22,8 +24,23 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Admin",
+  },
 });
+adminSchema.plugin(require("mongoose-autopopulate"));
 
-const Admin = mongoose.model("Admin", adminSchema);
+//------Encriptando el password--------
+//prettier-ignore
+adminSchema.methods.encryptPassword = async password => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+};
 
-module.exports = Admin;
+//------Comparando password----
+adminSchema.methods.matchPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+module.exports = model("Admin", adminSchema);
