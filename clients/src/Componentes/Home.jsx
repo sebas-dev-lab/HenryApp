@@ -17,9 +17,7 @@ const Home = () => {
     <div className={s.cont_prin}>
       <AppBar position="static" className={s.menu}>
         <Toolbar variant="dense" className={s.cont_nav}>
-          <Link href="/home">
-            <img src={logo} alt="" />
-          </Link>
+          <img src={logo} alt="" />
 
           <Typography variant="h6" color="inherit" className={s.link}>
             <Link href="/alumnos" color="inherit">
