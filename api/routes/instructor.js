@@ -53,6 +53,21 @@ router.delete("/:code", (req, res) => {
   });
 });
 
-/*===== Put Instructor ====== */
+/*===== Edit Instructor data =====*/
+router.put("/:code", (req, res) => {
+  const { code } = req.params;
+  const { name, lastName, dni, email } = req.body;
+  User.findOneAndUpdate(
+    { code: code },
+    {
+      name: name,
+      lastName: lastName,
+      email: email,
+      dni: dni,
+    }
+  ).then(() => {
+    res.status(200).json({ msg: "Ok" });
+  });
+});
 
 module.exports = router;
