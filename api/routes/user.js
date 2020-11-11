@@ -76,7 +76,10 @@ router.put("/:code", (req, res) => {
   User.findOneAndUpdate(
     { code: code },
     {
+      name: name,
+      lastName: lastName,
       email: email,
+      dni: dni,
     }
   ).then(() => {
     res.status(200).json({ msg: "Ok" });
