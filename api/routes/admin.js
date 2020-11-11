@@ -69,4 +69,51 @@ router.delete("/:code", (req, res) => {
   });
 });
 
+/*===== Update student - Cohort ===== */
+router.put("/cohort/:code/:cohort", (req, res) => {
+  const { code, cohort } = req.params;
+
+  Cohort.findOne({ name: cohort }, function (err, cohort) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    User.update({ code: code }, { $set: { idCohorte: cohort } }).then(() => {
+      res.status(200).json({ msg: "Ok" });
+    });
+  });
+});
+
+/*===== Update student - group===== */
+router.put("/group/:code/:group", (req, res) => {
+  const { code, group } = req.params;
+  //asignar grupo al estudiante
+  //sumar el estudiante al array del grupo
+  User.findOne({ code: code }, function (err, findStudent) {
+    if (err) {
+      res.status(400);
+      return;
+    }
+    Group.findOneAndUpdate(
+      { name: group },
+      { $push: { students: findStudent } },
+      { new: true }
+    ).then(() => {
+      Group.findOne({ name: group }, function (err, group) {
+        if (err) {
+          res.status(400);
+          return;
+        }
+        User.findOneAndUpdate(
+          { name: student },
+          { $set: { idGroup: group } },
+          { new: true }
+        ).then(() => {
+          res.status(200).json({ msg: "Ok" });
+        });
+      });
+    });
+  });
+});
+
 module.exports = router;

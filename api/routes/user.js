@@ -69,54 +69,17 @@ router.delete("/:code", (req, res) => {
   });
 });
 
-//---------------------------------------------------------------------
-
-/*===== Update student - Cohort ===== */
-router.put("/cohort/:student/:cohort", (req, res) => {
-  const { student, cohort } = req.params;
-
-  Cohort.findOne({ name: cohort }, function (err, cohort) {
-    if (err) {
-      console.log(err);
-      return;
+/*===== Edit student data ===== FALTA!!!!*/
+router.put("/:code", (req, res) => {
+  const { code } = req.params;
+  const { name, lastName, dni, email } = req.body;
+  User.findOneAndUpdate(
+    { code: code },
+    {
+      email: email,
     }
-    User.update({ name: student }, { $set: { idCohorte: cohort } }).then(() => {
-      res.status(200).json({ msg: "Ok" });
-    });
-  });
-});
-
-// _____________________________________________________________________
-
-/*===== Update student - group===== */
-router.put("/group/:student/:group", (req, res) => {
-  const { student, group } = req.params;
-  //asignar grupo al estudiante
-  //sumar el estudiante al array del grupo
-  User.findOne({ name: student }, function (err, findStudent) {
-    if (err) {
-      res.status(400);
-      return;
-    }
-    Group.findOneAndUpdate(
-      { name: group },
-      { $push: { students: findStudent } },
-      { new: true }
-    ).then(() => {
-      Group.findOne({ name: group }, function (err, group) {
-        if (err) {
-          res.status(400);
-          return;
-        }
-        User.findOneAndUpdate(
-          { name: student },
-          { $set: { idGroup: group } },
-          { new: true }
-        ).then(() => {
-          res.status(200).json({ msg: "Ok" });
-        });
-      });
-    });
+  ).then(() => {
+    res.status(200).json({ msg: "Ok" });
   });
 });
 
