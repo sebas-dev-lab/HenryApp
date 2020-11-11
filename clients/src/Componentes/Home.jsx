@@ -1,16 +1,10 @@
-import React from "react";
-import s from "../styles/home.module.css";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Link,
-  FormControl,
-  InputLabel,
-  Select,
-} from "@material-ui/core";
-import logo from "../multimedia/LogoHenry.png";
-import home from "../multimedia/Home3.jpg";
+
+import React from 'react';
+import s from '../styles/home.module.css';
+import {AppBar, Toolbar, Typography, Link, FormControl, InputLabel,Select }from '@material-ui/core';
+import logo from '../utils/LogoHenry.png'
+import home from '../utils/Home3.jpg'
+
 
 const Home = () => {
   return (
