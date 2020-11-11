@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "mailgun-js": "^0.22.0",
     "mongoose": "^5.10.12",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-autoincrement": "^1.0.0",
