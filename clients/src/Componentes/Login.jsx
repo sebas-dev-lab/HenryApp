@@ -153,7 +153,6 @@ export default function Registro() {
     return (
         
         <div className="Login">
-            <Navbar/>
             <div className="container">
             <form className= "sing_in" >
                 <div class="form-group">
