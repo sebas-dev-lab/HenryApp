@@ -44,10 +44,10 @@ router.get("/users", (req, res) => {
 });
 
 /*===== Get OneAdmin by dni ===== */
-router.get("/:dni", (req, res) => {
-  const { dni } = req.params;
+router.get("/:code", (req, res) => {
+  const { code } = req.params;
 
-  User.findOne({ dni: dni })
+  User.findOne({ code: code })
     .then((user) => {
       res.status(200).json({ msg: "OK", user });
     })
@@ -57,10 +57,10 @@ router.get("/:dni", (req, res) => {
 });
 
 /*===== Delete students===== */
-router.delete("/:dni", (req, res) => {
-  const { dni } = req.params;
+router.delete("/:code", (req, res) => {
+  const { code } = req.params;
 
-  User.deleteOne({ dni: dni }, function (err, deleted) {
+  User.deleteOne({ code: code }, function (err, deleted) {
     if (err) {
       console.log(err);
       return;

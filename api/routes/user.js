@@ -21,10 +21,10 @@ router.get("/all", (req, res) => {
 });
 
 /*===== Get students by dni ===== */
-router.get("/:dni", (req, res) => {
-  const { dni } = req.params;
+router.get("/:code", (req, res) => {
+  const { code } = req.params;
 
-  User.findOne({ dni: dni })
+  User.findOne({ code: code })
     .populate("cohorte")
     .populate("PP")
     .then((user) => {
@@ -55,7 +55,7 @@ router.post("/create", async (req, res) => {
 });
 
 /*===== Delete students===== */
-router.delete("/:dni", (req, res) => {
+router.delete("/:code", (req, res) => {
   //definir atributo unico para buscar
 
   const { dni } = req.params;
