@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 
 const pair_programmingSchema = new mongoose.Schema({
   _id:{
-    type:String,
-    unique:true,
-    required:true
+    type:String
   },
   Group: 
     {
