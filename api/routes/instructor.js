@@ -41,10 +41,10 @@ router.get("/all", (req, res) => {
 });
 
 /*===== Delete Instructor ====== */
-router.delete("/:dni", (req, res) => {
-  const { dni } = req.params;
+router.delete("/:code", (req, res) => {
+  const { code } = req.params;
 
-  User.deleteOne({ dni: dni }, function (err, deleted) {
+  User.deleteOne({ code: code }, function (err, deleted) {
     if (err) {
       console.log(err);
       return;
