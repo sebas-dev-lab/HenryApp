@@ -1,7 +1,7 @@
 import React from 'react';
 import s from '../styles/navbar.module.css';
 import {AppBar, Toolbar, Typography, Link, Avatar }from '@material-ui/core';
-import logo from '../multimedia/LogoHenry.png'
+import logo from '../utils/LogoHenry.png'
 
 
 

@@ -7,11 +7,11 @@ const cohortSchema = new mongoose.Schema({
   },
   startDate: {
     type: Date, 
-    required: true
+    required: false
   },
   graduationDay: {
     type: Date,
-    required:true
+    required:false
   }
 });
 
