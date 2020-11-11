@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const bcrypt = require("bcryptjs");
-var autoIncrement = require("mongoose-auto-increment");
-autoIncrement.initialize(mongoose.connection);
+var autoIncrement = require("mongoose-auto-increment"); //no modificar
+autoIncrement.initialize(mongoose.connection); //no modificar
 
 const userSchema = new mongoose.Schema({
   code: { type: Number, default: 0, unique: true },
@@ -74,7 +74,7 @@ userSchema.methods.encryptPassword = async password => {
 userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
-
+//no modificar
 userSchema.plugin(autoIncrement.plugin, {
   model: "User",
   field: "code",
