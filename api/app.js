@@ -28,15 +28,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-//---------Passport Serializer
-passport.serializeUser((user, done) => done(null, user.id));
 
-//---------Passport Deserializer
-passport.deserializeUser(function (id, done) {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
 app.use(passport.initialize());
 app.use(passport.session());
 
