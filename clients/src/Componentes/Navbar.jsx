@@ -12,7 +12,7 @@ const Navbar = ()=>{
         <AppBar position="static" className={s.menu}>            
             <Toolbar variant="dense" className={s.cont_nav}>
               <Typography variant="h6" color="inherit" className={s.link}>
-                Hola! Toni Traice
+                Hola! Toni Tralice
               </Typography>
             </Toolbar>
         </AppBar>
