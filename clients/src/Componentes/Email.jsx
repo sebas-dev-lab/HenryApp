@@ -12,36 +12,28 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
-import { Edit, Delete, Add } from "@material-ui/icons";
-// import styles from "../styles/email.module.css";
+import {
+  Edit,
+  Delete,
+  AddCircle,
+  CheckCircle,
+  Cancel,
+} from "@material-ui/icons";
+import style from "../styles/email.module.css";
 import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: 300,
-    flexGrow: 1,
-    minWidth: 300,
-    transform: "translateZ(0)",
-    "@media all and (-ms-high-contrast: none)": {
-      display: "none",
-    },
-  },
   modal: {
     position: "absolute",
     width: 300,
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     top: "50%",
     left: "50px",
     transform: "translate (-50%, -50%)",
-  },
-  iconos: {
-    cursor: "pointer",
-  },
-  inputMaterial: {
-    width: "100%",
   },
 }));
 
@@ -94,20 +86,25 @@ export default function Emails() {
     <div className={styles.modal}>
       <h3>Agregar Nuevo email</h3>
       <TextField
-        className={styles.inputMaterial}
+        className={style.inputMaterial}
         label="Email"
         name="email"
         onChange={handleChange}
       />
       <br />
       <br />
-      <div aling="right">
-        <Button variant="contained" color="secondary" onClick={Aceptar}>
-          Aceptar
-        </Button>
-        <Button variant="contained" color="primary" onClick={AbrirCerrar}>
-          Cancelar
-        </Button>
+      <div aling="center">
+        <CheckCircle
+          className={style.aceptar}
+          fontSize="large"
+          onClick={Aceptar}
+        />
+        &nbsp; &nbsp; &nbsp;
+        <Cancel
+          className={style.cancelar}
+          fontSize="large"
+          onClick={AbrirCerrar}
+        />
       </div>
     </div>
   );
@@ -115,7 +112,7 @@ export default function Emails() {
     <div className={styles.modal}>
       <h3>Editar email</h3>
       <TextField
-        className={styles.inputMaterial}
+        className={style.inputMaterial}
         label="Email"
         name="email"
         onChange={handleChange}
@@ -124,25 +121,32 @@ export default function Emails() {
       <br />
       <br />
       <div aling="right">
-        <Button color="primary">Ediatr</Button>
-        <Button color="primary">Cancelar</Button>
+        <CheckCircle className={style.aceptar} />
+        &nbsp; &nbsp; &nbsp;
+        <Cancel className={style.cancelar} />
       </div>
     </div>
   );
   return (
-    <div className="emails">
+    <div className={style.emails}>
       <br />
-      <Fab color="primary" aria-label="add" onClick={AbrirCerrar}>
-        <Add />
-      </Fab>
+      <AddCircle className={style.add} fontSize="large" onClick={AbrirCerrar} />
       <br />
       <br />
       <TableContainer>
-        <Table className={styles.table} aria-label="customized table">
-          <TableHead>
+        <Table className={style.table} aria-label="customized table">
+          <TableHead className={style.contenedor}>
             <TableRow>
-              <TableCell align="left">Email</TableCell>
-              <TableCell align="right">Acciones</TableCell>
+              <TableCell align="left">
+                <h3>
+                  <b>Email</b>
+                </h3>
+              </TableCell>
+              <TableCell align="right">
+                <h3>
+                  <b>Acciones</b>
+                </h3>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -151,10 +155,10 @@ export default function Emails() {
                 <TableCell component="th" scope="row">
                   {newEmail.email}
                 </TableCell>
-                <TableCell component="th" scope="row">
-                  <Edit className={styles.iconos} />
+                <TableCell component="th" scope="row" align="right">
+                  <Edit className={style.editar} />
                   &nbsp; &nbsp; &nbsp;
-                  <Delete className={styles.iconos} />
+                  <Delete className={style.delete} />
                 </TableCell>
               </TableRow>
             ))}
