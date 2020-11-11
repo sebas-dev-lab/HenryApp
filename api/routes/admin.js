@@ -69,7 +69,7 @@ router.delete("/:code", (req, res) => {
   });
 });
 
-/*===== Update student - Cohort ===== */
+/*===== Update student/instructor - Cohort ===== */
 router.put("/cohort/:code/:cohort", (req, res) => {
   const { code, cohort } = req.params;
 
@@ -84,7 +84,7 @@ router.put("/cohort/:code/:cohort", (req, res) => {
   });
 });
 
-/*===== Update student - group===== */
+/*===== Update student/instructor - group===== */
 router.put("/group/:code/:group", (req, res) => {
   const { code, group } = req.params;
   //asignar grupo al estudiante
