@@ -4,6 +4,7 @@ import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Componentes/Login.jsx';
+import BotonChat from './Componentes/Chat/BotonChat';
 
 function App() {
   return (
@@ -18,33 +19,34 @@ function App() {
         {/* ALUMNOS */}
         <Route path='/alumnos' exact>
           <Navbar></Navbar>
+          <BotonChat />
         </Route>
         {/* ALUMNOS */}
 
-         {/* INSTRUCTOR */}
-         <Route path='/instructor' exact>
+        {/* INSTRUCTOR */}
+        <Route path='/instructor' exact>
           <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
-         {/* ADMIN */}
-         <Route path='/admin' exact>
+        {/* ADMIN */}
+        <Route path='/admin' exact>
           <Navbar></Navbar>
-          
+
         </Route>
         {/* ADMIN */}
       </Switch>
-        
+
       <Route path='/login'
-      render={() => <Login/>}
+        render={() => <Login />}
       />
 
     </div>
 
 
 
-  
-    
+
+
   );
 }
 
