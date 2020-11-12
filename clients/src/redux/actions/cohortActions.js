@@ -22,6 +22,7 @@ export const updateCohort = (name, values) => async (dispatch) => {
       dispatch({
         type: actionTypes.PUT_COHORT,
         update: res.data,
+        name: name,
       });
     })
     .catch((err) => console.log(err));

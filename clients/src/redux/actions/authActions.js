@@ -15,6 +15,7 @@ export const authLogin = (email, password) => (dispatch) => {
       .then((res) => {
         dispatch({
           type: actionTypes.AUTH_LOGIN_LOCAL,
+          user: res.data,
         });
         Swal.fire({
           position: "center",

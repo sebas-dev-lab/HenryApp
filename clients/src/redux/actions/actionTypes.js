@@ -19,7 +19,7 @@ export const DELETE_INSTRUCTOR = "DELETE_INSTRUCTOR";
 export const GET_ALL_INSTRUCTORS = "GET_ALL_INSTRUCTORS";
 export const PUT_INSTRUCTOR = "PUT_INSTRUCTOR";
 
-/*==== Instructor actionTypes =====*/
+/*==== Auth actionTypes =====*/
 export const AUTH_LOGIN_LOCAL = "AUTH_LOGIN_LOCAL";
 export const LOGOUT = "LOGOUT";
 export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";

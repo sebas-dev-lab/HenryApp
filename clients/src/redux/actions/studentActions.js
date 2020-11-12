@@ -64,6 +64,7 @@ export const editUserData = (code, values) => (dispatch) => {
       dispatch({
         type: actionTypes.PUT_STUDENT,
         update: res.data,
+        code: code,
       });
     })
     .catch((err) => console.log(err));

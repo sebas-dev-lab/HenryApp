@@ -29,13 +29,14 @@ export const postGroup = (newEmail) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const putEmail = (email) => (dispatch) => {
+export const putEmail = (email, updateEmail) => (dispatch) => {
   axios
-    .put(`${url}/email/${email}`, email)
+    .put(`${url}/email/${email}`, updateEmail)
     .then((res) => {
       dispatch({
         type: actionTypes.PUT_EMAIL,
         updateEmail: res.data,
+        email: email,
       });
     })
     .catch((err) => console.log(err));

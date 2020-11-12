@@ -36,7 +36,7 @@ export const getAllInstructors = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.GET_ALL_INSTRUCTORS,
-        allInst: res.data,
+        allInstructor: res.data,
       });
     })
     .catch((err) => console.log(err));
