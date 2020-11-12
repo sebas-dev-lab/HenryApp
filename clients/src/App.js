@@ -3,15 +3,22 @@ import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Componentes/Login.jsx';
+import Login2 from "./Componentes/login/Login2.jsx"
 import Dashboard from './pages/dashboard';
 import Alumn from './Componentes/alumnosCRUD/logic'
 import Email from "./Componentes/Email";
-
+import BotonChat from './Componentes/Chat/BotonChat';
 
 function App() {
   return (
     <div>
       <Switch>
+        {/* login2 */}
+        <Route path='/login2' exact>
+          <Login2 />
+        </Route>
+        {/* login2 */}
+
         {/* HOME */}
         <Route path="/" exact>
           <Home></Home>
@@ -21,12 +28,14 @@ function App() {
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>
           <Navbar></Navbar>
+          <BotonChat />
         </Route>
         {/* ALUMNOS */}
 
         {/* INSTRUCTOR */}
+
         <Route path="/instructor" exact>
-          <Navbar></Navbar>
+        <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
@@ -44,6 +53,7 @@ function App() {
         </Route>
 
 
+
       </Switch>
 
       <Route path="/login">
@@ -57,6 +67,7 @@ function App() {
       </Route>
       {/* Invitar Estudiante  */}
     </div>
+
   );
 }
 
