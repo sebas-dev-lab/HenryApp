@@ -10,10 +10,12 @@ function Crud() {
   
   function traerCohorte(){
     axios.get('http://localhost:3001/cohort/all').then(res=>{
+      console.log(res.data)
       const filas = res.data.map((data)=>{
         return {
           name:data.name,
-          id:data.id
+          id:data._id,
+          date:data.startDate
         }
       })
       return filas 
@@ -22,6 +24,11 @@ function Crud() {
     })
   }
   
+  const editarCohorte = (name, data)=>{
+    axios.put(`http://localhost:3001/cohort/${name}`,data).then((res)=>{
+    console.log(res.data)
+    })
+  }
   
 
   useEffect(()=>{
@@ -34,8 +41,7 @@ function Crud() {
 
   return (
     <div>
-      <View data={Rows}/>
-      
+      <View data={Rows} edit={editarCohorte}/>      
     </div>
   )
 }

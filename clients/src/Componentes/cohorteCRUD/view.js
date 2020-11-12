@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import AddAlumn from './modalAlumns'
+import EditCohort from './modalEditCohort'
 
 
 
@@ -21,7 +23,7 @@ const useStyles = makeStyles({
 
 function Crud(props) {
   const classes = useStyles();
-  const {data} = props
+  const {data, edit} = props
   
   return (
     
@@ -30,8 +32,11 @@ function Crud(props) {
           <TableHead>
             <TableRow>
               <TableCell>cohorte</TableCell>
-              <TableCell align="right">id</TableCell>
-              <TableCell align="right">acciones</TableCell>
+             {/*  <TableCell align="right">id</TableCell> */}
+              <TableCell align="right">Fecha de inicio</TableCell>
+              <TableCell align="right">Agregar</TableCell>
+              <TableCell align="right">Editar</TableCell>
+              <TableCell align="right">Ir</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -40,9 +45,11 @@ function Crud(props) {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.id}</TableCell>
-                <TableCell align="right">{row.newdate}</TableCell>
-                <TableCell align="right"><Link to="/alumn">go</Link></TableCell>
+               {/*  <TableCell align="right">{row.id}</TableCell> */}
+                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right"><AddAlumn nameRow={row.name} /></TableCell>
+                <TableCell align="right"><EditCohort nameRow={row.name} edit={edit}/></TableCell>
+                <TableCell align="right"><Link to="/alumn">ver alumnos</Link></TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -2,9 +2,10 @@ import React from 'react';
 import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
-import Login from './Componentes/Login.jsx';
+import Register from './Componentes/registerUser';
+import AdminReg from './Componentes/registerAdmin';
 import Dashboard from './pages/dashboard';
-import Alumn from './Componentes/alumnosCRUD/logic'
+import Alumn from './Componentes/alumnosTABLE/logic'
 import Email from "./Componentes/Email";
 
 
@@ -46,9 +47,12 @@ function App() {
 
       </Switch>
 
-      <Route path="/login">
-        <Login />
-      </Route>
+      <Route path='/register'
+      render={() => <Register/>}
+      />
+      <Route path='/adminreg'
+      render={() => <AdminReg/>}
+      />
 
       {/* Invitar Estudiante */}
       <Route path="/invitar">

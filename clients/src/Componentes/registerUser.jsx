@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Navbar from './Navbar'
-import  '../styles/Login.css';
+import  '../styles/register.css';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
 
@@ -80,7 +80,7 @@ export default function Registro() {
     }
 
     const inputsChange_password = (e) => {
-        if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(data.password)) {
+       /*  if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(data.password)) {
             setErrors({
                 ...errors,
                 passwordError: "Debe tener al menos 6 caracteres, una mayuscula, una minuscula y un numero",
@@ -90,7 +90,7 @@ export default function Registro() {
                 ...errors,
                 passwordError: ""
             })
-        }
+        } */
         setData({
             ...data,
             password: e.target.value
@@ -98,17 +98,6 @@ export default function Registro() {
     }
 
     const inputsChange_dni = (e) => {
-        if(/[$%&|{}.,()+-<>#]/.test(data.dni)) {
-            setErrors({
-                ...errors,
-                dniError: "no se aceptan caracteres especiales"
-            })
-        } else {
-            setErrors({
-                ...errors,
-                dniError: ""
-            })
-        }
         setData({
             ...data,
             dni: e.target.value
@@ -145,7 +134,7 @@ export default function Registro() {
 
 
     function sendData(){
-        axios.post('http://localhost:3001/admin/',data).then((res)=>{
+        axios.post('http://localhost:3001/student/create',data).then((res)=>{
             console.log(res.data)
         })
     }
@@ -153,34 +142,35 @@ export default function Registro() {
     return (
         
         <div className="Login">
+            <Navbar/>
             <div className="container">
             <form className= "sing_in" >
-                <div class="form-group">
+                <div className="form-group">
                     <label >Name</label>
-                    <input name="name" onChange={inputsChange_name} type="text" class="form-control" style={{ color: "black", width: "450px" }} placeholder="ingresar nombre" />
+                    <input name="name" onChange={inputsChange_name} type="text" className="form-control" style={{ color: "black", width: "450px" }} placeholder="ingresar nombre" />
                     <small className="detail">{errors.nameError}</small>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label >Lastname</label>
-                    <input name="lastName" onChange={inputsChange_lastName} type="text" class="form-control" style={{ color: "black", width: "450px" }} placeholder="ingresa apellido" />
+                    <input name="lastName" onChange={inputsChange_lastName} type="text" className="form-control" style={{ color: "black", width: "450px" }} placeholder="ingresa apellido" />
                     <small className="detail">{errors.lastnameError}</small>               
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label >Email address</label>
-                    <input name="email" onChange={inputsChange_email} type="email" class="form-control" style={{ color: "black", width: "450px" }} aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input name="email" onChange={inputsChange_email} type="email" className="form-control" style={{ color: "black", width: "450px" }} aria-describedby="emailHelp" placeholder="Enter email" />
                     <small id="emailHelp" class="detail" >{errors.emailError}</small>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label >Password</label>
-                    <input name="password" onChange={inputsChange_password} type="password" class="form-control" style={{ color: "black", width: "450px" }} placeholder="Password" />
+                    <input name="password" onChange={inputsChange_password} type="password" className="form-control" style={{ color: "black", width: "450px" }} placeholder="Password" />
                     <small className="detail">{errors.passwordError}</small>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label >Dni</label>
-                    <input name="dni" onChange={inputsChange_dni} type="dni" class="form-control" style={{ color: "black", width: "450px" }} placeholder="DNI" />
+                    <input name="dni" onChange={inputsChange_dni} type="dni" className="form-control" style={{ color: "black", width: "450px" }} placeholder="DNI" />
                     <small className="detail">{errors.dniError}</small>
                 </div>
-                <Button   type="submit" class="submit" onClick={()=>sendData()}>Registrar</Button>
+                <Button   type="submit" className="submit" onClick={()=>sendData()}>Registrar</Button>
 
             </form>
         </div>

@@ -35,15 +35,11 @@
     border: 0.25px gray solid;
     border-radius: 10px;
     color: black;
-    position: center;
-      margin: auto;
+    margin: 0 auto;
     margin-top: 3vh;
-    margin-bottom: 3vh;
     justify-content: space-around;
     display: flex;
     flex-direction: column;
-    bottom: 100px;
-    left: 70px;
     cursor: pointer;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35)
 }

@@ -26,9 +26,9 @@ const Home = () => {
               {" "}
               Admin{" "}
             </Link>
-            <Link href="/login" color="inherit">
+            <Link href="/register" color="inherit">
               {" "}
-              Login{" "}
+              registrate{" "}
             </Link>
           </Typography>
         </Toolbar>
