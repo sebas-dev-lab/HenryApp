@@ -30,7 +30,7 @@ User.findOneAndUpdate(
     name: "admin",
     email: "admin@henry.com",
     role: "admin",
-    password: "admin",
+    password: bcrypt.hashSync("admin", 10),
   }, // document to insert when nothing was found
   { upsert: true, new: true, runValidators: true }, // options
   function (err, admin) {
@@ -44,7 +44,7 @@ User.findOneAndUpdate(
         "\n #email: ",
         admin.email,
         "\n #password: ",
-        admin.password,
+        "admin",
         "\n -----------------\n"
       );
     }
