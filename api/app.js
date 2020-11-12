@@ -21,6 +21,10 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.get("/", function (req, res) {
+  console.log("Cookies: ", req.cookies);
+  console.log("Signed Cookies: ", req.signedCookies);
+});
 app.use(
   session({
     secret: "secret",

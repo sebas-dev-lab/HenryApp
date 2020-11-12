@@ -20,7 +20,7 @@ router.get("/all", (req, res) => {
     });
 });
 
-/*===== Get students by dni ===== */
+/*===== Get students by code ===== */
 router.get("/:code", (req, res) => {
   const { code } = req.params;
 
@@ -53,23 +53,7 @@ router.post("/create", async (req, res) => {
     }
   }
 });
-
-/*===== Delete students===== */
-router.delete("/:code", (req, res) => {
-  //definir atributo unico para buscar
-
-  const { dni } = req.params;
-
-  User.deleteOne({ dni: dni }, function (err, deleted) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    res.status(200).json({ msg: "Ok" });
-  });
-});
-
-/*===== Edit student data ===== FALTA!!!!*/
+/*===== Edit student data ===== */
 router.put("/:code", (req, res) => {
   const { code } = req.params;
   const { name, lastName, dni, email } = req.body;

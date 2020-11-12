@@ -43,7 +43,7 @@ router.get("/users", (req, res) => {
     });
 });
 
-/*===== Get OneAdmin by dni ===== */
+/*===== Get OneAdmin by code ===== */
 router.get("/:code", (req, res) => {
   const { code } = req.params;
 
@@ -56,7 +56,7 @@ router.get("/:code", (req, res) => {
     });
 });
 
-/*===== Delete students===== */
+/*===== Delete user by code (admin, instructor o admin)===== */
 router.delete("/:code", (req, res) => {
   const { code } = req.params;
 

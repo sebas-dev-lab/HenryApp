@@ -40,19 +40,6 @@ router.get("/all", (req, res) => {
     });
 });
 
-/*===== Delete Instructor ====== */
-router.delete("/:code", (req, res) => {
-  const { code } = req.params;
-
-  User.deleteOne({ code: code }, function (err, deleted) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    res.status(200).json({ msg: "Ok" });
-  });
-});
-
 /*===== Edit Instructor data =====*/
 router.put("/:code", (req, res) => {
   const { code } = req.params;

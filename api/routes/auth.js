@@ -2,9 +2,15 @@ const router = require("express").Router();
 const passport = require("passport");
 
 //----------Logueo-------------
-router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.send(req.user);
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    session: true,
+  }),
+  (req, res) => {
+    res.send(req.user);
+  }
+);
 
 //--------- Autenticación Google -----------
 
@@ -36,4 +42,19 @@ router.get(
     session: false,
   })
 );
+
+router.post("/logout", (req, res) => {
+  if (req.isAuthenticated()) {
+    req.logout();
+    res.sendStatus(200).clearCookie("connect.sid", {
+      path: "/",
+      secure: false,
+      httpOnly: false,
+    });
+    req.session.destroy();
+  } else {
+    res.status(400).send("No estabas logeado :/");
+  }
+});
+
 module.exports = router;
