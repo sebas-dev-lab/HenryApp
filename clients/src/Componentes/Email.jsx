@@ -21,6 +21,8 @@ import {
 } from "@material-ui/icons";
 import style from "../styles/email.module.css";
 import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmail, getEmail, putEmail } from "../redux/actions/email";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -53,12 +55,13 @@ export default function Emails() {
       [name]: value,
     }));
   };
-  useEffect(async () => {
-    //prettier-ignore
-    await Axios.get("http://localhost:3001/email/all")
-    .then(response => {
-      setData(response.data);
-    });
+
+  const emails = useSelector((state) => state.email.allEmails);
+  console.log(emails);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEmail());
   }, []);
 
   const Aceptar = async () => {
@@ -71,7 +74,16 @@ export default function Emails() {
        AbrirCerrar();
     });
   };
+  //TODO: corregir petición como recibe el back
+  const aceptarEdit = () => {
+    //prettier-ignore
+    dispatch(putEmail(emailSeleccionado));
+    Editar();
+  };
 
+  const deleteEm = (email) => {
+    dispatch(deleteEmail(email));
+  };
   //Funcion para abrir y cerrar el modal
   const AbrirCerrar = () => {
     setModalInsertar(!modalInsertar);
@@ -121,9 +133,9 @@ export default function Emails() {
       <br />
       <br />
       <div aling="right">
-        <CheckCircle className={style.aceptar} />
+        <CheckCircle className={style.aceptar} onClick={aceptarEdit} />
         &nbsp; &nbsp; &nbsp;
-        <Cancel className={style.cancelar} />
+        <Cancel className={style.cancelar} onClick={Editar} />
       </div>
     </div>
   );
@@ -150,15 +162,18 @@ export default function Emails() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((newEmail) => (
+            {emails.map((newEmail) => (
               <TableRow key={newEmail.id}>
                 <TableCell component="th" scope="row">
                   {newEmail.email}
                 </TableCell>
                 <TableCell component="th" scope="row" align="right">
-                  <Edit className={style.editar} />
+                  <Edit className={style.editar} onClick={Editar} />
                   &nbsp; &nbsp; &nbsp;
-                  <Delete className={style.delete} />
+                  <Delete
+                    className={style.delete}
+                    onClick={() => deleteEm(newEmail)}
+                  />
                 </TableCell>
               </TableRow>
             ))}

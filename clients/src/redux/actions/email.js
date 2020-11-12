@@ -15,7 +15,7 @@ export const getEmail = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const postGroup = (newEmail) => (dispatch) => {
+export const postEmail = (newEmail) => (dispatch) => {
   axios
     .post(`${url}/email/create`, {
       newEmail: newEmail,

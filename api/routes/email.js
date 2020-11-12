@@ -13,8 +13,8 @@ const mg = mailgun({
 router.post("/create", (req, res) => {
   const newEmail = req.body;
   const data = {
-    from: "HenryApp <lismarsz_11@hotmail.com>",
-    to: "sanchezlismairy@gmail.com",
+    from: "HenryApp <lb.lescano.vs@gmial.com>",
+    to: "lb.lescano.vs@gmail.com",
     subject: "Bienvenido a Henry",
     text: "Ingresa al campus virtual",
     template: "invitacion.test",

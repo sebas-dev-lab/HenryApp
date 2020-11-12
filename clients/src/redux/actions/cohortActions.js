@@ -29,10 +29,11 @@ export const updateCohort = (name, values) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const postCohort = (newCohort) => async (dispatch) => {
-  return await axios
+export const postCohort = (name, startDate) => (dispatch) => {
+  return axios
     .post(`${url}/cohort/create`, {
-      newCohort: newCohort,
+      name: name,
+      startDate: startDate,
     })
     .then((res) => {
       dispatch({

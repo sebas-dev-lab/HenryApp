@@ -147,7 +147,7 @@ export default function TransferList(props) {
       justify="center"
       alignItems="center"
       className={classes.root}
-      style={{ backgroundColor: "white", width: "45%", marginTop: "15%" }}
+      style={{ backgroundColor: "white", width: "60%", marginTop: "15%" }}
     >
       <Grid item>{customList(left)}</Grid>
       <Grid item>

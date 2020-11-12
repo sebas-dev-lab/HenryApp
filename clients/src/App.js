@@ -1,20 +1,20 @@
-import React from 'react';
-import Home from './Componentes/Home';
-import Navbar from './Componentes/Navbar';
-import { Route, Switch, Link } from 'react-router-dom';
-import Login from './Componentes/Login.jsx';
-import Login2 from "./Componentes/login/Login2.jsx"
-import Dashboard from './pages/dashboard';
-import Alumn from './Componentes/alumnosCRUD/logic'
+import React from "react";
+import Home from "./Componentes/Home";
+import Navbar from "./Componentes/Navbar";
+import { Route, Switch, Link } from "react-router-dom";
+import Registro from "./Componentes/loginUser.jsx";
+import Login2 from "./Componentes/login/Login2.jsx";
+import Dashboard from "./pages/dashboard";
+import Alumn from "./Componentes/alumnosCRUD/logic";
 import Email from "./Componentes/Email";
-import BotonChat from './Componentes/Chat/BotonChat';
+import BotonChat from "./Componentes/Chat/BotonChat";
 
 function App() {
   return (
     <div>
       <Switch>
         {/* login2 */}
-        <Route path='/login2' exact>
+        <Route path="/login2" exact>
           <Login2 />
         </Route>
         {/* login2 */}
@@ -35,7 +35,7 @@ function App() {
         {/* INSTRUCTOR */}
 
         <Route path="/instructor" exact>
-        <Navbar></Navbar>
+          <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
@@ -44,20 +44,17 @@ function App() {
           <Navbar></Navbar>
         </Route>
         {/* Dashboard */}
-        <Route path='/dashboard' exact>
+        <Route path="/dashboard" exact>
           <Dashboard></Dashboard>
         </Route>
         {/* alumn */}
-        <Route path='/alumn' exact>
+        <Route path="/alumn" exact>
           <Alumn></Alumn>
         </Route>
-
-
-
       </Switch>
 
       <Route path="/login">
-        <Login />
+        <Registro />
       </Route>
 
       {/* Invitar Estudiante */}
@@ -67,7 +64,6 @@ function App() {
       </Route>
       {/* Invitar Estudiante  */}
     </div>
-
   );
 }
 

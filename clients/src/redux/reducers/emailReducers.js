@@ -16,7 +16,7 @@ const cohortReducers = (state = initialState, action) => {
     case actionTypes.GET_EMAIL:
       return {
         ...state,
-        allCohort: action.allCohort,
+        allEmails: action.allEmails,
       };
 
     case actionTypes.PUT_EMAIL:
