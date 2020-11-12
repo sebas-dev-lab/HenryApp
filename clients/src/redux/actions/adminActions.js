@@ -93,7 +93,8 @@ export const updateCohort = (code, cohort) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.UPDATE_COHORT_BY_CODE,
-        update: res.data, //cohort
+        update: cohort, //cohort//TODO:verificar
+        code: code,
       });
     })
     .catch((err) => console.log(err));
@@ -106,7 +107,8 @@ export const updateGroup = (code, group) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.UPDATE_GROUP_BY_CODE,
-        update: res.data, //group
+        code: code, //group
+        update: group,
       });
     })
     .catch((err) => console.log(err));

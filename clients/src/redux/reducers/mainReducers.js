@@ -8,6 +8,9 @@ import authReducers from "./authReducers";
 import cohortReducers from "./cohortReducers";
 import groupReducers from "./groupReducers";
 import pair_progReducers from "./pair-progReducers";
+/*==== Eamil ===== */
+import emailReducers from "./emailReducers";
+
 /* ==== Redux ==== */
 import { combineReducers } from "redux";
 
@@ -16,6 +19,7 @@ const mainReducers = combineReducers({
   student: studentReducers,
   instructor: instructorReducers,
   auth: authReducers,
+  email: emailReducers,
   cohort: cohortReducers,
   group: groupReducers,
   pair_prog: pair_progReducers,

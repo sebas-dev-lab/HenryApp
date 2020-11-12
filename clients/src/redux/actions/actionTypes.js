@@ -32,3 +32,14 @@ export const PUT_GROUP = "PUT_GROUP";
 export const DELETE_GROUP = "DELETE_GROUP";
 export const PUT_DELETE_PM_GROUP = "PUT_DELETE_PM_GROUP";
 export const PUT_TOASIGN_COHORT_GROUP = "PUT_TOASIGN_COHORT_GROUP";
+
+/*==== Cohort actionTypes =====*/
+export const GET_ALL_COHORT = "GET_ALL_GROUP";
+export const PUT_COHORT = "PUT_COHORT";
+export const POST_COHORT = "POST_COHORT";
+
+/*==== Email actionTypes =====*/
+export const GET_EMAIL = "GET_EMAIL";
+export const PUT_EMAIL = "PUT_EMAIL";
+export const POST_EMAIL = "POST_EMAIL";
+export const DELETE_EMAIL = "DELETE_EMAIL";
