@@ -20,7 +20,7 @@ router.get("/all", (req, res) => {
     });
 });
 
-/*===== Get students by dni ===== */
+/*===== Get students by code ===== */
 router.get("/:code", (req, res) => {
   const { code } = req.params;
 
@@ -53,70 +53,20 @@ router.post("/create", async (req, res) => {
     }
   }
 });
-
-/*===== Delete students===== */
-router.delete("/:code", (req, res) => {
-  //definir atributo unico para buscar
-
-  const { dni } = req.params;
-
-  User.deleteOne({ dni: dni }, function (err, deleted) {
-    if (err) {
-      console.log(err);
-      return;
+/*===== Edit student data ===== */
+router.put("/:code", (req, res) => {
+  const { code } = req.params;
+  const { name, lastName, dni, email } = req.body;
+  User.findOneAndUpdate(
+    { code: code },
+    {
+      name: name,
+      lastName: lastName,
+      email: email,
+      dni: dni,
     }
+  ).then(() => {
     res.status(200).json({ msg: "Ok" });
-  });
-});
-
-//---------------------------------------------------------------------
-
-/*===== Update student - Cohort ===== */
-router.put("/cohort/:student/:cohort", (req, res) => {
-  const { student, cohort } = req.params;
-
-  Cohort.findOne({ name: cohort }, function (err, cohort) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    User.update({ name: student }, { $set: { idCohorte: cohort } }).then(() => {
-      res.status(200).json({ msg: "Ok" });
-    });
-  });
-});
-
-// _____________________________________________________________________
-
-/*===== Update student - group===== */
-router.put("/group/:student/:group", (req, res) => {
-  const { student, group } = req.params;
-  //asignar grupo al estudiante
-  //sumar el estudiante al array del grupo
-  User.findOne({ name: student }, function (err, findStudent) {
-    if (err) {
-      res.status(400);
-      return;
-    }
-    Group.findOneAndUpdate(
-      { name: group },
-      { $push: { students: findStudent } },
-      { new: true }
-    ).then(() => {
-      Group.findOne({ name: group }, function (err, group) {
-        if (err) {
-          res.status(400);
-          return;
-        }
-        User.findOneAndUpdate(
-          { name: student },
-          { $set: { idGroup: group } },
-          { new: true }
-        ).then(() => {
-          res.status(200).json({ msg: "Ok" });
-        });
-      });
-    });
   });
 });
 

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
+const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 var autoIncrement = require("mongoose-auto-increment"); //no modificar
 autoIncrement.initialize(mongoose.connection); //no modificar
 
 const userSchema = new mongoose.Schema({
-  code: { type: Number, default: 0, unique: true },
   name: {
     type: String,
     //required: true,
@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(require("mongoose-autopopulate"));
+
 //------Encriptando el password--------
 //prettier-ignore
 userSchema.methods.encryptPassword = async password => {
@@ -74,13 +75,14 @@ userSchema.methods.encryptPassword = async password => {
 userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
-//no modificar
 userSchema.plugin(autoIncrement.plugin, {
   model: "User",
   field: "code",
   startAt: 1,
   incrementBy: 1,
 });
+
 userSchema.plugin(findOrCreate);
 const User = mongoose.model("User", userSchema);
+
 module.exports = User;

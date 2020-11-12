@@ -40,19 +40,21 @@ router.get("/all", (req, res) => {
     });
 });
 
-/*===== Delete Instructor ====== */
-router.delete("/:code", (req, res) => {
+/*===== Edit Instructor data =====*/
+router.put("/:code", (req, res) => {
   const { code } = req.params;
-
-  User.deleteOne({ code: code }, function (err, deleted) {
-    if (err) {
-      console.log(err);
-      return;
+  const { name, lastName, dni, email } = req.body;
+  User.findOneAndUpdate(
+    { code: code },
+    {
+      name: name,
+      lastName: lastName,
+      email: email,
+      dni: dni,
     }
+  ).then(() => {
     res.status(200).json({ msg: "Ok" });
   });
 });
-
-/*===== Put Instructor ====== */
 
 module.exports = router;
