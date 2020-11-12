@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Navbar from './Navbar'
 import  '../styles/Login.css';
+import axios from 'axios'
+import Button from '@material-ui/core/Button';
 
 export default function Registro() {
     const [data, setData] = useState({
@@ -9,6 +11,7 @@ export default function Registro() {
         lastName: "",
         email: "",
         password: "",
+        dni:"",
         check: false
     })
 
@@ -16,7 +19,8 @@ export default function Registro() {
         emailError: "",
         passwordError: "",
         nameError:"",
-        lastnameError: ""
+        lastnameError: "",
+        dniError:""
     })
 
     const inputsChange_name = (e) => {
@@ -93,6 +97,24 @@ export default function Registro() {
         })
     }
 
+    const inputsChange_dni = (e) => {
+        if(/[$%&|{}.,()+-<>#]/.test(data.dni)) {
+            setErrors({
+                ...errors,
+                dniError: "no se aceptan caracteres especiales"
+            })
+        } else {
+            setErrors({
+                ...errors,
+                dniError: ""
+            })
+        }
+        setData({
+            ...data,
+            dni: e.target.value
+        })
+    }
+
     useEffect(() => {
         if (data.name.length > 3 && data.lastName.length > 3 && data.check === true && data.email.length > 1 && !errors.emailError && data.password.length > 1 && !errors.passwordError && !errors.lastnameError && !errors.nameError) {
             setErrors({
@@ -121,10 +143,16 @@ export default function Registro() {
         }
     }
 
+
+    function sendData(){
+        axios.post('http://localhost:3001/admin/',data).then((res)=>{
+            console.log(res.data)
+        })
+    }
+
     return (
         
         <div className="Login">
-            <Navbar/>
             <div className="container">
             <form className= "sing_in" >
                 <div class="form-group">
@@ -147,7 +175,12 @@ export default function Registro() {
                     <input name="password" onChange={inputsChange_password} type="password" class="form-control" style={{ color: "black", width: "450px" }} placeholder="Password" />
                     <small className="detail">{errors.passwordError}</small>
                 </div>
-                <button disabled={errors.errores} requiered type="submit" class="submit">Registrar</button>
+                <div class="form-group">
+                    <label >Dni</label>
+                    <input name="dni" onChange={inputsChange_dni} type="dni" class="form-control" style={{ color: "black", width: "450px" }} placeholder="DNI" />
+                    <small className="detail">{errors.dniError}</small>
+                </div>
+                <Button   type="submit" class="submit" onClick={()=>sendData()}>Registrar</Button>
 
             </form>
         </div>

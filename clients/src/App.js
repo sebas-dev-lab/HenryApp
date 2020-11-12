@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
 import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Componentes/Login.jsx';
 import Login2 from "./Componentes/login/Login2.jsx"
+import Dashboard from './pages/dashboard';
+import Alumn from './Componentes/alumnosCRUD/logic'
+import Email from "./Componentes/Email";
 import BotonChat from './Componentes/Chat/BotonChat';
 
 function App() {
@@ -18,41 +20,53 @@ function App() {
         {/* login2 */}
 
         {/* HOME */}
-        <Route path='/' exact>
+        <Route path="/" exact>
           <Home></Home>
         </Route>
         {/* HOME */}
 
         {/* ALUMNOS */}
-        <Route path='/alumnos' exact>
+        <Route path="/alumnos" exact>
           <Navbar></Navbar>
           <BotonChat />
         </Route>
         {/* ALUMNOS */}
 
         {/* INSTRUCTOR */}
-        <Route path='/instructor' exact>
-          <Navbar></Navbar>
+
+        <Route path="/instructor" exact>
+        <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
         {/* ADMIN */}
-        <Route path='/admin' exact>
+        <Route path="/admin" exact>
           <Navbar></Navbar>
-
         </Route>
-        {/* ADMIN */}
+        {/* Dashboard */}
+        <Route path='/dashboard' exact>
+          <Dashboard></Dashboard>
+        </Route>
+        {/* alumn */}
+        <Route path='/alumn' exact>
+          <Alumn></Alumn>
+        </Route>
+
+
+
       </Switch>
 
-      <Route path='/login'
-        render={() => <Login />}
-      />
+      <Route path="/login">
+        <Login />
+      </Route>
 
+      {/* Invitar Estudiante */}
+      <Route path="/invitar">
+        <Navbar />
+        <Email />
+      </Route>
+      {/* Invitar Estudiante  */}
     </div>
-
-
-
-
 
   );
 }
