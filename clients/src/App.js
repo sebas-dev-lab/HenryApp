@@ -3,19 +3,22 @@ import Home from './Componentes/Home';
 import Navbar from './Componentes/Navbar';
 import { Route, Switch, Link } from 'react-router-dom';
 import Login from './Componentes/Login.jsx';
-<<<<<<< HEAD
+import Login2 from "./Componentes/login/Login2.jsx"
 import Dashboard from './pages/dashboard';
 import Alumn from './Componentes/alumnosCRUD/logic'
 import Email from "./Componentes/Email";
-
-=======
 import BotonChat from './Componentes/Chat/BotonChat';
->>>>>>> chat
 
 function App() {
   return (
     <div>
       <Switch>
+        {/* login2 */}
+        <Route path='/login2' exact>
+          <Login2 />
+        </Route>
+        {/* login2 */}
+
         {/* HOME */}
         <Route path="/" exact>
           <Home></Home>
@@ -30,17 +33,13 @@ function App() {
         {/* ALUMNOS */}
 
         {/* INSTRUCTOR */}
-<<<<<<< HEAD
+
         <Route path="/instructor" exact>
-=======
-        <Route path='/instructor' exact>
->>>>>>> chat
-          <Navbar></Navbar>
+        <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
         {/* ADMIN */}
-<<<<<<< HEAD
         <Route path="/admin" exact>
           <Navbar></Navbar>
         </Route>
@@ -52,18 +51,7 @@ function App() {
         <Route path='/alumn' exact>
           <Alumn></Alumn>
         </Route>
-=======
-        <Route path='/admin' exact>
-          <Navbar></Navbar>
 
-        </Route>
-        {/* ADMIN */}
-      </Switch>
-
-      <Route path='/login'
-        render={() => <Login />}
-      />
->>>>>>> chat
 
 
       </Switch>
@@ -72,7 +60,6 @@ function App() {
         <Login />
       </Route>
 
-<<<<<<< HEAD
       {/* Invitar Estudiante */}
       <Route path="/invitar">
         <Navbar />
@@ -80,10 +67,7 @@ function App() {
       </Route>
       {/* Invitar Estudiante  */}
     </div>
-=======
 
-
->>>>>>> chat
   );
 }
 
