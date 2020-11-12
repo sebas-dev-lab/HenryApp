@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Toast from "../../Componentes/alerts/toast";
@@ -11,7 +11,7 @@ export const authLogin = (email, password) => (dispatch) => {
       .post(`${url}/auth/login`, {
         email: email,
         password: password,
-      })
+      }, {withCredentials: true})
       .then((res) => {
         dispatch({
           type: actionTypes.AUTH_LOGIN_LOCAL,
@@ -23,13 +23,14 @@ export const authLogin = (email, password) => (dispatch) => {
           title: `¡Bienvenido!`,
           showConfirmButton: false,
           timer: 2000,
-        }).catch((error) => {
+        })
+      })
+        .catch((error) => {
           Toast.fire({
             icon: "error",
             title: "Error: email o contraseña no válidos",
           });
         });
-      });
   } catch {
     dispatch({
       type: actionTypes.USER_LOGIN_ERROR,

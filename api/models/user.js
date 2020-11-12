@@ -6,6 +6,7 @@ var autoIncrement = require("mongoose-auto-increment"); //no modificar
 autoIncrement.initialize(mongoose.connection); //no modificar
 
 const userSchema = new mongoose.Schema({
+  code: { type: Number, default: 0, unique: true },
   name: {
     type: String,
     //required: true,
