@@ -1,0 +1,11 @@
+.boton__chat{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 2px solid black;
+    display:scroll;
+        position:fixed;
+        bottom:30px;
+        right:30px;
+}

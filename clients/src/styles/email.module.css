@@ -1,0 +1,41 @@
+.emails {
+  width: 50%;
+  background-color: black;
+  border: 2px solid#000;
+  box-shadow: black;
+  padding: 2 4 3;
+  top: 50%;
+  border-radius: 10px;
+  left: 50%;
+  margin: 10px;
+}
+.table {
+  background-color: white;
+}
+.add {
+  color: #ffff01;
+  margin: 2px;
+  cursor: pointer;
+}
+.aceptar {
+  color: #ffff01;
+  cursor: pointer;
+}
+
+.cancelar {
+  color: white;
+  cursor: pointer;
+}
+.inputMaterial {
+  width: 100%;
+  color: white;
+  background-color: white;
+}
+.editar {
+  color: black;
+  cursor: pointer;
+}
+.delete {
+  color: black;
+  cursor: pointer;
+}
