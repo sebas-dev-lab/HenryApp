@@ -43,7 +43,7 @@ router.get("/users", (req, res) => {
     });
 });
 
-/*===== Get OneAdmin by dni ===== */
+/*===== Get OneAdmin by code ===== */
 router.get("/:code", (req, res) => {
   const { code } = req.params;
 
@@ -56,7 +56,7 @@ router.get("/:code", (req, res) => {
     });
 });
 
-/*===== Delete students===== */
+/*===== Delete user by code (admin, instructor o admin)===== */
 router.delete("/:code", (req, res) => {
   const { code } = req.params;
 
@@ -66,6 +66,53 @@ router.delete("/:code", (req, res) => {
       return;
     }
     res.status(200).json({ msg: "Ok" });
+  });
+});
+
+/*===== Update student/instructor - Cohort ===== */
+router.put("/cohort/:code/:cohort", (req, res) => {
+  const { code, cohort } = req.params;
+
+  Cohort.findOne({ name: cohort }, function (err, cohort) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    User.update({ code: code }, { $set: { idCohorte: cohort } }).then(() => {
+      res.status(200).json({ msg: "Ok" });
+    });
+  });
+});
+
+/*===== Update student/instructor - group===== */
+router.put("/group/:code/:group", (req, res) => {
+  const { code, group } = req.params;
+  //asignar grupo al estudiante
+  //sumar el estudiante al array del grupo
+  User.findOne({ code: code }, function (err, findStudent) {
+    if (err) {
+      res.status(400);
+      return;
+    }
+    Group.findOneAndUpdate(
+      { name: group },
+      { $push: { students: findStudent } },
+      { new: true }
+    ).then(() => {
+      Group.findOne({ name: group }, function (err, group) {
+        if (err) {
+          res.status(400);
+          return;
+        }
+        User.findOneAndUpdate(
+          { name: student },
+          { $set: { idGroup: group } },
+          { new: true }
+        ).then(() => {
+          res.status(200).json({ msg: "Ok" });
+        });
+      });
+    });
   });
 });
 

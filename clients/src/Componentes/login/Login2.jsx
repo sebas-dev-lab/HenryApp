@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import Axios from "axios"
-import "./Login2.css"
+import { useDispatch } from 'react-redux';
+import "./Login2.css";
+import { authLogin } from '../../redux/actions/authActions';
+import { useHistory } from  'react-router-dom';
+
 
 export default function Login() {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const userchange = (e) => {
         setUser(e.target.value)
@@ -14,16 +19,10 @@ export default function Login() {
         setPass(e.target.value)
     }
 
-    const enviar = (e) => {
+    const enviar = async (e) => {
         e.preventDefault()
-        Axios.post("http://localhost:3000/login", {
-            email: user,
-            pasword: pass
-        }).then(res => {
-            console.log(res)
-        }).catch(err => {
-            console.log(err.message)
-        })
+        await dispatch(authLogin(user, pass))
+        history.push('/admin')
     }
 
     return (
