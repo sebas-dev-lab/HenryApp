@@ -21,7 +21,7 @@ const Navbar = ()=>{
               <Link href="/"><img src={logo}/></Link>              
               <Typography variant="h6" color="inherit" className={s.link2}>
                 <Avatar className={s.avatar}>N</Avatar>
-                <Link href="#" color="inherit"> Mi Perfil </Link>
+                <Link href="/perfil" color="inherit"> Mi Perfil </Link>
               </Typography>
             </Toolbar>
         </AppBar>

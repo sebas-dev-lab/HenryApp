@@ -6,6 +6,9 @@ import Login from './Componentes/Login.jsx';
 import Dashboard from './pages/dashboard';
 import Alumn from './Componentes/alumnosCRUD/logic'
 import Email from "./Componentes/Email";
+import Bienvenida from './Componentes/Bienvenida';
+import Footer from './Componentes/Footer';
+import Perfil from './Componentes/PerfilUser'; 
 
 
 function App() {
@@ -30,32 +33,52 @@ function App() {
         </Route>
         {/* INSTRUCTOR */}
 
-        {/* ADMIN */}
-        <Route path="/admin" exact>
-          <Navbar></Navbar>
-        </Route>
-        {/* Dashboard */}
-        <Route path='/dashboard' exact>
+        {/* ADMIN  */}
+        <Route path='/admin' exact>
           <Dashboard></Dashboard>
         </Route>
+        {/* ADMIN  */}
+
         {/* alumn */}
         <Route path='/alumn' exact>
           <Alumn></Alumn>
         </Route>
+        {/* alumn */}
 
+       {/* LOGIN */}
+        <Route  path='/login' exact>
+          <Bienvenida></Bienvenida>
+          <Login></Login>
+          <Footer></Footer>
+        </Route>
+        {/* LOGIN */}
+
+        {/* PERFIL */}
+        <Route  path='/perfil' exact>
+          <Bienvenida></Bienvenida>
+          <Perfil></Perfil>
+          <Footer></Footer>
+        </Route>
+        {/* PERFIL */}
+
+        {/* REGISTRO */}
+         {/* <Route  path='/registro' exact>
+          <Bienvenida></Bienvenida>
+          ******************** Componente de formulario de registro *******************
+          <Footer></Footer>
+        </Route> */}
+        {/* REGISTRO */}
+
+        {/* Invitar Estudiante */}
+        <Route path="/invitar">
+            <Navbar />
+            <Email />
+          </Route>
+      {/* Invitar Estudiante  */}
 
       </Switch>
 
-      <Route path="/login">
-        <Login />
-      </Route>
 
-      {/* Invitar Estudiante */}
-      <Route path="/invitar">
-        <Navbar />
-        <Email />
-      </Route>
-      {/* Invitar Estudiante  */}
     </div>
   );
 }

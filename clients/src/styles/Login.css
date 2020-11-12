@@ -5,7 +5,7 @@
   }
 
   .container{
-    background-color: black !important;
+    /* background-color: black !important; */
     position: relative;
     display: flex;
     justify-content: center;

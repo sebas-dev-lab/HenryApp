@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300&display=swap');
 .menu{
     background-color: black !important;
     padding: 10px;
@@ -16,6 +16,7 @@
     justify-content: space-around;
     font-size: 1em !important;
     font-weight: normal;
+    
 }
 .img{
     display: flex;
@@ -38,6 +39,7 @@
     font-size: 60px;
     color: wheat;
     margin: 0px !important;
+    
 }
 .text p{
     /* background-color: turquoise; */
