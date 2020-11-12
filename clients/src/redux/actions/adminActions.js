@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import Toast from "../../Componentes/alerts/toast";
 import Dialog from "../../Componentes/alerts/dialog";
