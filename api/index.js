@@ -22,6 +22,7 @@ db.once("open", function () {
 });
 
 //--------------------------------SuperUser
+const bcrypt = require('bcryptjs');
 
 User.findOneAndUpdate(
 	{ name: "admin" }, // find a document with that filter
@@ -29,7 +30,7 @@ User.findOneAndUpdate(
 		name: "admin",
 		email: "admin@henry.com",
 		role: "admin",
-	  password: "admin"
+	  password: bcrypt.hashSync("admin", 10),
 	}, // document to insert when nothing was found
 	{ upsert: true, new: true, runValidators: true }, // options
 	function (err, admin) { // callback
