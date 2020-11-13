@@ -10,16 +10,22 @@ import Email from "./Componentes/Email";
 import BotonChat from './Componentes/Chat/BotonChat';
 import Student from './Componentes/Student/Student';
 import Admin from './Componentes/Admin/Admin';
+import Bienvenida from './Componentes/Bienvenida';
+import Footer from './Componentes/Footer';
+import Perfil from './Componentes/PerfilUser';
 
 function App() {
   return (
     <div>
       <Switch>
-        {/* login2 */}
-        <Route path='/login2' exact>
+
+        {/* login */}
+        <Route path='/login' exact>
+          <Bienvenida></Bienvenida>
           <Login2 />
+          <Footer></Footer>
         </Route>
-        {/* login2 */}
+        {/* login */}
 
         {/* HOME */}
         <Route path="/" exact>
@@ -36,7 +42,6 @@ function App() {
         {/* ALUMNOS */}
 
         {/* INSTRUCTOR */}
-
         <Route path="/instructor" exact>
         <Navbar></Navbar>
         </Route>
@@ -47,22 +52,27 @@ function App() {
           <Navbar></Navbar>
           <Admin />
         </Route>
+        {/* ADMIN */}
+
         {/* Dashboard */}
         <Route path='/dashboard' exact>
           <Dashboard></Dashboard>
         </Route>
-        {/* alumn */}
+        {/* Dashboard */}
+
+        {/* alumn crud*/}
         <Route path='/alumn' exact>
           <Alumn></Alumn>
         </Route>
+        {/* alumn crud*/}
 
-
-
-      </Switch>
-
-      <Route path="/login">
+        {/* REGISTRO */}
+        <Route path="/registrarse">
+        <Bienvenida></Bienvenida>
         <Login />
-      </Route>
+        <Footer></Footer>
+        </Route>
+        {/* REGISTRO */}
 
       {/* Invitar Estudiante */}
       <Route path="/invitar">
@@ -70,6 +80,20 @@ function App() {
         <Email />
       </Route>
       {/* Invitar Estudiante  */}
+
+      {/* PERFIL */}
+      <Route path="/perfil">
+        <Bienvenida></Bienvenida>
+        <Perfil></Perfil>
+        <Footer></Footer>        
+      </Route>
+      {/* PERFIL  */}
+
+
+
+      </Switch>
+
+      
     </div>
 
   );
