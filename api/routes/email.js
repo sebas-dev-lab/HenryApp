@@ -1,20 +1,23 @@
 const express = require("express");
 const router = express();
 const Email = require("../models/email");
-const { mailgunApiKey, mailgunDomain } = process.env;
+// const { mailgunApiKey, mailgunDomain } = process.env;
+const keys = require("./configMailgun");
+const code = keys();
+const MAIL_GUN_KEY = code.MAIL_GUN_KEY;
+const MAIL_GUN_DOMAIN = code.MAIL_GUN_DOMAIN;
 
-const DOMAIN = "sandbox81755d8aa1034deb89acbfd2d256012f.mailgun.org";
-const mailgun = require("mailgun-js");
-const mg = mailgun({
-  apiKey: "3a77cbb7fe0d44772e749a5217a6d19e-ba042922-7a57af9b",
-  domain: DOMAIN,
+var mailgun = require("mailgun-js")({
+  apiKey: MAIL_GUN_KEY,
+  domain: MAIL_GUN_DOMAIN,
 });
 //--------------Post------------------------
 router.post("/create", (req, res) => {
   const newEmail = req.body;
+  console.log(newEmail);
   const data = {
-    from: "HenryApp <lb.lescano.vs@gmial.com>",
-    to: "lb.lescano.vs@gmail.com",
+    from: "HenryApp <lescanovsl@gmail.com>",
+    to: newEmail.email,
     subject: "Bienvenido a Henry",
     text: "Ingresa al campus virtual",
     template: "invitacion.test",
@@ -30,7 +33,7 @@ router.post("/create", (req, res) => {
         console.log(err);
         return;
       }
-      mg.messages().send(data, function (error, body) {
+      mailgun.messages().send(data, function (error, body) {
         console.log(body);
       });
       res.status(200).json(newEmail);
