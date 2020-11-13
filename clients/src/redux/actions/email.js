@@ -17,9 +17,7 @@ export const getEmail = () => (dispatch) => {
 
 export const postEmail = (newEmail) => (dispatch) => {
   axios
-    .post(`${url}/email/create`, {
-      newEmail: newEmail,
-    })
+    .post(`${url}/email/create`, newEmail)
     .then((res) => {
       dispatch({
         type: actionTypes.POST_EMAIL,

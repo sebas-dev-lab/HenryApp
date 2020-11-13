@@ -6,7 +6,7 @@ import Registro from "./Componentes/loginUser.js";
 import Login2 from "./Componentes/login/Login2.jsx";
 import Dashboard from "./pages/dashboard";
 import Alumn from "./Componentes/alumnosCRUD/logic";
-import Email from "./Componentes/Email";
+import Email from "./Componentes/email/Email";
 import BotonChat from "./Componentes/Chat/BotonChat";
 
 function App() {
