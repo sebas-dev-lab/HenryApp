@@ -1,11 +1,9 @@
+require("dotenv").config();
+
 const express = require("express");
 const router = express();
 const Email = require("../models/email");
-// const { mailgunApiKey, mailgunDomain } = process.env;
-const keys = require("./configMailgun");
-const code = keys();
-const MAIL_GUN_KEY = code.MAIL_GUN_KEY;
-const MAIL_GUN_DOMAIN = code.MAIL_GUN_DOMAIN;
+const { MAIL_GUN_KEY, MAIL_GUN_DOMAIN } = process.env;
 
 var mailgun = require("mailgun-js")({
   apiKey: MAIL_GUN_KEY,
@@ -13,6 +11,8 @@ var mailgun = require("mailgun-js")({
 });
 //--------------Post------------------------
 router.post("/create", (req, res) => {
+  console.log(process.env.MAIL_GUN_KEY);
+
   const newEmail = req.body;
   console.log(newEmail);
   const data = {
