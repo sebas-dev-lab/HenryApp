@@ -5,11 +5,11 @@
   }
 
   .container{
-    background-color: black !important;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 470px;
     
 }
 

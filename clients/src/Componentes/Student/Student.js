@@ -8,13 +8,13 @@ import  {useDispatch, useSelector} from "react-redux";
 // import img1 from "./img/pexels-photo-392018.jpeg"
 // import {Carousel} from 'react-bootstrap';
 import './Student.css'
-import img2 from '../../multimedia/imghomeworks.jpg'
-import img3 from '../../multimedia/calendar.jpeg'
-import img4 from '../../multimedia/class.jpeg'
-import pairp from '../../multimedia/pairp.jpg'
-import coding from '../../multimedia/coding.jpeg'
-import meeting from '../../multimedia/meeting.jpg'
-import calif from '../../multimedia/calif.jpg'
+import img2 from '../utils/imghomeworks.jpg'
+import img3 from '../utils/calendar.jpeg'
+import img4 from '../utils/class.jpeg'
+import pairp from '../utils/pairp.jpg'
+import coding from '../utils/coding.jpeg'
+import meeting from '../utils/meeting.jpg'
+import calif from '../utils/calif.jpg'
 //  import "./prueba.css"
 
 
