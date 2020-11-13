@@ -20,12 +20,7 @@ import {
 } from "@material-ui/icons";
 import style from "../../styles/email.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteEmail,
-  getEmail,
-  postEmail,
-  putEmail,
-} from "../../redux/actions/email";
+import { deleteEmail, getEmail, createEmail } from "../../redux/actions/email";
 import BodyEditar from "./bodyEditar";
 
 const useStyles = makeStyles((theme) => ({
@@ -60,31 +55,21 @@ export default function Emails() {
   };
 
   const emails = useSelector((state) => state.email.allEmails);
-  console.log(emails);
-  console.log(emailSeleccionado);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEmail());
   }, []);
 
-  const Aceptar = async () => {
+  const Aceptar = () => {
     //prettier-ignore
-    await dispatch(postEmail(emailSeleccionado));
+    dispatch(createEmail(emailSeleccionado));
     AbrirCerrar();
   };
 
-  //TODO: corregir petición como recibe el
-  // const aceptarEdit = () => {
-  //   //prettier-ignore
-  //   let newEmail= emailSeleccionado.email
-  //   dispatch(putEmail(newEmail));
-  //   Editar();
-  // };
-
   const deleteEm = (email) => {
-    console.log(email);
     dispatch(deleteEmail(email));
+    console.log("ando");
   };
   //Funcion para abrir y cerrar el modal
   const AbrirCerrar = () => {
@@ -159,14 +144,14 @@ export default function Emails() {
                     <BodyEditar
                       email={newEmail.email}
                       modalEditar={modalEditar}
+                      setModalEditar={setModalEditar}
                       styles={styles}
                     />
                   </Modal>
                   &nbsp; &nbsp; &nbsp;
-                  <Delete
-                    className={style.delete}
-                    onClick={() => deleteEm(newEmail.email)}
-                  />
+                  <Button onClick={() => deleteEm(newEmail.email)}>
+                    <Delete className={style.delete} />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

@@ -20,15 +20,22 @@ router.post("/create", (req, res) => {
     template: "invitacion.test",
   };
 
-  Email.create(newEmail, function (err, newEmail) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    mg.messages().send(data, function (error, body) {
-      console.log(body);
+  if (!newEmail) {
+    return res.status(400).json({
+      message: "Falta email",
     });
-  });
+  } else {
+    Email.create(newEmail, function (err, newEmail) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      mg.messages().send(data, function (error, body) {
+        console.log(body);
+      });
+      res.status(200).json(newEmail);
+    });
+  }
 });
 
 //---------------Get----------------
@@ -58,7 +65,7 @@ router.put("/:email", (req, res) => {
 
 //---------------Delete-----------------
 router.delete("/:email", (req, res) => {
-  const { email } = req.body;
+  const { email } = req.params;
 
   Email.deleteOne({ email: email }, function (err, deleted) {
     if (err) {

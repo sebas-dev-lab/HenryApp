@@ -6,9 +6,10 @@ const initialState = {
   message: "",
 };
 
-const cohortReducers = (state = initialState, action) => {
+const emailReducers = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
-    case actionTypes.POST_EMAIL:
+    case actionTypes.CREATE_EMAIL:
       return {
         ...state,
         allEmails: state.allEmails.concat(action.email),
@@ -23,8 +24,8 @@ const cohortReducers = (state = initialState, action) => {
       return {
         ...state,
         allEmails: state.allEmails.map((email) => {
-          if (email === action.email) {
-            email = action.updateEmail;
+          if (email.email === action.email) {
+            email.email = action.updateEmail;
           }
           return email;
         }),
@@ -32,7 +33,10 @@ const cohortReducers = (state = initialState, action) => {
     case actionTypes.DELETE_EMAIL:
       return {
         ...state,
-        messages: action.messages,
+        allEmails: state.allEmails.filter(
+          (email) => email.email !== action.email
+        ),
+        message: action.message,
       };
 
     default:
@@ -40,4 +44,4 @@ const cohortReducers = (state = initialState, action) => {
   }
 };
 
-export default cohortReducers;
+export default emailReducers;

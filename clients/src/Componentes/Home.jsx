@@ -9,8 +9,8 @@ import {
   InputLabel,
   Select,
 } from "@material-ui/core";
-import logo from "../utils/LogoHenry.png";
-import home from "../utils/Home3.jpg";
+import logo from "./utils/LogoHenry.png";
+import home from "./utils/Home3.jpg";
 
 const Home = () => {
   return (

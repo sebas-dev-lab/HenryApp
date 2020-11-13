@@ -41,5 +41,5 @@ export const POST_COHORT = "POST_COHORT";
 /*==== Email actionTypes =====*/
 export const GET_EMAIL = "GET_EMAIL";
 export const PUT_EMAIL = "PUT_EMAIL";
-export const POST_EMAIL = "POST_EMAIL";
+export const CREATE_EMAIL = "CREATE_EMAIL";
 export const DELETE_EMAIL = "DELETE_EMAIL";

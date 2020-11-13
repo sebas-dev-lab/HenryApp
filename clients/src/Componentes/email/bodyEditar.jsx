@@ -5,8 +5,13 @@ import style from "../../styles/email.module.css";
 import { putEmail } from "../../redux/actions/email";
 import { TextField } from "@material-ui/core";
 
-export default function BodyEditar({ email, modalEditar, styles }) {
-  const [modalEdit, setModalEdit] = useState(modalEditar);
+export default function BodyEditar({
+  email,
+  modalEditar,
+  styles,
+  setModalEditar,
+}) {
+  // const [modalEdit, setModalEdit] = useState(modalEditar);
   const dispatch = useDispatch();
   const [emailSeleccionado, setEmailSeleccionado] = useState({
     email: "",
@@ -22,12 +27,12 @@ export default function BodyEditar({ email, modalEditar, styles }) {
 
   const EditFunction = () => {
     dispatch(putEmail(email, emailSeleccionado));
-    setModalEdit(!modalEdit);
+    setModalEditar(!modalEditar);
   };
 
   const isOpen = () => {
     console.log("ando");
-    setModalEdit(!modalEdit);
+    setModalEditar(!modalEditar);
   };
 
   return (
