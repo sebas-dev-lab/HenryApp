@@ -8,6 +8,8 @@ import Dashboard from './pages/dashboard';
 import Alumn from './Componentes/alumnosCRUD/logic'
 import Email from "./Componentes/Email";
 import BotonChat from './Componentes/Chat/BotonChat';
+import Student from './Componentes/Student/Student';
+import Admin from './Componentes/Admin/Admin';
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path="/alumnos" exact>
           <Navbar></Navbar>
           <BotonChat />
+          <Student />
         </Route>
         {/* ALUMNOS */}
 
@@ -42,6 +45,7 @@ function App() {
         {/* ADMIN */}
         <Route path="/admin" exact>
           <Navbar></Navbar>
+          <Admin />
         </Route>
         {/* Dashboard */}
         <Route path='/dashboard' exact>
