@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./Componentes/Home";
 import Navbar from "./Componentes/Navbar";
 import { Route, Switch, Link } from "react-router-dom";
-import Registro from "./Componentes/loginUser.jsx";
+import Registro from "./Componentes/loginUser.js";
 import Login2 from "./Componentes/login/Login2.jsx";
 import Dashboard from "./pages/dashboard";
 import Alumn from "./Componentes/alumnosCRUD/logic";
@@ -53,7 +53,7 @@ function App() {
         </Route>
       </Switch>
 
-      <Route path="/login">
+      <Route path="/registrarse">
         <Registro />
       </Route>
 

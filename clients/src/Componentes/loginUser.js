@@ -151,9 +151,13 @@ export default function Registro() {
   };
 
   function sendData() {
-    axios.post("http://localhost:3001/student/create", data).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("http://localhost:3001/student/create", data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   }
 
   return (

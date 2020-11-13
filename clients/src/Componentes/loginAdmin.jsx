@@ -60,17 +60,17 @@ export default function Registro() {
   };
 
   const inputsChange_email = (e) => {
-    if (!/\S+@\S+\.\S+/.test(data.email)) {
-      setErrors({
-        ...errors,
-        emailError: "El email ingresado no es valido",
-      });
-    } else {
-      setErrors({
-        ...errors,
-        emailError: "",
-      });
-    }
+    // if (!/\S+@\S+\.\S+/.test(data.email)) {
+    //   setErrors({
+    //     ...errors,
+    //     emailError: "El email ingresado no es valido",
+    //   });
+    // } else {
+    //   setErrors({
+    //     ...errors,
+    //     emailError: "",
+    //   });
+    // }
     setData({
       ...data,
       email: e.target.value,
@@ -151,9 +151,11 @@ export default function Registro() {
   };
 
   function sendData() {
-    axios.post("http://localhost:3001/admin", data).then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("http://localhost:3001/admin", data, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+      });
   }
 
   return (
