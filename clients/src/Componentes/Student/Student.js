@@ -82,7 +82,7 @@ const Student = () => {
                 <div class="content">
                   <div>
                     <h2>Calendario</h2>
-                    <Link className="link">INGRESAR</Link>
+                    <Link to= '/calendario' className="link">INGRESAR</Link>
                   </div>
                 </div>
               </div>
