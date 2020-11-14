@@ -3,7 +3,6 @@ const router = express();
 
 const User = require("../models/user");
 const Cohort = require("../models/cohort");
-const Group = require("../models/group");
 
 /*==== user.js continua siendo rutas de "student" ==== */
 
@@ -37,7 +36,8 @@ router.get("/:code", (req, res) => {
 
 /*===== Create student ===== */
 router.post("/create", async (req, res) => {
-  const { name, lastName, dni, email, password } = req.body;
+  const { name, lastName, dni, email, password, cohort } = req.body;
+
   if (!name && !lastName && !dni && !email && !password) {
     return res.status(400).send("Faltan parametros");
   } else {
@@ -45,11 +45,21 @@ router.post("/create", async (req, res) => {
     if (dniUser) {
       res.status(400).send("DNI existente");
     } else {
-      const newStudent = new User({ name, lastName, dni, email, password });
-      newStudent.role = "student";
-      newStudent.password = await newStudent.encryptPassword(password);
-      await newStudent.save();
-      res.status(200).json({ msg: "OK", student: newStudent });
+      Cohort.findOne({ name: cohort }).then(async (cohorte) => {
+        const newStudent = new User({
+          name,
+          lastName,
+          dni,
+          email,
+          password,
+          cohorte: cohorte,
+        });
+        newStudent.role = "student";
+        newStudent.password = await newStudent.encryptPassword(password);
+
+        await newStudent.save();
+        res.status(200).json({ msg: "OK", student: newStudent });
+      });
     }
   }
 });
