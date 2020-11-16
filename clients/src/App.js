@@ -13,6 +13,7 @@ import Admin from "./Componentes/Admin/Admin";
 import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
+import Modulo from "./Componentes/modulo/Modulo"
 
 function App() {
   return (
@@ -45,6 +46,11 @@ function App() {
           <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
+        {/* MODULO */}
+        <Route path="/modulo" exact>
+          <Modulo />
+        </Route>
+        {/* MODULO */}
 
         {/* ADMIN */}
         <Route path="/admin" exact>

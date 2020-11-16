@@ -1,24 +1,26 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const moduleSchema = new mongoose.Schema({
-  idStudent: {
-    type: String,
-    required: true,
+  students: [{
+    type: Schema.Types.ObjectId,
+    ref: "Student",
+  }],
+
+  cohort: {
+    type: Schema.Types.ObjectId,
+    ref: "Cohort",
   },
 
-  idCohorte: {
-    type: Number,
-    required: true,
-  },
   checkpoint: {
     type: String,
     required: true,
   },
 
-  means: {
+  means: [{
     type: String,
     required: true,
-  },
+  }],
 });
 
 const Module = mongoose.model("Module", moduleSchema);
