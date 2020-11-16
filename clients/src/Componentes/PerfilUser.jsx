@@ -89,7 +89,7 @@ const Perfil = ()=>{
                  <h1>Henry</h1>
                 <TextField
                 id="standard-full-width"
-                label="Cohoter"
+                label="Cohorte"
                 style={{ margin: 8, width: 170 }}
                 fullWidth
                 margin="normal"

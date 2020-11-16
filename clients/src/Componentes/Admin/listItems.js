@@ -13,8 +13,13 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import { Link } from "react-router-dom";
 
 
+
 export const mainListItems = (
+
+
   <div>
+    <div class="slideout-sidebar">
+  
     {/* <Link to="/admin">
       <ListItem button>
         <ListItemIcon>
@@ -23,53 +28,46 @@ export const mainListItems = (
         <ListItemText primary="Panel" />
       </ListItem>
     </Link> */}
-    <Link to="/student/all">
+    <Link to="/alumn">
       <ListItem button>
         <ListItemIcon>
         <PeopleIcon />
         </ListItemIcon>
-        <ListItemText secondary="Usuarios" />
+    
+        <ListItemText secondary="USUARIOS" />
+        
       </ListItem>
     </Link>
-    <Link to="/admin/">
+    <Link to="/cohort/all">
+    <cohorteCRUD />
       <ListItem button>
         <ListItemIcon>
         <ListAltIcon />
         </ListItemIcon>
-        <ListItemText secondary="Cohortes" />
+        <ListItemText secondary="COHORTES" />
+        
       </ListItem>
     </Link>
-    <Link to="/admin/">
+    <Link to="/invitar">
       <ListItem button>
         <ListItemIcon>
           <ListAltIcon />
         </ListItemIcon>
-        <ListItemText secondary="Modulos" />
+        <ListItemText secondary="EMAIL" />
       </ListItem>
     </Link>
-    <Link to="/admin/">
-      <ListItem button>
-        <ListItemIcon>
-          <ListAltIcon />
-        </ListItemIcon>
-        <ListItemText secondary="" />
-      </ListItem>
-    </Link>
-    <Link to="/admin/">
-      <ListItem button>
-        <ListItemIcon>
-          <ListAltIcon />
-        </ListItemIcon>
-        <ListItemText secondary="" />
-      </ListItem>
-    </Link>
+  
     <a href="/">
       <ListItem button>
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
-        <ListItemText secondary="Salir" />
+        <ListItemText secondary="SALIR" />
       </ListItem>
     </a>
+
   </div>
+  </div>
+
+
 );

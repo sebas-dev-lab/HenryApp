@@ -8,24 +8,28 @@ import Dashboard from './pages/dashboard';
 import Alumn from './Componentes/alumnosCRUD/logic'
 import Email from "./Componentes/Email";
 import BotonChat from './Componentes/Chat/BotonChat';
-import Student from './Componentes/Student/Student';
-import Admin from './Componentes/Admin/Admin';
-import Bienvenida from './Componentes/Bienvenida';
-import Footer from './Componentes/Footer';
-import Perfil from './Componentes/PerfilUser';
+import adminReducers from './redux/reducers/adminReducers';
+import studentReducers from './redux/reducers/studentReducers';
+import Student from './Componentes/Student/Student'
+import Admin from './Componentes/Admin/Admin'
+import logic from './Componentes/alumnosCRUD/logic'
+// import logic2 from './Componentes/cohorteCRUD/logic2'
+import logic3 from './Componentes/cardUsuario/logic3'
+import form from './Componentes/cardFunciones/form'
+import Carrusel from './Componentes/Carrusel'
+
+
+
 
 function App() {
   return (
     <div>
       <Switch>
-
-        {/* login */}
-        <Route path='/login' exact>
-          <Bienvenida></Bienvenida>
+        {/* login2 */}
+        <Route path='/login2' exact>
           <Login2 />
-          <Footer></Footer>
         </Route>
-        {/* login */}
+        {/* login2 */}
 
         {/* HOME */}
         <Route path="/" exact>
@@ -36,14 +40,18 @@ function App() {
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>
           <Navbar></Navbar>
-          <BotonChat />
-          <Student />
+        
+          <Student />    
+       
+        <BotonChat />
         </Route>
         {/* ALUMNOS */}
 
         {/* INSTRUCTOR */}
+
         <Route path="/instructor" exact>
         <Navbar></Navbar>
+         
         </Route>
         {/* INSTRUCTOR */}
 
@@ -51,28 +59,38 @@ function App() {
         <Route path="/admin" exact>
           <Navbar></Navbar>
           <Admin />
+     
         </Route>
-        {/* ADMIN */}
+
+        {/* <Route path='/student/all' exact>
+            {logic}
+            {/* {logic3} */}
+        {/* </Route> */}
+
+        <Route path='/cohort/all' exact>
+
+          {Dashboard}
+
+        </Route>
+        
 
         {/* Dashboard */}
-        <Route path='/dashboard' exact>
+        {/* <Route path='/dashboard' exact>
           <Dashboard></Dashboard>
         </Route>
-        {/* Dashboard */}
-
-        {/* alumn crud*/}
+        alumn */}
         <Route path='/alumn' exact>
           <Alumn></Alumn>
         </Route>
-        {/* alumn crud*/}
+        
+        
 
-        {/* REGISTRO */}
-        <Route path="/registrarse">
-        <Bienvenida></Bienvenida>
+
+      </Switch>
+
+      <Route path="/login">
         <Login />
-        <Footer></Footer>
-        </Route>
-        {/* REGISTRO */}
+      </Route>
 
       {/* Invitar Estudiante */}
       <Route path="/invitar">
@@ -80,20 +98,6 @@ function App() {
         <Email />
       </Route>
       {/* Invitar Estudiante  */}
-
-      {/* PERFIL */}
-      <Route path="/perfil">
-        <Bienvenida></Bienvenida>
-        <Perfil></Perfil>
-        <Footer></Footer>        
-      </Route>
-      {/* PERFIL  */}
-
-
-
-      </Switch>
-
-      
     </div>
 
   );

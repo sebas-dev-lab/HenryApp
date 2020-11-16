@@ -16,11 +16,15 @@ import coding from '../utils/coding.jpeg'
 import meeting from '../utils/meeting.jpg'
 import calif from '../utils/calif.jpg'
 //  import "./prueba.css"
+import Footer from '../../Componentes/Footer.jsx'
+import Carrusel from '../Carrusel.jsx'
+import Stepper from '../../Componentes/Stepper/Stepper'
 
 
 
 
-const Student = ({history}) => {
+
+const Student = ({}) => {
 
     // const usuario = useSelector(store => store.user.user)
     // const dispatch = useDispatch()
@@ -38,15 +42,28 @@ const Student = ({history}) => {
 
 
       <div class="root">
+         {/* <div style ={{backgroundColor: "grey",marginTop: "0rem"}}>
+    <h6: Juan Perez        cohorte: 6         modulo: 2</h6>
+    </div>>YO
+    <div style ={{marginTop: "-0.5rem"}}> */}
+      <Carrusel />
+      {/* </div> */}
+
+     
         <div className= "container">
-       
+     
+   
+      
+        <Stepper />
         
-    <div className= "contenedor">
+    {/* <div className= "contenedor">
     <div class="modulos">
           <ul class="progressbar">
           <div> 
-            <i class="fas fa-arrow-alt-circle-right">MIS METAS ►►</i></div>
-         
+
+            <div className="meta"> MIS METAS »</div>
+            <i class="fas fa-arrow-alt-circle-right"></i></div>
+           
         
            <div> <li class="active">PREP COURSE</li></div>
            <div> <li class="active">MODULO I</li></div>
@@ -56,13 +73,16 @@ const Student = ({history}) => {
             <div> <li class="active">HENRY LABS</li></div>
             <div> <li class="active">PROYECTO FINAL</li></div>
           </ul>
-      </div>
+      </div> */}
+    {/* </div> */}
     </div>
-    </div>
-          
+    
+   
+  
   <div>
+    
        {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
-    <div style={{  alignItems: "center",height: "60px", marginTop: "20px", marginLeft: "20px", marginRight: "20px",  alignItems: "center", justifyContent: "space-around"}} > 
+    <div style={{  alignItems: "center",height: "-30px", marginTop: "-10px", marginLeft: "20px", marginRight: "20px",  alignItems: "center", justifyContent: "space-around"}} > 
 </div>           
 <div className= "grid"> 
             <section class="section category">
@@ -73,7 +93,6 @@ const Student = ({history}) => {
               <div class="content">
                 <div>
                   <h2>Calendario</h2>
-                
                        <Link className= "link">INGRESAR</Link>
                   </div> 
                  
@@ -155,11 +174,12 @@ const Student = ({history}) => {
         
             </div>
              </div>
-            
+            <Footer />
             </div>
        
-              
-       
+            
+  
+             
       
      
      

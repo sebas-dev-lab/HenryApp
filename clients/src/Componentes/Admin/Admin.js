@@ -21,13 +21,14 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Admin.css"
+import listItems from "./listItems"
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    backgroundColor: "#FFFFFF",
+    backgroundImage: "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
   kaka: {
     backgroundColor: "#FFFF00",
@@ -109,12 +110,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard({history}) {
-//   const usuario = useSelector(store => store.user.user)
-//   useEffect(() => {
-//       if (!usuario.isAdmin) {
-//         history.push('/')
-//       }
-//     }, [usuario])
+  // const admin = useSelector(store => store.user.user)
+  // useEffect(() => {
+  //     if (!usuario.isAdmin) {
+  //       history.push('/')
+  //     }
+  //   }, [usuario])
 
   const classes = useStyles();
 
@@ -195,26 +196,17 @@ export default function Dashboard({history}) {
             //     // < />
             // }
             /> */}
-{/* 
-            <Route
-              exact
-              path="/admin/"
-            //   render={() => < />}
-            />
-            <Route exact path="/admin/" render={() => < />} />
-
-            <Route exact path="/" component={} />
-
-            <Route exact path="/admin/" component={Navbar} />
-
-            <Route exact path="/admin/" render={() => </>} />
+              <Link to="/student/all">
+           
+           
+            </Link>
+     
           </Container>
         </main>
-*/}
+
      
-     </Container>
-     </main>
-      </div>
+     </div>
+     
    
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Nav from '../Componentes/Navbar'
-import Tabla from '../Componentes/cohorteCRUD/logic'
-import CardUsuario from '../Componentes/cardUsuario/logic'
+import Tabla from '../Componentes/cohorteCRUD/logic2'
+import CardUsuario from '../Componentes/cardUsuario/logic3'
 import CardFunciones from '../Componentes/cardFunciones/logic'
 
 
