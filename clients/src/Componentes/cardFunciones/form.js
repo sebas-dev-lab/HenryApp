@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { allActions } from "../../redux/actions/allActions";
 import { postCohort } from "../../redux/actions/cohortActions";
 
 const useStyles = makeStyles((theme) => ({
