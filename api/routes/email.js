@@ -16,7 +16,7 @@ router.post("/create", (req, res) => {
   const newEmail = req.body;
   console.log(newEmail);
   const data = {
-    from: "HenryApp <lescanovsl@gmail.com>",
+    from: "HenryApp <henryapp46@gmail.com>",
     to: newEmail.email,
     subject: "Bienvenido a Henry",
     text: "Ingresa al campus virtual",
