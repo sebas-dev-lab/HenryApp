@@ -17,6 +17,7 @@ import logic from './Componentes/alumnosCRUD/logic'
 import logic3 from './Componentes/cardUsuario/logic3'
 import form from './Componentes/cardFunciones/form'
 import Carrusel from './Componentes/Carrusel'
+import DashAdmin from './Componentes/DashAdmin/DashAdmin'
 
 
 
@@ -51,7 +52,7 @@ function App() {
 
         <Route path="/instructor" exact>
         <Navbar></Navbar>
-         
+     
         </Route>
         {/* INSTRUCTOR */}
 

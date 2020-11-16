@@ -223,6 +223,11 @@ html {
     /* border-color: yellow; */
 }
 
+.MuiToolbar-regular {
+    min-height: 40px;
+    background-color: yellow !important;
+    min-height: 5%;
+}
 
 
 
