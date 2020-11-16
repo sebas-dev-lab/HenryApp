@@ -1,43 +1,28 @@
-import React,{useState,useEffect} from 'react';
-import View from './view'
-import axios from 'axios'
-
+import React, { useState, useEffect } from "react";
+import View from "./view";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCohort } from "../../redux/actions/cohortActions";
 
 function Crud() {
-  
-  const [Rows, setRows] = useState([])
-  
-  
-  function traerCohorte(){
-    axios.get('http://localhost:3001/cohort/all').then(res=>{
-      const filas = res.data.map((data)=>{
-        return {
-          name:data.name,
-          id:data.id
-        }
-      })
-      return filas 
-    }).then((data)=>{
-      setRows(data)
-    })
-  }
-  
-  
+  const dispatch = useDispatch();
+  const Rows = useSelector((state) => state.cohort.allCohort);
 
-  useEffect(()=>{
-    traerCohorte()
-   // console.log(Rows)
-  },[])
+  const editarCohorte = (name, data) => {
+    axios.put(`http://localhost:3001/cohort/${name}`, data).then((res) => {
+      console.log(res.data);
+    });
+  };
 
-
-
+  useEffect(() => {
+    dispatch(getAllCohort());
+  }, []);
 
   return (
     <div>
-      <View data={Rows}/>
-      
+      <View data={Rows} edit={editarCohorte} />
     </div>
-  )
+  );
 }
 
-export default Crud
+export default Crud;

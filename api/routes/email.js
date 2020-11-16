@@ -1,34 +1,44 @@
+require("dotenv").config();
+
 const express = require("express");
 const router = express();
 const Email = require("../models/email");
-const { mailgunApiKey, mailgunDomain } = process.env;
+const { MAIL_GUN_KEY, MAIL_GUN_DOMAIN } = process.env;
 
-const DOMAIN = "sandbox81755d8aa1034deb89acbfd2d256012f.mailgun.org";
-const mailgun = require("mailgun-js");
-const mg = mailgun({
-  apiKey: "3a77cbb7fe0d44772e749a5217a6d19e-ba042922-7a57af9b",
-  domain: DOMAIN,
+var mailgun = require("mailgun-js")({
+  apiKey: MAIL_GUN_KEY,
+  domain: MAIL_GUN_DOMAIN,
 });
 //--------------Post------------------------
 router.post("/create", (req, res) => {
+  console.log(process.env.MAIL_GUN_KEY);
+
   const newEmail = req.body;
+  console.log(newEmail);
   const data = {
-    from: "HenryApp <lismarsz_11@hotmail.com>",
-    to: "sanchezlismairy@gmail.com",
+    from: "HenryApp <henryapp46@gmail.com>",
+    to: newEmail.email,
     subject: "Bienvenido a Henry",
     text: "Ingresa al campus virtual",
     template: "invitacion.test",
   };
 
-  Email.create(newEmail, function (err, newEmail) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    mg.messages().send(data, function (error, body) {
-      console.log(body);
+  if (!newEmail) {
+    return res.status(400).json({
+      message: "Falta email",
     });
-  });
+  } else {
+    Email.create(newEmail, function (err, newEmail) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      });
+      res.status(200).json(newEmail);
+    });
+  }
 });
 
 //---------------Get----------------
@@ -58,7 +68,7 @@ router.put("/:email", (req, res) => {
 
 //---------------Delete-----------------
 router.delete("/:email", (req, res) => {
-  const { email } = req.body;
+  const { email } = req.params;
 
   Email.deleteOne({ email: email }, function (err, deleted) {
     if (err) {

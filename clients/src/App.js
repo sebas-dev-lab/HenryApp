@@ -1,28 +1,27 @@
-import React from 'react';
-import Home from './Componentes/Home';
-import Navbar from './Componentes/Navbar';
-import { Route, Switch, Link } from 'react-router-dom';
-import Login from './Componentes/Login.jsx';
-import Login2 from "./Componentes/login/Login2.jsx"
-import Dashboard from './pages/dashboard';
-import Alumn from './Componentes/alumnosCRUD/logic'
-import Email from "./Componentes/Email";
-import BotonChat from './Componentes/Chat/BotonChat';
-import Student from './Componentes/Student/Student';
-import Admin from './Componentes/Admin/Admin';
-import Bienvenida from './Componentes/Bienvenida';
-import Footer from './Componentes/Footer';
-import Perfil from './Componentes/PerfilUser';
+import React from "react";
+import Home from "./Componentes/Home";
+import Navbar from "./Componentes/Navbar";
+import { Route, Switch } from "react-router-dom";
+import Registro from "./Componentes/registro.jsx";
+import Login from "./Componentes/login/Login2.jsx";
+import Dashboard from "./pages/dashboard";
+import Alumn from "./Componentes/alumnosCRUD/logic";
+import Email from "./Componentes/email/Email";
+import BotonChat from "./Componentes/Chat/BotonChat";
+import Student from "./Componentes/Student/Student";
+import Admin from "./Componentes/Admin/Admin";
+import Bienvenida from "./Componentes/Bienvenida";
+import Footer from "./Componentes/Footer";
+import Perfil from "./Componentes/PerfilUser";
 
 function App() {
   return (
     <div>
       <Switch>
-
         {/* login */}
-        <Route path='/login' exact>
+        <Route path="/login" exact>
           <Bienvenida></Bienvenida>
-          <Login2 />
+          <Login />
           <Footer></Footer>
         </Route>
         {/* login */}
@@ -43,7 +42,7 @@ function App() {
 
         {/* INSTRUCTOR */}
         <Route path="/instructor" exact>
-        <Navbar></Navbar>
+          <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
 
@@ -55,47 +54,41 @@ function App() {
         {/* ADMIN */}
 
         {/* Dashboard */}
-        <Route path='/dashboard' exact>
+        <Route path="/dashboard" exact>
           <Dashboard></Dashboard>
         </Route>
         {/* Dashboard */}
 
         {/* alumn crud*/}
-        <Route path='/alumn' exact>
+        <Route path="/alumn" exact>
           <Alumn></Alumn>
         </Route>
         {/* alumn crud*/}
 
         {/* REGISTRO */}
         <Route path="/registrarse">
-        <Bienvenida></Bienvenida>
-        <Login />
-        <Footer></Footer>
+          <Bienvenida></Bienvenida>
+          <Registro />
+          <Footer></Footer>
         </Route>
         {/* REGISTRO */}
 
-      {/* Invitar Estudiante */}
-      <Route path="/invitar">
-        <Navbar />
-        <Email />
-      </Route>
-      {/* Invitar Estudiante  */}
+        {/* Invitar Estudiante */}
+        <Route path="/invitar">
+          <Navbar />
+          <Email />
+        </Route>
+        {/* Invitar Estudiante  */}
 
-      {/* PERFIL */}
-      <Route path="/perfil">
-        <Bienvenida></Bienvenida>
-        <Perfil></Perfil>
-        <Footer></Footer>        
-      </Route>
-      {/* PERFIL  */}
-
-
-
+        {/* PERFIL */}
+        <Route path="/perfil">
+          <Bienvenida></Bienvenida>
+          <Perfil></Perfil>
+          <Footer></Footer>
+        </Route>
+        {/* PERFIL  */}
       </Switch>
-
-      
     </div>
-
   );
 }
 

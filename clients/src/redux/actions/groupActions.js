@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 const url = "http://localhost:3001";

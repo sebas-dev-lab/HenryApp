@@ -1,4 +1,5 @@
-import actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
+
 import axios from "axios";
 
 const url = "http://localhost:3001";
@@ -28,11 +29,18 @@ export const updateCohort = (name, values) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const postCohort = (newCohort) => async (dispatch) => {
-  return await axios
-    .post(`${url}/cohort/create`, {
-      newCohort: newCohort,
-    })
+export const postCohort = (name, startDate) => (dispatch) => {
+  return axios
+    .post(
+      `${url}/cohort/create`,
+      {
+        name: name,
+        startDate: startDate,
+      },
+      {
+        withCredentials: true,
+      }
+    )
     .then((res) => {
       dispatch({
         type: actionTypes.POST_COHORT,

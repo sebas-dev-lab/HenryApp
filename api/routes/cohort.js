@@ -27,14 +27,14 @@ router.put("/:name", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  const newCohort = req.body;
+  const { name, startDate } = req.body;
 
-  Cohort.create(newCohort, function (err, newCohort) {
+  Cohort.create({ name: name, startDate: startDate }, function (err, name) {
     if (err) {
       console.log(err);
       return;
     }
-    res.status(200).json({ msg: "Ok", newCohort });
+    res.status(200).json({ msg: "Ok", name });
   });
 });
 

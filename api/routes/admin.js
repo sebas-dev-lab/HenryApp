@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/user");
+const Cohort = require("../models/cohort");
+const Group = require("../models/group");
 
 /*===== Create Admin ===== */
 router.post("/", async (req, res) => {
@@ -78,7 +80,7 @@ router.put("/cohort/:code/:cohort", (req, res) => {
       console.log(err);
       return;
     }
-    User.update({ code: code }, { $set: { idCohorte: cohort } }).then(() => {
+    User.update({ code: code }, { $set: { cohorte: cohort } }).then(() => {
       res.status(200).json({ msg: "Ok" });
     });
   });
@@ -106,7 +108,7 @@ router.put("/group/:code/:group", (req, res) => {
         }
         User.findOneAndUpdate(
           { name: student },
-          { $set: { idGroup: group } },
+          { $set: { group: group } },
           { new: true }
         ).then(() => {
           res.status(200).json({ msg: "Ok" });

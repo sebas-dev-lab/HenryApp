@@ -1,4 +1,4 @@
-import actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 const url = "http://localhost:3001";
@@ -15,14 +15,13 @@ export const getEmail = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const postGroup = (newEmail) => (dispatch) => {
-  axios
-    .post(`${url}/email/create`, {
-      newEmail: newEmail,
-    })
+export const createEmail = (newEmail) => async (dispatch) => {
+  return await axios
+    .post(`${url}/email/create`, newEmail)
     .then((res) => {
+      console.log(res);
       dispatch({
-        type: actionTypes.POST_EMAIL,
+        type: actionTypes.CREATE_EMAIL,
         email: res.data,
       });
     })
@@ -35,8 +34,8 @@ export const putEmail = (email, updateEmail) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.PUT_EMAIL,
-        updateEmail: res.data,
         email: email,
+        updateEmail: updateEmail.email,
       });
     })
     .catch((err) => console.log(err));
@@ -49,6 +48,7 @@ export const deleteEmail = (email) => (dispatch) => {
       dispatch({
         type: actionTypes.DELETE_EMAIL,
         message: "Email deleted",
+        email: email,
       });
     })
     .catch((err) => console.log(err));

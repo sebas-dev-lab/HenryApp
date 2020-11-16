@@ -3,6 +3,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { googleClientID, googleClientSecret } = process.env;
 const User = require("../models/user");
+
 //----------------------------------PASSPORT GOOGLE-STRATEGY---------------------------------------
 
 passport.use(

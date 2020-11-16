@@ -7,6 +7,7 @@ const initialState = {
 };
 
 const cohortReducers = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case actionTypes.POST_COHORT:
       return {

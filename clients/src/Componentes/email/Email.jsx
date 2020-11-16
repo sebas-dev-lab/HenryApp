@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableBody,
@@ -8,9 +8,8 @@ import {
   TableHead,
   TableRow,
   Modal,
-  Fab,
-  Button,
   TextField,
+  Button,
 } from "@material-ui/core";
 import {
   Edit,
@@ -19,8 +18,10 @@ import {
   CheckCircle,
   Cancel,
 } from "@material-ui/icons";
-import style from "../styles/email.module.css";
-import Axios from "axios";
+import style from "../../styles/email.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmail, getEmail, createEmail } from "../../redux/actions/email";
+import BodyEditar from "./bodyEditar";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -40,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Emails() {
   const styles = useStyles();
   //-------Hooks----
-  const [data, setData] = useState([]);
   const [modalInsertar, setModalInsertar] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
   const [emailSeleccionado, setEmailSeleccionado] = useState({
@@ -53,25 +53,24 @@ export default function Emails() {
       [name]: value,
     }));
   };
-  useEffect(async () => {
-    //prettier-ignore
-    await Axios.get("http://localhost:3001/email/all")
-    .then(response => {
-      setData(response.data);
-    });
+
+  const emails = useSelector((state) => state.email.allEmails);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEmail());
   }, []);
 
-  const Aceptar = async () => {
+  const Aceptar = () => {
     //prettier-ignore
-    await Axios.post(
-      "http://localhost:3001/email/create",
-      emailSeleccionado
-    ).then(response => {
-      setData(data.concat(response.data))
-       AbrirCerrar();
-    });
+    dispatch(createEmail(emailSeleccionado));
+    AbrirCerrar();
   };
 
+  const deleteEm = (email) => {
+    dispatch(deleteEmail(email));
+    console.log("ando");
+  };
   //Funcion para abrir y cerrar el modal
   const AbrirCerrar = () => {
     setModalInsertar(!modalInsertar);
@@ -108,25 +107,7 @@ export default function Emails() {
       </div>
     </div>
   );
-  const bodyEditar = (
-    <div className={styles.modal}>
-      <h3>Editar email</h3>
-      <TextField
-        className={style.inputMaterial}
-        label="Email"
-        name="email"
-        onChange={handleChange}
-        value={emailSeleccionado && emailSeleccionado.email}
-      />
-      <br />
-      <br />
-      <div aling="right">
-        <CheckCircle className={style.aceptar} />
-        &nbsp; &nbsp; &nbsp;
-        <Cancel className={style.cancelar} />
-      </div>
-    </div>
-  );
+
   return (
     <div className={style.emails}>
       <br />
@@ -150,15 +131,27 @@ export default function Emails() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((newEmail) => (
-              <TableRow key={newEmail.id}>
+            {emails.map((newEmail, idx) => (
+              <TableRow key={idx}>
                 <TableCell component="th" scope="row">
                   {newEmail.email}
                 </TableCell>
                 <TableCell component="th" scope="row" align="right">
-                  <Edit className={style.editar} />
+                  <Button onClick={Editar}>
+                    <Edit className={style.editar} />
+                  </Button>
+                  <Modal open={modalEditar}>
+                    <BodyEditar
+                      email={newEmail.email}
+                      modalEditar={modalEditar}
+                      setModalEditar={setModalEditar}
+                      styles={styles}
+                    />
+                  </Modal>
                   &nbsp; &nbsp; &nbsp;
-                  <Delete className={style.delete} />
+                  <Button onClick={() => deleteEm(newEmail.email)}>
+                    <Delete className={style.delete} />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -167,9 +160,6 @@ export default function Emails() {
       </TableContainer>
       <Modal open={modalInsertar} onClose={AbrirCerrar}>
         {bodyInsertar}
-      </Modal>
-      <Modal open={modalEditar} onClose={Editar}>
-        {bodyEditar}
       </Modal>
     </div>
   );

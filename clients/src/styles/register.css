@@ -1,0 +1,50 @@
+@media screen and (max-width: 800px) {
+    .div_container {
+      width: 100%; 
+    }
+  }
+
+  .container{
+    background-color: black !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sing_in{
+  display: block;
+  justify-content: center;
+  align-content: space-around;
+  border: 0.25px gray solid;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35);
+  border-radius: 8px;
+  width: min-content;
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  height: 50vh;
+  padding: 2vh;
+  background-color:rgb(255, 255, 1);
+  
+}
+
+.submit {
+    background-color: white;
+    border: 0.25px gray solid;
+    border-radius: 10px;
+    color: black;
+    margin: 0 auto;
+    margin-top: 3vh;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35)
+}
+
+.submit:hover {
+    background-color: #8D99AE;
+    border: black solid 1px;
+}
