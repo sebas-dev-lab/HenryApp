@@ -36,6 +36,10 @@ const Home = () => {
               {" "}
               Login{" "}
             </Link>
+            <Link href="/registrarse" color="inherit">
+              {" "}
+              Registrarse{" "}
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>

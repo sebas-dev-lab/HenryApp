@@ -4,12 +4,15 @@
     }
   }
 
+
+
   .container{
+    background-color: black !important;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    height: 470px;
+    height: 643px;
     
 }
 
@@ -18,31 +21,31 @@
   justify-content: center;
   align-content: space-around;
   border: 0.25px gray solid;
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35);
+  box-shadow: 10px 40px 5px 0px rgba(0,0,0,0.35);
   border-radius: 8px;
   width: min-content;
   margin: auto;
   margin-top: 3vh;
   margin-bottom: 3vh;
-  height: 50vh;
-  padding: 2vh;
+  height: 33.2vh;
+  padding: 1.5vh;
   background-color:rgb(255, 255, 1);
   
 }
 
 .submit {
     background-color: white;
-    border: 0.25px gray solid;
+    border: 2px gray solid;
     border-radius: 10px;
     color: black;
     position: center;
-      margin: auto;
+    margin: auto;
     margin-top: 3vh;
     margin-bottom: 3vh;
     justify-content: space-around;
     display: flex;
     flex-direction: column;
-    bottom: 100px;
+    bottom: 200px;
     left: 70px;
     cursor: pointer;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.35)
@@ -51,4 +54,12 @@
 .submit:hover {
     background-color: #8D99AE;
     border: black solid 1px;
+}
+
+.text h6{
+  /* background-color: violet; */
+  font-size: 60px;
+  color: wheat;
+  margin: 0px !important;
+  
 }
