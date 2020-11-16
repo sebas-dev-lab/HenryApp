@@ -8,7 +8,7 @@ const url = "http://localhost:3001";
 /*===== Create student ===== */
 export const postStudent = (user) => (dispatch) => {
   return axios
-    .post(`${url}/student/create`, user)
+    .post(`${url}/student/create`, user, { withCredentials: true })
     .then((res) => {
       dispatch({
         type: actionTypes.POST_STUDENT,
@@ -31,16 +31,20 @@ export const postStudent = (user) => (dispatch) => {
 };
 
 /*===== Get all students ===== */
-export const getAllStudents = () => (dispatch) => {
-  axios
-    .get(`${url}/student/all`)
-    .then((res) => {
-      dispatch({
-        type: actionTypes.GET_ALL_STUDENTS,
-        allStudents: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
+export const getAllStudents = () => async (dispatch) => {
+  try {
+    await axios
+      .get(`${url}/student/all`)
+      .then((res) => {
+        dispatch({
+          type: actionTypes.GET_ALL_STUDENTS,
+          allStudents: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  } catch {
+    console.log("errro");
+  }
 };
 
 /*===== Get students by code ===== */

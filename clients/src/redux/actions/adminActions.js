@@ -87,13 +87,13 @@ export const deleteStudent = (code) => (dispatch) => {
 };
 
 /*===== Update student/instructor - Cohort ===== */
-export const updateCohort = (code, cohort) => (dispatch) => {
+export const update_Cohort = (code, cohort) => (dispatch) => {
   return axios
     .put(`${url}/admin/cohort/${code}/${cohort},`)
     .then((res) => {
       dispatch({
         type: actionTypes.UPDATE_COHORT_BY_CODE,
-        update: cohort, //cohort//TODO:verificar
+        update: cohort,
         code: code,
       });
     })

@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from "react";
 import View from "./view";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCohort } from "../../redux/actions/cohortActions";
 
 function Crud() {
-  const [Rows, setRows] = useState([]);
-
-  function traerCohorte() {
-    axios
-      .get("http://localhost:3001/cohort/all")
-      .then((res) => {
-        console.log(res.data);
-        const filas = res.data.map((data) => {
-          return {
-            name: data.name,
-            id: data._id,
-            date: data.startDate,
-          };
-        });
-        return filas;
-      })
-      .then((data) => {
-        setRows(data);
-      });
-  }
+  const dispatch = useDispatch();
+  const Rows = useSelector((state) => state.cohort.allCohort);
 
   const editarCohorte = (name, data) => {
     axios.put(`http://localhost:3001/cohort/${name}`, data).then((res) => {
@@ -31,8 +15,7 @@ function Crud() {
   };
 
   useEffect(() => {
-    traerCohorte();
-    // console.log(Rows)
+    dispatch(getAllCohort());
   }, []);
 
   return (

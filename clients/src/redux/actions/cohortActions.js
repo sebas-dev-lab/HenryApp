@@ -31,10 +31,16 @@ export const updateCohort = (name, values) => async (dispatch) => {
 
 export const postCohort = (name, startDate) => (dispatch) => {
   return axios
-    .post(`${url}/cohort/create`, {
-      name: name,
-      startDate: startDate,
-    })
+    .post(
+      `${url}/cohort/create`,
+      {
+        name: name,
+        startDate: startDate,
+      },
+      {
+        withCredentials: true,
+      }
+    )
     .then((res) => {
       dispatch({
         type: actionTypes.POST_COHORT,

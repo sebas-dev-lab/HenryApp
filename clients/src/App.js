@@ -2,8 +2,8 @@ import React from "react";
 import Home from "./Componentes/Home";
 import Navbar from "./Componentes/Navbar";
 import { Route, Switch } from "react-router-dom";
-import Login from "./Componentes/loginUser.js";
-import Login2 from "./Componentes/login/Login2.jsx";
+import Registro from "./Componentes/registro.jsx";
+import Login from "./Componentes/login/Login2.jsx";
 import Dashboard from "./pages/dashboard";
 import Alumn from "./Componentes/alumnosCRUD/logic";
 import Email from "./Componentes/email/Email";
@@ -21,7 +21,7 @@ function App() {
         {/* login */}
         <Route path="/login" exact>
           <Bienvenida></Bienvenida>
-          <Login2 />
+          <Login />
           <Footer></Footer>
         </Route>
         {/* login */}
@@ -68,7 +68,7 @@ function App() {
         {/* REGISTRO */}
         <Route path="/registrarse">
           <Bienvenida></Bienvenida>
-          <Login />
+          <Registro />
           <Footer></Footer>
         </Route>
         {/* REGISTRO */}

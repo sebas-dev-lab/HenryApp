@@ -9,6 +9,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { update_Cohort } from "../../redux/actions/adminActions";
+import { getAllStudents } from "../../redux/actions/studentActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,8 +36,8 @@ function intersection(a, b) {
 }
 
 export default function TransferList(props) {
-  const { nameRow } = props;
-
+  const dispatch = useDispatch();
+  const { nameRow, users } = props;
   const classes = useStyles();
 
   const [checked, setChecked] = React.useState([]);
@@ -46,6 +49,9 @@ export default function TransferList(props) {
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
+  useEffect(() => {
+    setLeft(users);
+  }, []);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -79,66 +85,48 @@ export default function TransferList(props) {
     setChecked(not(checked, rightChecked));
   };
 
-  const traerUsuarios = () => {
-    axios.get("http://localhost:3001/student/all").then((res) => {
-      console.log(res.data);
-      const names = res.data.map((name) => {
-        return { name: name.name + " " + name.lastName, nameOnly: name.name };
-      });
-      setLeft(names);
-      return names;
-    });
-  };
-
-  const agregarACohorte = (nameAlumn) => {
-    axios.put(`http://localhost:3001/student/cohort/${nameAlumn}/${nameRow}`);
+  const agregarACohorte = (nameCode) => {
+    dispatch(update_Cohort(nameCode, nameRow));
   };
 
   const enviarAlumnos = () => {
     right.map((alumno) => {
-      agregarACohorte(alumno.nameOnly);
+      agregarACohorte(alumno.code);
     });
   };
 
-  const traerUser = () => {
-    axios.get("http://localhost:3001/student/all").then((res) => {
-      console.log(res.data);
-    });
-  };
+  const traerUser = () => {}; //??
 
   const customList = (items) => (
     <Paper className={classes.paper}>
       <List dense component="div" role="list">
-        {items.map((value) => {
-          const labelId = `transfer-list-item-${value}-label`;
+        {items.length > 0 &&
+          items.map((value) => {
+            const labelId = `transfer-list-item-${value}-label`;
 
-          return (
-            <ListItem
-              key={value}
-              role="listitem"
-              button
-              onClick={handleToggle(value)}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={` ${value.name}`} />
-            </ListItem>
-          );
-        })}
+            return (
+              <ListItem
+                key={value}
+                role="listitem"
+                button
+                onClick={handleToggle(value)}
+              >
+                <ListItemIcon>
+                  <Checkbox
+                    checked={checked.indexOf(value) !== -1}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{ "aria-labelledby": labelId }}
+                  />
+                </ListItemIcon>
+                <ListItemText id={labelId} primary={` ${value.name}`} />
+              </ListItem>
+            );
+          })}
         <ListItem />
       </List>
     </Paper>
   );
-
-  useEffect(() => {
-    traerUsuarios();
-  }, []);
 
   return (
     <Grid

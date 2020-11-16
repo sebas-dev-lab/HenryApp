@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Transfer from "./trasnferList";
 import Button from "@material-ui/core/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllStudents } from "../../redux/actions/studentActions";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -31,11 +33,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal(props) {
+  const dispatch = useDispatch();
   const { nameRow } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
+
+  const users = useSelector((state) => state.student.allStudents);
+  console.log(users);
+  useEffect(() => {
+    dispatch(getAllStudents());
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,7 +62,7 @@ export default function SimpleModal(props) {
         size="small"
         onClick={handleOpen}
       >
-        Agregar alumn
+        Agregar alumno
       </Button>
       <Modal
         open={open}
@@ -61,7 +70,7 @@ export default function SimpleModal(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Transfer nameRow={nameRow} />
+        <Transfer nameRow={nameRow} users={users} />
       </Modal>
     </div>
   );

@@ -17,10 +17,10 @@ const useStyles = makeStyles({
   },
 });
 
-function Crud(props) {
+function Crud({ data, edit }) {
   const classes = useStyles();
-  const { data, edit } = props;
 
+  console.log(data);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -35,24 +35,25 @@ function Crud(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              {/*  <TableCell align="right">{row.id}</TableCell> */}
-              <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">
-                <AddAlumn nameRow={row.name} />
-              </TableCell>
-              <TableCell align="right">
-                <EditCohort nameRow={row.name} edit={edit} />
-              </TableCell>
-              <TableCell align="right">
-                <Link to="/alumn">ver alumnos</Link>
-              </TableCell>
-            </TableRow>
-          ))}
+          {data &&
+            data.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                {/*  <TableCell align="right">{row.id}</TableCell> */}
+                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">
+                  <AddAlumn nameRow={row.name} />
+                </TableCell>
+                <TableCell align="right">
+                  <EditCohort nameRow={row.name} edit={edit} />
+                </TableCell>
+                <TableCell align="right">
+                  <Link to="/alumn">ver alumnos</Link>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

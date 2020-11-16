@@ -34,7 +34,7 @@ export const PUT_DELETE_PM_GROUP = "PUT_DELETE_PM_GROUP";
 export const PUT_TOASIGN_COHORT_GROUP = "PUT_TOASIGN_COHORT_GROUP";
 
 /*==== Cohort actionTypes =====*/
-export const GET_ALL_COHORT = "GET_ALL_GROUP";
+export const GET_ALL_COHORT = "GET_ALL_COHORT";
 export const PUT_COHORT = "PUT_COHORT";
 export const POST_COHORT = "POST_COHORT";
 
