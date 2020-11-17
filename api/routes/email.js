@@ -71,11 +71,13 @@ router.delete("/:email", (req, res) => {
   const { email } = req.params;
 
   Email.deleteOne({ email: email }, function (err, deleted) {
-    if (err) {
-      console.log(err);
+    if (deleted.deletedCount === 0) {
+      res.status(400).json({ msg: "error" })
       return;
     }
-    res.status(200).json({ msg: "Ok" });
+    else {
+      res.status(200).json({ msg: "Ok" });
+    }
   });
 });
 
