@@ -1,5 +1,9 @@
 .videos{
+    max-width: 60%;
     display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px !important;
     grid-template-columns: repeat(3, 2fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 10px 10px;
@@ -11,4 +15,16 @@
 }
 .vid{
     object-fit: contain;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
+}
+.boton{
+    margin-left: 20%;
+    margin-top: 20px;
+}
+.bot{
+    background-color: yellow !important;
+    color: black;
+    border-radius: 10%;
+
 }
