@@ -29,12 +29,12 @@ router.put("/:name", (req, res) => {
 router.post("/create", (req, res) => {
   const { name, startDate } = req.body;
 
-  Cohort.create({ name: name, startDate: startDate }, function (err, name) {
+  Cohort.create({ name: name, startDate: startDate }, function (err, cohort) {
     if (err) {
       console.log(err);
       return;
     }
-    res.status(200).json({ msg: "Ok", name });
+    res.status(200).json({ msg: "Ok", cohort });
   });
 });
 
