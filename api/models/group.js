@@ -14,11 +14,11 @@ const groupSchema = new mongoose.Schema({
   },
   pms: [{
 		type: Schema.Types.ObjectId,
-		ref: "Student",
+		ref: "User",
   }],
   students: [{
 		type: Schema.Types.ObjectId,
-		ref: "Student",
+		ref: "User",
   }]
 });
 

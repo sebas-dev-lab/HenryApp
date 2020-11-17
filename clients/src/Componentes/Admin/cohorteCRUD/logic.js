@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import View from "./view";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCohort } from "../../../redux/actions/cohortActions";
+import {
+  getAllCohort,
+  updateCohort,
+} from "../../../redux/actions/cohortActions";
 
-function Crud() {
+function Crud({ showStudents }) {
   const dispatch = useDispatch();
-  const Rows = useSelector((state) => state.cohort.allCohort);
+  const row = useSelector((state) => state.cohort.allCohort);
 
   const editarCohorte = (name, data) => {
-    axios.put(`http://localhost:3001/cohort/${name}`, data).then((res) => {
-      console.log(res.data);
-    });
+    dispatch(updateCohort(name, data));
   };
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Crud() {
 
   return (
     <div>
-      <View data={Rows} edit={editarCohorte} />
+      <View showStudents={showStudents} data={row} edit={editarCohorte} />
     </div>
   );
 }

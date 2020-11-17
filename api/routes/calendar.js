@@ -13,10 +13,14 @@ router.get("/all", async (req, res) => {
 
 
 router.post("/create", async (req, res) => {
-    const {title, start, end, allDay} = req.body;
-    if (!title || !start || !end || allDay===undefined) {
+    const {title, year, month, day, hour, minute, endYear, 
+      endMonth, endDay, endHour, endMinute, allDay} = req.body;
+    if (!title || !year || !month || !day || !hour || !endYear || 
+      !endMonth || !endDay || !endHour || !endMinute || allDay===undefined) {
         return res.status(400).send("Faltan parametros")
-    } Calendar.create({ title: title, start: start, end:end, allDay:allDay }, function (err, calendar) {
+    } Calendar.create({ title: title, year: year, month:month, day:day, 
+      hour:hour, minute:minute, endYear:endYear, 
+      endMonth:endMonth, endDay:endDay, endHour:endHour, endMinute:endMinute, allDay:allDay }, function (err, calendar) {
         if (err) {
           console.log(err);
           return;

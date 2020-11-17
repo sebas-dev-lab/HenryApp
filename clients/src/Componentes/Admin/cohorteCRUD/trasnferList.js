@@ -8,10 +8,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
 import { update_Cohort } from "../../../redux/actions/adminActions";
-import { getAllStudents } from "../../../redux/actions/studentActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,9 +92,15 @@ export default function TransferList(props) {
     right.map((alumno) => {
       agregarACohorte(alumno.code);
     });
+    props.handleOpen();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡El alumno se agregó correctamente!`,
+      showConfirmButton: false,
+      timer: 2000,
+    });
   };
-
-  const traerUser = () => {}; //??
 
   const customList = (items) => (
     <Paper className={classes.paper}>
@@ -179,15 +184,6 @@ export default function TransferList(props) {
             aria-label="move all left"
           >
             ≪
-          </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
-            onClick={traerUser}
-            aria-label="move all left"
-          >
-            mostrame
           </Button>
         </Grid>
       </Grid>
