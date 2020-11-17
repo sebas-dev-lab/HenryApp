@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import View from "./view";
+import {useSelector, useDispatch} from 'react-redux';
+import {useEffect} from 'react'
+import {getAllStudents} from '../../redux/actions/studentActions';
+
 
 const columns = [
-  { field: "name", headerName: "name", width: 130 },
-  { field: "lastName", headerName: "LastName", width: 130 },
-  { field: "DNI", headerName: "DNI", width: 130 },
-  { field: "age", headerName: "Age", width: 90 },
+  { field: "name", headerName: "Nombre", width: 130 },
+  { field: "lastName", headerName: "Apellido", width: 130 },
+  { field: "dni", headerName: "DNI", width: 130 },
+  { field: "email", headerName: "Email", width: 90 },
+  { field: "cohorte", headerName: "Cohorte", width: 90 }  
 ];
 
 const rows = [
-  { id: 1, lastName: "Snow", name: "Jon", age: 35, DNI: 40890890 },
+  { id: 1, lastName: "Snow", name: "Jon", age: 35, dni: 40890890 },
   { id: 2, lastName: "Lannister", name: "Cersei", age: 42, DNI: 40890890 },
   { id: 3, lastName: "Lannister", name: "Jaime", age: 45, DNI: 40890890 },
   { id: 4, lastName: "Stark", name: "Arya", age: 16, DNI: 40890890 },
@@ -21,5 +26,8 @@ const rows = [
 ];
 
 export default function DataTable() {
-  return <View columns={columns} rows={rows} />;
+
+  
+  
+  return <View columns={columns} rows={rows}/>;
 }
