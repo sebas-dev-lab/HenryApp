@@ -9,6 +9,9 @@ import Login from "./Componentes/login/Login2.jsx";
 import Student from "./Componentes/Student/Student";
 import Admin from "./Componentes/Admin/Admin";
 import Perfil from "./Componentes/PerfilUser";
+
+import Calendario from "./Componentes/Student/Calendar"
+
 import Calendario from "./Componentes/Student/Calendar";
 import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
@@ -19,10 +22,12 @@ import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStuden
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
 
+
 function App() {
   return (
     <div>
       <Switch>
+<<<<<<< HEAD
         {/*===================== Unprotected Routes ===================== */}
         {/*========  Home route======== */}
         <Route exact path="/" component={Home} />
@@ -51,6 +56,90 @@ function App() {
         <ProtectedAdminRoute exact path="/admin" component={Admin} />
         <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
         <ProtectedAdminRoute path="/admin/perfil" component={Perfil} />
+=======
+        {/* login */}
+        <Route path="/login" exact>
+          <Bienvenida></Bienvenida>
+          <Login />
+          <Footer></Footer>
+        </Route>
+        {/* login */}
+
+        {/* HOME */}
+        <Route path="/" exact>
+          <Home></Home>
+        </Route>
+        {/* HOME */}
+
+        {/* CALENDARIO */}
+        <Route path="/calendario" exact>
+
+          <Calendario/>
+        </Route>
+        {/* CALENDARIO */}
+
+
+          <Calendario />
+        </Route>
+        {/* CALENDARIO */}
+
+        {/* Calendario Admin */}
+        <Route path="/calendarioadmin">
+          <Calenadmin />
+        </Route>
+        {/* Calendario Admin  */}
+
+
+        {/* ALUMNOS */}
+        <Route path="/alumnos" exact>
+          <Navbar></Navbar>
+          <BotonChat />
+          <Student />
+        </Route>
+        {/* ALUMNOS */}
+        {/* Clases */}
+        <Route path="/clases" exact>
+          <Navbar></Navbar>
+          <Modulo />
+          <Footer></Footer>
+        </Route>
+        {/* Clases */}
+        {/* INSTRUCTOR */}
+        <Route path="/instructor" exact>
+          <Navbar></Navbar>
+        </Route>
+        {/* INSTRUCTOR */}
+        {/* MODULO */}
+        <Route path="/modulo" exact>
+          <Navbar></Navbar>
+          <NewModule />
+          <Footer></Footer>
+        </Route>
+        {/* MODULO */}
+
+        {/* ADMIN */}
+        <Route exact path="/admin">
+          <Navbar></Navbar>
+          <Admin />
+        </Route>
+        {/* ADMIN */}
+
+        {/* REGISTRO */}
+        <Route path="/registrarse">
+          <Bienvenida></Bienvenida>
+          <Registro />
+          <Footer></Footer>
+        </Route>
+        {/* REGISTRO */}
+
+        {/* PERFIL */}
+        <Route path="/perfil">
+          <Bienvenida></Bienvenida>
+          <Perfil></Perfil>
+          <Footer></Footer>
+        </Route>
+        {/* PERFIL  */}
+>>>>>>> 7aaecc010aa5a8c96db4f8ae98ffd0a49704b68e
       </Switch>
     </div>
   );

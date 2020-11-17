@@ -29,6 +29,19 @@ export const postCalendar = (event) => async (dispatch) => {
       });
   };
 
+
+  export const getAllEvents = () => (dispatch) => {
+    axios
+      .get(`${url}/calendar/all`)
+      .then((res) => {
+        console.log('mostrar la response', res)
+        dispatch({
+          type: actionTypes.GET_ALL_EVENTS,
+          allEvents: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+
   export const getAllEvents = () => async (dispatch) => {
     try {
       await axios

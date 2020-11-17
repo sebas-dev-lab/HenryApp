@@ -22,6 +22,7 @@ import Navbar from "../Navbar";
 import BotonChat from "../Chat/BotonChat";
 import { verifySession } from "../../redux/actions/authActions";
 
+
 const Student = () => {
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
@@ -66,6 +67,10 @@ const Student = () => {
 
       <div className="algo">
         {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7aaecc010aa5a8c96db4f8ae98ffd0a49704b68e
 
         <div
           style={{
@@ -122,6 +127,7 @@ const Student = () => {
                     <Link className="link">Ingresar</Link>
                   </div>
                 </div>
+<<<<<<< HEAD
               </div>
             </div>
             <div class="category-box">
@@ -133,6 +139,35 @@ const Student = () => {
                     <Link className="link">Ingresar</Link>
                   </div>
                 </div>
+=======
+
+        <div className="conten_taks">
+          <div class="category-box">
+            <img key={img3} src={img3} alt="" />
+            <div class="content">
+              <div>
+                <h2>Calendario</h2>
+                <Link className="link">INGRESAR</Link>
+              </div>
+            </div>
+          </div>
+          <div class="category-box">
+            <img key={img4} src={img4} alt="" />
+            <div class="content">
+              <div>
+                <h2>Acceso a clase</h2>
+              </div>
+              <Link className="link">INGRESAR</Link>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <img key={img2} src={img2} alt="" />
+            <div class="content">
+              <div>
+                <h2>Homeworks</h2>
+
+>>>>>>> 7aaecc010aa5a8c96db4f8ae98ffd0a49704b68e
               </div>
             </div>
           </div>

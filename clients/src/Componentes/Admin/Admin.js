@@ -242,6 +242,7 @@ export default function AdminPanel({ user }) {
                   <ListItemText secondary="MODULE" />
                 </ListItem>
 
+<<<<<<< HEAD
                 <ListItem button onClick={() => logOut()}>
                   <ListItemIcon>
                     <LayersIcon />
@@ -249,6 +250,73 @@ export default function AdminPanel({ user }) {
                   <ListItemText secondary="SALIR" />
                 </ListItem>
               </div>
+=======
+
+								<ListItem button onClick={() => setActive('usuarios')}>
+									<ListItemIcon>
+										<PeopleIcon />
+									</ListItemIcon>
+									<ListItemText secondary="USUARIOS" />
+								</ListItem>						
+						
+								<ListItem button onClick={() => setActive('cohortes')}>
+									<ListItemIcon>
+										<ListAltIcon />
+									</ListItemIcon>
+									<ListItemText secondary="COHORTES" />
+								</ListItem>	
+								<ListItem button onClick={() => setActive('calenadmin')}>
+									<ListItemIcon>
+										<ListAltIcon />
+									</ListItemIcon>
+									<ListItemText secondary="CALENADMIN" />
+								</ListItem>						
+						
+								<ListItem button onClick={() => setActive('email')}>
+									<ListItemIcon>
+										<ListAltIcon />
+									</ListItemIcon>
+									<ListItemText secondary="EMAIL" />
+								</ListItem>
+							
+								<ListItem button onClick={() => logOut()}>
+									<ListItemIcon>
+										<LayersIcon />
+									</ListItemIcon>
+									<ListItemText secondary="SALIR" />
+								</ListItem>
+							
+						</div>
+					</div>
+				</List>
+				<Divider />			
+			</Drawer>
+			<main className={classes.content}>
+				<div className={classes.appBarSpacer} />
+				<Container maxWidth="lg" className={classes.container}>
+          { activeTab === 'usuarios' && 
+					<Alumnos />
+          }
+          { activeTab === 'cohortes' && 
+					<Dashboard />
+          }
+		  { activeTab === 'calenadmin' && 
+					<Calenadmin />
+          }					
+          { activeTab === 'email' && 
+					<Email />
+          }					
+				</Container>
+			</main>
+		</div>
+	);
+              <ListItem button onClick={() => logOut()}>
+                <ListItemIcon>
+                  <LayersIcon />
+                </ListItemIcon>
+                <ListItemText secondary="SALIR" />
+              </ListItem>
+>>>>>>> 7aaecc010aa5a8c96db4f8ae98ffd0a49704b68e
             </div>
           </List>
           <Divider />
@@ -268,4 +336,8 @@ export default function AdminPanel({ user }) {
       </div>
     </>
   );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7aaecc010aa5a8c96db4f8ae98ffd0a49704b68e
 }
