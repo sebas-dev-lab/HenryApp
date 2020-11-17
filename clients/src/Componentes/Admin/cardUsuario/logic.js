@@ -12,7 +12,7 @@ export default function MediaCard() {
   });
 
   const user = useSelector((store) => store.auth.user);
-  console.log(user, "user");
+  // console.log(user, "user");
 
   // const getAdmin = ()=>{
   //   axios.get('http://localhost:3001/admin/all')

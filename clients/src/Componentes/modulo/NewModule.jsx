@@ -1,6 +1,6 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import swal from "sweetalert2";
+import Swal from "sweetalert2";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,7 +44,6 @@ export default function NewModule() {
     Axios.get("http://localhost:3001/cohort/all")
       .then((res) => {
         setCohorts(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -75,12 +74,15 @@ export default function NewModule() {
   }, [module]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/module/${nombre}`)
-      .then((res) => setModule(res.data.id))
+    Axios.put("http://localhost:3001/module/asignate", {
+      _id: module,
+      students: selectedStudents,
+    })
+      .then((data) => {})
       .catch((err) => {
         console.log(err.message);
       });
-  }, [create]);
+  }, [module]);
 
   function filter(arr, coho) {
     var newarr = [{}];
@@ -133,7 +135,13 @@ export default function NewModule() {
     })
       .then((res) => {
         setCreate(true);
-        alert("succes!");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `¡El modulo se ha creado con exito!`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
       })
       .catch((err) => {
         console.log(err.message);

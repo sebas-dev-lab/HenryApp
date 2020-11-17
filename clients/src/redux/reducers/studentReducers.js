@@ -24,7 +24,7 @@ const studentReducers = (state = initialState, action) => {
     case actionTypes.GET_ONE_USER:
       return {
         ...state,
-        admin: action.admin,
+        student: action.student,
       };
 
     case actionTypes.PUT_STUDENT:

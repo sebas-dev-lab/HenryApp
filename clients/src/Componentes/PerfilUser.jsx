@@ -11,7 +11,7 @@ import Footer from "./Footer";
 
 const Perfil = ({ user }) => {
   const dispatch = useDispatch();
-  console.log(user);
+  
   const [edit, setEdit] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -35,9 +35,6 @@ const Perfil = ({ user }) => {
     e.preventDefault();
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  console.log(data);
-
-  console.log(user);
 
   return (
     <div>
