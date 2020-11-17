@@ -16,3 +16,5 @@ router.post("/create", (req, res) => {
         res.status(200).json({ msg: "Ok", newModulo });
     });
 });
+
+module.exports = router;

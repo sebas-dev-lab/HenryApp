@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const moduleSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+
   students: [{
     type: Schema.Types.ObjectId,
     ref: "Student",
@@ -14,12 +19,10 @@ const moduleSchema = new mongoose.Schema({
 
   checkpoint: {
     type: String,
-    required: true,
   },
 
   means: [{
     type: String,
-    required: true,
   }],
 });
 
