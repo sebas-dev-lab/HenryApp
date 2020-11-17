@@ -8,7 +8,7 @@ const PpRoutes = require("./pair-programming");
 const groupRoutes = require("./group");
 const authRoutes = require("./auth");
 const emailRoutes = require("./email");
-const moduleRoutes = require("./modulo");
+const moduleRoutes = require("./module");
 
 router.use("/admin", adminRoutes);
 router.use("/cohort", cohortRoutes);
@@ -18,6 +18,6 @@ router.use("/PP", PpRoutes);
 router.use("/group", groupRoutes);
 router.use("/auth", authRoutes);
 router.use("/email", emailRoutes);
-router.use("/modulo", moduleRoutes);
+router.use("/module", moduleRoutes);
 
 module.exports = router;

@@ -9,7 +9,7 @@ const moduleSchema = new mongoose.Schema({
 
   students: [{
     type: Schema.Types.ObjectId,
-    ref: "Student",
+    ref: "User",
   }],
 
   cohort: {
