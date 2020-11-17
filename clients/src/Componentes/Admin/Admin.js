@@ -30,6 +30,7 @@ import { Link } from "react-router-dom";
 import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
+import Calenadmin from './calenadmin/calenadmin'
 import Module from "../modulo/NewModule";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -222,6 +223,12 @@ export default function AdminPanel({ user }) {
                   <ListItemText secondary="COHORTES" />
                 </ListItem>
 
+				<ListItem button onClick={() => setActive("calenadmin")}>
+                  <ListItemIcon>
+                    <ListAltIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="CALENDARIO" />
+                </ListItem>
                 <ListItem button onClick={() => setActive("email")}>
                   <ListItemIcon>
                     <ListAltIcon />
@@ -253,6 +260,7 @@ export default function AdminPanel({ user }) {
             {activeTab === "cohortes" && (
               <Cohortes showStudents={showStudentsByCohort} />
             )}
+			{activeTab === "calenadmin" && <Calenadmin />}
             {activeTab === "email" && <Email />}
             {activeTab === "module" && <Module />}
           </Container>
