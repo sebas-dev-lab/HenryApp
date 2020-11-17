@@ -16,6 +16,7 @@ import Footer from "../../Componentes/Footer.jsx";
 import Carrusel from "../Carrusel.jsx";
 import Stepper from "../../Componentes/Stepper/Stepper";
 
+
 const Student = () => {
   // const usuario = useSelector(store => store.user.user)
   // const dispatch = useDispatch()

@@ -13,6 +13,7 @@ import Admin from "./Componentes/Admin/Admin";
 import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
+import Calendario from "./Componentes/Student/Calendar"
 
 function App() {
   return (
@@ -31,6 +32,12 @@ function App() {
           <Home></Home>
         </Route>
         {/* HOME */}
+
+        {/* CALENDARIO */}
+        <Route path="/calendario" exact>
+          <Calendario/>
+        </Route>
+        {/* CALENDARIO */}
 
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>
