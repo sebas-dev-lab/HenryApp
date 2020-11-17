@@ -38,4 +38,34 @@ router.get("/all", (req, res) => {
         })
 })
 
+// ruta para modificar un modulo
+
+router.put("/:name", (req, res) => {
+    const name = req.params.name;
+    const body = req.body;
+    Module.update({ name }, body)
+        .then(data => {
+            res.status(200).json({ msg: "Ok", data })
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
+
+// ruta para borrar modulo
+
+router.delete("/:name", (req, res) => {
+    const name = req.params.name;
+    Module.deleteOne({ name: name }, function (err, data) {
+        if (data.deletedCount === 0) {
+            res.status(400).json({ msg: "error" })
+            return;
+        }
+        else {
+            res.status(200).json({ msg: "Ok" })
+        }
+    })
+
+})
+
 module.exports = router;
