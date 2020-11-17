@@ -48,7 +48,9 @@ function App() {
         {/* INSTRUCTOR */}
         {/* MODULO */}
         <Route path="/modulo" exact>
+          <Navbar></Navbar>
           <Modulo />
+          <Footer></Footer>
         </Route>
         {/* MODULO */}
 
