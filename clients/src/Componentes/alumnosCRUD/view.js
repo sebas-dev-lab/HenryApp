@@ -17,7 +17,7 @@ function Crud(props) {
   const students = useSelector(store => store.student.allStudents)
   const dispatch = useDispatch(); 
   
-
+  console.log(props.match)
   const stdId = (array) => {
     array.forEach(function (element, i) {
       element.id = i + 1;
@@ -31,7 +31,10 @@ function Crud(props) {
 
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={stdId(students)} columns={columns} pageSize={5} />
+      {
+        students.length > 0 &&
+        <DataGrid rows={stdId(students)} columns={columns} pageSize={5} />
+      }
     </div>
   );
 }

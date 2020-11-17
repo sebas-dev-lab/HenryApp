@@ -42,7 +42,8 @@ export const postCohort = (name, startDate) => (dispatch) => {
       }
     )
     .then((res) => {
-      dispatch({
+      console.log(res, 'cohortres');
+      dispatch({        
         type: actionTypes.POST_COHORT,
         cohort: res.data,
       });

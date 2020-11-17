@@ -1,9 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import View from "./view";
-import {useSelector, useDispatch} from 'react-redux';
-import {useEffect} from 'react'
-import {getAllStudents} from '../../redux/actions/studentActions';
-
 
 const columns = [
   { field: "name", headerName: "Nombre", width: 130 },
@@ -25,9 +21,6 @@ const rows = [
   { id: 9, lastName: "Roxie", name: "Harvey", age: 65, DNI: 40890890 },
 ];
 
-export default function DataTable() {
-
-  
-  
+export default function DataTable() {  
   return <View columns={columns} rows={rows}/>;
 }

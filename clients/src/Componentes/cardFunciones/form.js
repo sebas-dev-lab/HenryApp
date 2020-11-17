@@ -31,9 +31,8 @@ export default function BasicTextFields() {
   };
 
   function sendData() {
-    dispatch(postCohort(Name, date)).then((res) => {
-      alert("ando!");
-    });
+    dispatch(postCohort(Name, date))
+      alert("ando!");    
     dispatch(getAllCohort());
   }
 
