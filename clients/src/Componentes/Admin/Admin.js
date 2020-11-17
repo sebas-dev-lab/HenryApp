@@ -24,6 +24,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 // import Orders from './Orders';
 import { mainListItems } from "../Admin/listItems";
 // import { yellow } from "@material-ui/core/colors";
+import Alumnos from '../alumnosCRUD/logic';
+
 
 // function Copyright() {
 //   return (
@@ -120,15 +122,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function AdminPanel() {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -170,7 +176,7 @@ export default function Dashboard() {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            <ChevronLeftIcon />            
           </IconButton>
         </div>
         <Divider />
@@ -179,8 +185,25 @@ export default function Dashboard() {
         <List>{}</List>
       </Drawer>
       <main className={classes.content}>
-    
-        
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            {/* Chart */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <Alumnos/> </Paper>
+            </Grid>
+            {/* Recent Deposits */}
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>HOLA2{/* <Deposits /> */}</Paper>
+            </Grid>
+            {/* Recent Orders */}
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>HOLA3{/* <Orders /> */}</Paper>
+            </Grid>
+          </Grid>
+          <Box pt={4}></Box>
+        </Container>
       </main>
     </div>
   );
