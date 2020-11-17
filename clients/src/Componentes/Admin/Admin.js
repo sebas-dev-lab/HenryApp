@@ -212,7 +212,13 @@ export default function AdminPanel(props) {
 										<ListAltIcon />
 									</ListItemIcon>
 									<ListItemText secondary="COHORTES" />
-								</ListItem>							
+								</ListItem>	
+								<ListItem button onClick={() => setActive('calenadmin')}>
+									<ListItemIcon>
+										<ListAltIcon />
+									</ListItemIcon>
+									<ListItemText secondary="CALENADMIN" />
+								</ListItem>						
 						
 								<ListItem button onClick={() => setActive('email')}>
 									<ListItemIcon>
@@ -242,6 +248,9 @@ export default function AdminPanel(props) {
           { activeTab === 'cohortes' && 
 					<Dashboard />
           }
+		  { activeTab === 'calenadmin' && 
+					<Calenadmin />
+          }					
           { activeTab === 'email' && 
 					<Email />
           }					
