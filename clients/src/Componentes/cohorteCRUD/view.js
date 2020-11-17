@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 function Crud({ data, edit }) {
   const classes = useStyles();
 
-  console.log(data);
+  console.log(data, );
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -35,14 +35,14 @@ function Crud({ data, edit }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data &&
+          {data[0] &&
             data.map((row) => (
-              <TableRow key={row.name}>
+              <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
                 {/*  <TableCell align="right">{row.id}</TableCell> */}
-                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">{row.startDate}</TableCell>
                 <TableCell align="right">
                   <AddAlumn nameRow={row.name} />
                 </TableCell>
@@ -50,7 +50,7 @@ function Crud({ data, edit }) {
                   <EditCohort nameRow={row.name} edit={edit} />
                 </TableCell>
                 <TableCell align="right">
-                  <Link to="/alumn">ver alumnos</Link>
+                  <Link to={`/alumn/${row.name}`} >Ver alumnos</Link>
                 </TableCell>
               </TableRow>
             ))}

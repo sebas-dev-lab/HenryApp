@@ -62,14 +62,15 @@ function App() {
         {/* ADMIN */}
 
         {/* Dashboard */}
-        <Route path="/dashboard" exact>
+        <Route path="/cohort/all" exact>
           <Dashboard></Dashboard>
         </Route>
         {/* Dashboard */}
 
         {/* alumn crud*/}
-        <Route path="/alumn" exact>
-          <Alumn></Alumn>
+        <Route 
+          path="/alumn/:cohort">
+          render={({ match }) => <Alumn match={match} />}
         </Route>
         {/* alumn crud*/}
 
