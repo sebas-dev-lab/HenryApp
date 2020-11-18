@@ -4,9 +4,9 @@ import Navbar from "./Componentes/Navbar";
 import { Route, Switch } from "react-router-dom";
 import Registro from "./Componentes/registro.jsx";
 import Login from "./Componentes/login/Login2.jsx";
-import Dashboard from "./pages/dashboard";
-import Alumn from "./Componentes/alumnosCRUD/logic";
-import Email from "./Componentes/email/Email";
+// import Dashboard from "./pages/dashboard";
+// import Alumnos from "./Componentes/alumnosCRUD/logic";
+// import Email from "./Componentes/email/Email";
 import BotonChat from "./Componentes/Chat/BotonChat";
 import Student from "./Componentes/Student/Student";
 import Admin from "./Componentes/Admin/Admin";
@@ -47,23 +47,14 @@ function App() {
         {/* INSTRUCTOR */}
 
         {/* ADMIN */}
-        <Route path="/admin" exact>
+        <Route exact path="/admin">
           <Navbar></Navbar>
           <Admin />
-        </Route>
-        {/* ADMIN */}
-
-        {/* Dashboard */}
-        <Route path="/cohort/all" exact>
-          <Dashboard></Dashboard>
-        </Route>
-        {/* Dashboard */}
+        </Route>       
+        {/* ADMIN */}       
 
         {/* alumn crud*/}
-        <Route 
-          path="/alumn/:cohort">
-          render={({ match }) => <Alumn match={match} />}
-        </Route>
+        
         {/* alumn crud*/}
 
         {/* REGISTRO */}
@@ -72,14 +63,7 @@ function App() {
           <Registro />
           <Footer></Footer>
         </Route>
-        {/* REGISTRO */}
-
-        {/* Invitar Estudiante */}
-        <Route path="/invitar">
-          <Navbar />
-          <Email />
-        </Route>
-        {/* Invitar Estudiante  */}
+        {/* REGISTRO */}        
 
         {/* PERFIL */}
         <Route path="/perfil">
