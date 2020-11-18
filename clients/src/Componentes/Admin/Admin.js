@@ -26,11 +26,12 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import {Link} from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";
-import Dashboard from "./pages/dashboard";
+import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import { logout } from "../../redux/actions/authActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 
 // function Copyright() {
 //   return (
@@ -240,7 +241,7 @@ export default function AdminPanel(props) {
 					<Alumnos />
           }
           { activeTab === 'cohortes' && 
-					<Dashboard />
+					<Cohortes />
           }
           { activeTab === 'email' && 
 					<Email />
