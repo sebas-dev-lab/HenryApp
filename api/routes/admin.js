@@ -81,7 +81,7 @@ router.put("/cohort/:code/:cohort", (req, res) => {
       return;
     }
     User.update({ code: code }, { $set: { cohorte: cohort } }).then(() => {
-      res.status(200).json({ msg: "Ok" });
+      res.status(200).json({ msg: "Ok", cohort: cohort });
     });
   });
 });

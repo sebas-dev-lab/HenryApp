@@ -13,7 +13,7 @@ passport.use(
       passwordField: "password",
     },
     async (email, password, done) => {
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email }).populate("cohorte").populate("instructor").populate("PP")
       if (!user) {
         return done(null, false, {
           message: "Not User Found.",

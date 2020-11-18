@@ -66,7 +66,7 @@ router.post("/create", async (req, res) => {
 /*===== Edit student data ===== */
 router.put("/:code", (req, res) => {
   const { code } = req.params;
-  const { name, lastName, dni, email } = req.body;
+  const { name, lastName, dni, email, city, githubId, googleId } = req.body;
   User.findOneAndUpdate(
     { code: code },
     {
@@ -74,9 +74,14 @@ router.put("/:code", (req, res) => {
       lastName: lastName,
       email: email,
       dni: dni,
+      city: city,
+      githubId: githubId,
+      googleId: googleId,
+
+
     }
-  ).then(() => {
-    res.status(200).json({ msg: "Ok" });
+  ).then((user) => {
+    res.status(200).json({ msg: "Ok", user: user });
   });
 });
 
