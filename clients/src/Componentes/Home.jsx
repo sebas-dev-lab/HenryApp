@@ -32,7 +32,7 @@ const Home = () => {
               {" "}
               Admin{" "}
             </Link>
-            <Link href="/login2" color="inherit">
+            <Link href="/login" color="inherit">
               {" "}
               Login{" "}
             </Link>
