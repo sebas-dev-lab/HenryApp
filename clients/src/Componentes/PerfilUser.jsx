@@ -2,19 +2,36 @@ import React from "react";
 import {useState} from "react";
 import s from "../styles/perfilUser.module.css";
 import { Typography, Breadcrumbs, Link, TextField, Button } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import fotoPerfil from '../Componentes/utils/fotoPerfil.jpg'
+import {editUserData} from '../redux/actions/studentActions'
 
 
 const Perfil = ()=>{
-    const user = useSelector(store => store.auth.user)
+    const {user} = useSelector(store => store.auth.user)
     console.log(user, "*********************************")
+    const dispatch = useDispatch()
 
     const [edit, setEdit] = useState(false)
+    const [data, setData] = useState({name: "", lastName:"", dni: null, city:"", googleId:"", githubId:"" })
 
     const Editar = () =>{
         setEdit(!edit)
     }
+
+    const update = () =>{
+        dispatch(editUserData(user.code, data))
+        Editar()
+    }
+
+    const handlerChange = (e) =>{
+        e.preventDefault()
+        setData({...data, 
+            [e.target.name]: e.target.value
+        })
+
+    }
+    console.log(data)
 
     return(
         <di>
@@ -35,7 +52,7 @@ const Perfil = ()=>{
                                 <img src={fotoPerfil} alt=""/>
                                 </div> 
                                 <div className={s.nombre}>
-                                <h1>Nombre</h1>
+                                <h1>{user.name}</h1> 
                                 </div>  
                             </div>
                             <div className={s.form}>
@@ -45,28 +62,31 @@ const Perfil = ()=>{
                                     <TextField
                                     disabled id="standard-disabled"
                                     label="Nombre"
-                                    defaultValue="Vanessa"
+                                    defaultValue={user.name}
                                     style={{ margin: 8, width: "90%"}}
                                     fullWidth
                                     margin="normal"
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+
                                     />
                                     <TextField
                                     disabled id="standard-disabled"
                                     label="Apellido"
-                                    defaultValue="Lozano Rojas"
+                                    defaultValue={user.lastName}
                                     style={{ margin: 8, width: "90%" }}
                                     fullWidth
                                     margin="normal"
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+
                                     />
                                     <TextField
                                     disabled id="standard-disabled"
-                                    label="DIN"
+                                    label="DNI"
+                                    defaultValue={user.dni}
                                     style={{ margin: 8, width: "90%" }}
                                     fullWidth
                                     margin="normal"
@@ -82,7 +102,7 @@ const Perfil = ()=>{
                                     margin="normal"
                                     InputLabelProps={{
                                         shrink: true,
-                                    }}
+                                    }}   
                                     />
                                     </div>
                                 :
@@ -96,6 +116,8 @@ const Perfil = ()=>{
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    name="name"
+                                    onChange={handlerChange}
                                     />
                                     <TextField
                                     id="standard-full-width"
@@ -106,6 +128,8 @@ const Perfil = ()=>{
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    name="lastName"
+                                    onChange={handlerChange}
                                     />
                                     <TextField
                                     id="standard-full-width"
@@ -116,6 +140,8 @@ const Perfil = ()=>{
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    name="dni"
+                                    onChange={handlerChange}
                                     />
                                     <TextField
                                     id="standard-full-width"
@@ -126,6 +152,8 @@ const Perfil = ()=>{
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
+                                    name="city"
+                                    onChange={handlerChange}
                                     />
                                     </div>
                                 }
@@ -141,7 +169,7 @@ const Perfil = ()=>{
                                 <TextField
                                 disabled id="standard-disabled"
                                 label="Cuenta Google"
-                                defaultValue="nvlozano34@gmail"
+                                defaultValue={user.email}
                                 style={{ margin: 8, width: "90%" }}
                                 fullWidth
                                 margin="normal"
@@ -172,6 +200,8 @@ const Perfil = ()=>{
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                name="googleId"
+                                onChange={handlerChange}
                                 />
                                 <TextField
                                 id="standard-full-width"
@@ -182,6 +212,8 @@ const Perfil = ()=>{
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                name="githubId"
+                                onChange={handlerChange}
                                 />
                                 </div>
                                 }
@@ -191,7 +223,7 @@ const Perfil = ()=>{
                                 <h1>Henry</h1>
                                 <div className={s.infoHenry}>
                                     <label>Cohorte</label>
-                                    <Typography>Perteneces al Cohorte:</Typography>
+                                    <Typography>Perteneces al Cohorte: {user.cohorte.name}</Typography>
 
                                     <label>Instructor</label>
                                     <Typography>Tu instructor este Cohorte sera:</Typography>
@@ -221,7 +253,8 @@ const Perfil = ()=>{
                         className={s.button2}
                         variant="contained"
                         color="default"
-                        onClick={Editar}
+                        onClick={update}
+
                     >
                         Aceptar
                         </Button>
