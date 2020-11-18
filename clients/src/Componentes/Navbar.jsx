@@ -5,8 +5,6 @@ import logo from '../Componentes/utils/LogoHenry.png';
 import { Link } from 'react-router-dom';
 
 
-
-
 const Navbar = ()=>{
     return(
       <div className={s.cont_prin}>        

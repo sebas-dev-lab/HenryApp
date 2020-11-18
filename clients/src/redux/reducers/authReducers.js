@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const authReducers = (state = initialState, action) => {
+  console.log(action, "********")
   switch (action.type) {
     case actionTypes.AUTH_LOGIN_LOCAL:
       return {
