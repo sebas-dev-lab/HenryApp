@@ -61,6 +61,13 @@ const userSchema = new mongoose.Schema({
   githubId: {
     type: String,
   },
+  city:{
+    type: String
+  },
+  instructor:{
+    type: mongoose.Schema.Types.String,
+    ref: "Instructor"
+  }
 });
 
 userSchema.plugin(require("mongoose-autopopulate"));

@@ -101,17 +101,17 @@ export default function Registro() {
   };
 
   const inputsChange_dni = (e) => {
-    if (/[$%&|{}.,()+-<>#]/.test(data.dni)) {
-      setErrors({
-        ...errors,
-        dniError: "no se aceptan caracteres especiales",
-      });
-    } else {
-      setErrors({
-        ...errors,
-        dniError: "",
-      });
-    }
+    // if (/[$%&|{}.,()+-<>#]/.test(data.dni)) {
+    //   setErrors({
+    //     ...errors,
+    //     dniError: "no se aceptan caracteres especiales",
+    //   });
+    // } else {
+    //   setErrors({
+    //     ...errors,
+    //     dniError: "",
+    //   });
+    // }
     setData({
       ...data,
       dni: e.target.value,
