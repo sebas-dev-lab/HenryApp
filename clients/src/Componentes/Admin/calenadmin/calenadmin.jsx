@@ -4,7 +4,10 @@ import TextField from '@material-ui/core/TextField';
 import { useDispatch } from "react-redux";
 import { postCalendar } from "../../../redux/actions/calendarActions";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import Calendario from '../../Student/Calendar.jsx'
+
+
 
 
 
@@ -147,12 +150,14 @@ function handleEndDateFieldChange(e) {
    
     <div>
       <div className="boton_link">
-          <Link className="link" to="/calendario">
+          <Link className="link" to="admin/calendario">
             <button >Ver Calendario</button>
             </Link>
             </div>
       </div>
-
+      <Route exact path = '/admin/calendario'>
+        <Calendario/>
+      </Route>
     </div>
   );
 } //

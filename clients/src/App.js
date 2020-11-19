@@ -55,6 +55,7 @@ function App() {
         {/*========== Admin Routes ========= */}
         <ProtectedAdminRoute exact path="/admin" component={Admin} />
         <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
+        <ProtectedAdminRoute path="/admin/calendario" component={Calendario} />
         <ProtectedAdminRoute path="/admin/perfil" component={Perfil} />
       </Switch>
     </div>
