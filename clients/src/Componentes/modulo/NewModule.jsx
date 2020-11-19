@@ -100,18 +100,15 @@ export default function NewModule() {
             }
 
         })
-
+        var newm = {};
         Axios.post("http://localhost:3001/module/create", { name: nombre, students: selectedStudents, cohorte: cohort._id, checkpoint: date, means: arr })
             .then(res => {
+                newm = res
                 alert("succes!")
             }).catch(err => {
                 console.log(err.message)
             })
-        // setNombre('');
-        // setSelectedStudents([]);
-        // setCohort('');
-        // setDate('');
-        // setRecursos([]);
+        console.log(newm)
     }
     return (
         <div>
