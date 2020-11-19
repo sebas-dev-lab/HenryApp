@@ -14,6 +14,8 @@ import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
 import Modulo from "./Componentes/modulo/Modulo"
+import CrudModulo from "./Componentes/modulo/CrudModulo";
+import NewModule from "./Componentes/modulo/NewModule";
 
 function App() {
   return (
@@ -49,7 +51,7 @@ function App() {
         {/* MODULO */}
         <Route path="/modulo" exact>
           <Navbar></Navbar>
-          <Modulo />
+          <NewModule />
           <Footer></Footer>
         </Route>
         {/* MODULO */}
@@ -68,7 +70,7 @@ function App() {
         {/* Dashboard */}
 
         {/* alumn crud*/}
-        <Route 
+        <Route
           path="/alumn/:cohort">
           render={({ match }) => <Alumn match={match} />}
         </Route>

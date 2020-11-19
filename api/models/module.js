@@ -12,7 +12,7 @@ const moduleSchema = new mongoose.Schema({
     ref: "User",
   }],
 
-  cohort: {
+  cohorte: {
     type: Schema.Types.ObjectId,
     ref: "Cohort",
   },

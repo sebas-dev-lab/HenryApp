@@ -29,7 +29,7 @@ router.get("/all", (req, res) => {
         }
     })
         .populate("students")
-        .populate("cohort")
+        .populate("cohorte")
         .then((modules) => {
             res.status(200).json({ msg: "Ok", modules })
         })
