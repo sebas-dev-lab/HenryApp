@@ -36,6 +36,7 @@ const adminReducers = (state = initialState, action) => {
         message: action.message,
       };
     case actionTypes.UPDATE_COHORT_BY_CODE:
+      console.log(action)
       return {
         ...state,
         allUsers: state.allUsers.map((user) => {

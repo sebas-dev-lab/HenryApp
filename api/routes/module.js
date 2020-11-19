@@ -40,21 +40,25 @@ router.get("/all", (req, res) => {
 
 //ruta para obtener los modulos de un estudiante
 
-router.get("/all/:user", (req, res) => {
-    Module.find(function (err, modules) {
-        if (err) {
-            console.log(err);
-            return;
-        };
-    })
+router.get("/all/user", async (req, res) => {
+    const id = req.body;
+    const modu = {}
+    var modulos = await Module.find()
         .populate("students")
         .populate("cohorte")
-        .then((modules) => {
-            res.status(200).json({ msg: "Ok", modules })
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
+
+    modulos.map(modulo => {
+        if (modulo.students.forEach(student => {
+            if (student._id == id.id) {
+                return true;
+            }
+        })) {
+            console.log(modulo)
+            modu = modulo;
+        }
+        console.log(JSON.parse(modulo.students))
+    })
+    return res.status(200).json({ msg: "esto", modu })
 })
 
 // ruta para modificar un modulo
