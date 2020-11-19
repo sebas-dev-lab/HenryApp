@@ -18,9 +18,9 @@ import {
   CheckCircle,
   Cancel,
 } from "@material-ui/icons";
-import style from "../../styles/email.module.css";
+import style from "../../../styles/email.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteEmail, getEmail, createEmail } from "../../redux/actions/email";
+import { deleteEmail, getEmail, createEmail } from "../../../redux/actions/email";
 import BodyEditar from "./bodyEditar";
 
 const useStyles = makeStyles((theme) => ({

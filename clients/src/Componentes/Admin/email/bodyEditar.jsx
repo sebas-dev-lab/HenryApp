@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CheckCircle, Cancel } from "@material-ui/icons";
-import style from "../../styles/email.module.css";
-import { putEmail } from "../../redux/actions/email";
+import style from "../../../styles/email.module.css";
+import { putEmail } from "../../../redux/actions/email";
 import { TextField } from "@material-ui/core";
 
 export default function BodyEditar({

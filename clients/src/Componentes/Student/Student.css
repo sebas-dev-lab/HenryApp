@@ -1,39 +1,23 @@
 .container {
   /* justify-content: center !important; */
   text-align: center;
-  background-color: "black" !important;
 }
-
-/* .modulos{
- 
- /* justify-content: center !important; */
-/* text-align: center;
- background-color: "black"!important; */
-/* margin-left: -15%; */
-/* } */
-
-.section {
-  padding: 4rem 0;
+.algo{
+  margin-top: 10px;
+  /* background-color: blue; */
 }
-
+.conten_taks{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 .category .title {
   font-size: 2rem;
   font-weight: 40;
   text-align: center;
   margin-bottom: 3rem;
-}
-
-.category-center {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-left: 40%;
-  height: 20%;
-  border: 1px solid transparent;
-  width: 30%;
-  align-items: center;
-  box-shadow: black;
-  margin-top: 5%;
 }
 
 .category-box {
@@ -42,7 +26,7 @@
   height: 20rem;
   width: 20rem;
   overflow: hidden;
-  z-index: 1;
+  /* z-index: 1; */
   box-shadow: black;
 }
 
@@ -111,12 +95,6 @@
   border: 1px solid var(--black);
   background-color: var(--black);
 }
-
-/* @media only screen and (max-width: 1200px) {
-   .category-box .content h2 {
-     font-size: 2rem;
-   } */
-
 .category-box .content span {
   font-size: 1.5rem;
   margin-left: 110%;
@@ -138,21 +116,6 @@
   z-index: 1;
   left: 15%;
 }
-
-/* .progressbar div li{
-   float: left;
-   width: 20%;
-   position: relative;
-   text-align: center;
-   list-style: none;
-   font-size: 0.9em;
-
- } */
-/* *::before, *::after {
-   box-sizing: inherit;
-   border-color: transparent;
-   color: black;
-} */
 
 .btn-light {
   border: transparent;
@@ -197,10 +160,6 @@
   top: 15px;
   left: -50%;
   z-index: -1;
-  /* display: flex;
-   justify-content: space-evenly;
-   flex-direction: row;
-   text-align: center; */
 }
 .progressbar {
   color: silver;

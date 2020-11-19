@@ -24,7 +24,7 @@
   margin: auto;
   margin-top: 3vh;
   margin-bottom: 3vh;
-  height: 33.2vh;
+  /* height: 33.2vh; */
   padding: 1.5vh;
   background-color: rgb(255, 255, 1);
 }
@@ -54,7 +54,8 @@
 
 .text h6 {
   /* background-color: violet; */
-  font-size: 60px;
+  font-size: 55px;
   color: wheat;
   margin: 0px !important;
+  text-align: center;
 }
