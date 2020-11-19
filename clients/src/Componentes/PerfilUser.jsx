@@ -1,10 +1,11 @@
 import React from "react";
 import {useState} from "react";
 import s from "../styles/perfilUser.module.css";
-import { Typography, Breadcrumbs, Link, TextField, Button } from "@material-ui/core";
+import { Typography, Breadcrumbs, TextField, Button } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import fotoPerfil from '../Componentes/utils/fotoPerfil.jpg'
 import {editUserData} from '../redux/actions/studentActions'
+import {Link} from 'react-router-dom'
 
 
 const Perfil = ()=>{
@@ -35,14 +36,25 @@ const Perfil = ()=>{
 
     return(
         <di>
-            <Breadcrumbs aria-label="breadcrumb" className={s.miga}>
-                <Link color="inherit" href="/alumnos" >
-                    Alumno
-                </Link>
-                <Link color="inherit" href="/perfil" >
-                    Perfil
-                </Link>
-            </Breadcrumbs>
+            {user.role !== 'admin' ?
+                <Breadcrumbs aria-label="breadcrumb" className={s.miga}>
+                    <Link color="inherit" to="/alumnos" >
+                        Alumno
+                    </Link>
+                    <Link color="inherit" to="/perfil" >
+                        Perfil
+                    </Link>
+                </Breadcrumbs>
+            :
+                <Breadcrumbs aria-label="breadcrumb" className={s.miga}>
+                        <Link color="inherit" to="/admin" >
+                            Administrador
+                        </Link>
+                        <Link color="inherit" to="/perfil" >
+                            Perfil
+                        </Link>
+                </Breadcrumbs>
+             }
             <div className={s.cont_print}>
                 <div className={s.todo}>
                     <div className={s.cont_info}>
@@ -219,11 +231,12 @@ const Perfil = ()=>{
                                 }
                                 </>
                             </div>
+                            { user.role !== 'admin' ?
                             <div className={s.form}>
                                 <h1>Henry</h1>
                                 <div className={s.infoHenry}>
                                     <label>Cohorte</label>
-                                    <Typography>Perteneces al Cohorte: {user.cohorte.name}</Typography>
+                                    <Typography>Perteneces al Cohorte: {user.cohorte && user.cohorte.name}</Typography>
 
                                     <label>Instructor</label>
                                     <Typography>Tu instructor este Cohorte sera:</Typography>
@@ -235,6 +248,10 @@ const Perfil = ()=>{
                                     <Typography>Tus PM´s en esta etapa seran:</Typography>
                                 </div>
                             </div>
+                            :
+                            <div></div>
+                            }
+                            
                         </div>
                     
                     </div>

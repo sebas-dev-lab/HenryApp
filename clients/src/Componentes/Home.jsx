@@ -4,13 +4,13 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Link,
   FormControl,
   InputLabel,
   Select,
 } from "@material-ui/core";
 import logo from "./utils/LogoHenry.png";
 import home from "./utils/Home3.jpg";
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -20,23 +20,23 @@ const Home = () => {
           <img src={logo} alt="" />
 
           <Typography variant="h6" color="inherit" className={s.link}>
-            <Link href="/alumnos" color="inherit">
+            <Link to="/alumnos" color="inherit">
               {" "}
               Alumno{" "}
             </Link>
-            <Link href="/instructor" color="inherit">
+            <Link to="/instructor" color="inherit">
               {" "}
               Instructor{" "}
             </Link>
-            <Link href="/admin" color="inherit">
+            <Link to="/admin" color="inherit">
               {" "}
               Admin{" "}
             </Link>
-            <Link href="/login" color="inherit">
+            <Link to="/login" color="inherit">
               {" "}
               Login{" "}
             </Link>
-            <Link href="/registrarse" color="inherit">
+            <Link to="/registrarse" color="inherit">
               {" "}
               Registrarse{" "}
             </Link>
