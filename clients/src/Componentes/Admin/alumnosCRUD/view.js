@@ -12,27 +12,36 @@ const useStyles = makeStyles({
 });
 
 function Crud(props) {
-  const { rows, columns } = props;
+  const { rows, columns, cohort } = props;
 
   const students = useSelector(store => store.student.allStudents)
   const dispatch = useDispatch(); 
-  
+  const [renderStudents, setRenderStudents] = useState([]);
+
+
   const stdId = (array) => {
     array.forEach(function (element, i) {
       element.id = i + 1;
     });
     return array
   }  
+
+  const filter = (students, cohort) => {
+    if(!cohort) return students;
+    const filtered = students[0] && students.filter(student => student.cohorte && student.cohorte.name === cohort)
+    return filtered
+  }
   
   useEffect( () => {   
-    dispatch(getAllStudents())    
-  }, []) 
+    dispatch(getAllStudents())   
+    setRenderStudents(filter(students, cohort)) 
+  }, [])   
 
   return (
     <div style={{ height: 400, width: "100%" }}>
       {
         students.length > 0 &&
-        <DataGrid rows={stdId(students)} columns={columns} pageSize={5} />
+        <DataGrid rows={renderStudents && stdId(renderStudents)} columns={columns} pageSize={5} />
       }
     </div>
   );
