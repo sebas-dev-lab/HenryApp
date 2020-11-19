@@ -16,6 +16,7 @@ import Footer from "../../Componentes/Footer.jsx";
 import Carrusel from "../Carrusel.jsx";
 import Stepper from "../../Componentes/Stepper/Stepper";
 
+
 const Student = () => {
   // const usuario = useSelector(store => store.user.user)
   // const dispatch = useDispatch()
@@ -62,6 +63,28 @@ const Student = () => {
 
       <div className="algo">
         {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
+
+        <div
+          style={{
+            alignItems: "center",
+            height: "-30px",
+            marginTop: "-10px",
+            marginLeft: "20px",
+            marginRight: "20px",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        ></div>
+        <div className="grid">
+          <section class="section category">
+            <div class="category-center container">
+              <div class="category-box">
+                <img key={img3} src={img3} alt="" />
+                <div class="content">
+                  <div>
+                    <h2>Calendario</h2>
+                    <Link to= '/calendario' className="link">INGRESAR</Link>
+
               <div className='conten_taks'>
                 <div class="category-box">
                   <img key={img3} src={img3} alt="" />
@@ -70,6 +93,7 @@ const Student = () => {
                       <h2>Calendario</h2>
                       <Link className="link">INGRESAR</Link>
                     </div>
+
                   </div>
                 </div>
                 <div class="category-box">

@@ -43,3 +43,7 @@ export const GET_EMAIL = "GET_EMAIL";
 export const PUT_EMAIL = "PUT_EMAIL";
 export const CREATE_EMAIL = "CREATE_EMAIL";
 export const DELETE_EMAIL = "DELETE_EMAIL";
+
+/* ======= Calendario ======== */
+export const CREATE_EVENT = "CREATE_EVENT"
+export const GET_ALL_EVENTS = "GET_ALL_EVENTS"
