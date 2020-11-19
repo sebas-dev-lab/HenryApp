@@ -11,6 +11,7 @@ router.get("/all", (req, res) => {
   User.find({ role: "student" })
     .populate("cohorte")
     .populate("group")
+    .populate("module")
     .then((students) => {
       res.status(200).send(students);
     })
@@ -26,6 +27,7 @@ router.get("/:code", (req, res) => {
   User.findOne({ code: code })
     .populate("cohorte")
     .populate("PP")
+    .populate("module")
     .then((user) => {
       res.status(200).json({ msg: "OK", user });
     })
@@ -36,7 +38,7 @@ router.get("/:code", (req, res) => {
 
 /*===== Create student ===== */
 router.post("/create", async (req, res) => {
-  const { name, lastName, dni, email, password, cohort } = req.body;
+  const { name, lastName, dni, email, password, cohort, module } = req.body;
 
   if (!name && !lastName && !dni && !email && !password) {
     return res.status(400).send("Faltan parametros");
@@ -53,6 +55,7 @@ router.post("/create", async (req, res) => {
           email,
           password,
           cohorte: cohorte,
+          module: module,
         });
         newStudent.role = "student";
         newStudent.password = await newStudent.encryptPassword(password);
@@ -66,7 +69,7 @@ router.post("/create", async (req, res) => {
 /*===== Edit student data ===== */
 router.put("/:code", (req, res) => {
   const { code } = req.params;
-  const { name, lastName, dni, email } = req.body;
+  const { name, lastName, dni, email, city, githubId, googleId, module } = req.body;
   User.findOneAndUpdate(
     { code: code },
     {
@@ -74,9 +77,14 @@ router.put("/:code", (req, res) => {
       lastName: lastName,
       email: email,
       dni: dni,
+      city: city,
+      githubId: githubId,
+      googleId: googleId,
+      module: module,
+
     }
-  ).then(() => {
-    res.status(200).json({ msg: "Ok" });
+  ).then((user) => {
+    res.status(200).json({ msg: "Ok", user: user });
   });
 });
 

@@ -7,6 +7,7 @@ const initialState = {
 };
 
 const studentReducers = (state = initialState, action) => {
+  console.log(action, "****action*****")
   switch (action.type) {
     case actionTypes.POST_STUDENT:
       return {
@@ -29,7 +30,7 @@ const studentReducers = (state = initialState, action) => {
     case actionTypes.PUT_STUDENT:
       return {
         ...state,
-        allUsers: state.allUsers.map((user) => {
+        allStudents: state.allStudents.map((user) => {
           if (user.code === action.code) {
             user = action.update;
           }

@@ -21,6 +21,6 @@ const rows = [
   { id: 9, lastName: "Roxie", name: "Harvey", age: 65, DNI: 40890890 },
 ];
 
-export default function DataTable() {  
-  return <View columns={columns} rows={rows}/>;
+export default function DataTable({cohort}) {  
+  return <View columns={columns} rows={rows} cohort={cohort}/>;
 }

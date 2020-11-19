@@ -1,0 +1,7 @@
+.form__videos{
+    margin-left: 71px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+}
