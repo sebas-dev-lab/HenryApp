@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const cohortSchema = new mongoose.Schema({
-	name: { 
-    type: String, 
-    required: true 
+  name: {
+    type: String,
+    required: true
   },
   startDate: {
-    type: Date, 
+    type: Date,
     required: false
   },
   graduationDay: {
     type: Date,
-    required:false
+    required: false
   }
 });
 

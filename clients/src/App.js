@@ -13,6 +13,9 @@ import Admin from "./Componentes/Admin/Admin";
 import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
+import Modulo from "./Componentes/modulo/Modulo"
+import CrudModulo from "./Componentes/modulo/CrudModulo";
+import NewModule from "./Componentes/modulo/NewModule";
 
 function App() {
   return (
@@ -45,17 +48,20 @@ function App() {
           <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
+        {/* MODULO */}
+        <Route path="/modulo" exact>
+          <Navbar></Navbar>
+          <NewModule />
+          <Footer></Footer>
+        </Route>
+        {/* MODULO */}
 
         {/* ADMIN */}
         <Route exact path="/admin">
           <Navbar></Navbar>
           <Admin />
-        </Route>       
-        {/* ADMIN */}       
-
-        {/* alumn crud*/}
-        
-        {/* alumn crud*/}
+        </Route>
+        {/* ADMIN */}
 
         {/* REGISTRO */}
         <Route path="/registrarse">
@@ -63,7 +69,7 @@ function App() {
           <Registro />
           <Footer></Footer>
         </Route>
-        {/* REGISTRO */}        
+        {/* REGISTRO */}
 
         {/* PERFIL */}
         <Route path="/perfil">
