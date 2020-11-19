@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import "./Login2.css";
 import { authLogin } from '../../redux/actions/authActions';
 import { useHistory } from  'react-router-dom';
 
 
-export default function Login() {
+export default function Login() { 
+
+    const userLogin = useSelector(store => store.auth.user.user)
+    console.log(userLogin, "*********************************")
+
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const dispatch = useDispatch();
@@ -22,8 +26,17 @@ export default function Login() {
     const enviar = async (e) => {
         e.preventDefault()
         await dispatch(authLogin(user, pass))
-        history.push('/admin')
+         
     }
+
+    useEffect(()=>{
+        if(userLogin && userLogin.role === 'admin'){
+            history.push('/admin') 
+        }
+        if(userLogin && userLogin.role === 'student'){
+            history.push('/alumnos') 
+        }
+    }, [userLogin])
 
     return (
         <div className="align">
@@ -34,7 +47,7 @@ export default function Login() {
 
                     <div className="form__field">
                         <label for="login__username"><span className="hidden">Usuario</span></label>
-                        <input onChange={userchange} id="login__username" type="text" name="username" className="form__input" placeholder="Nombre de Usuario" required />
+                        <input onChange={userchange} id="login__username" type="text" name="username" className="form__input" placeholder="Correo" required />
                     </div>
 
                     <div class="form__field">
