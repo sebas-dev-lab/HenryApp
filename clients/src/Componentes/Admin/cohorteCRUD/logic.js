@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import View from "./view";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCohort } from "../../redux/actions/cohortActions";
+import { getAllCohort } from "../../../redux/actions/cohortActions";
 
 function Crud() {
   const dispatch = useDispatch();

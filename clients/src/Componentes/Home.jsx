@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import logo from "./utils/LogoHenry.png";
 import home from "./utils/Home3.jpg";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -20,23 +20,23 @@ const Home = () => {
           <img src={logo} alt="" />
 
           <Typography variant="h6" color="inherit" className={s.link}>
-            <Link to="/alumnos" color="inherit">
+            <Link to="/alumnos" style={{ textDecoration: 'none', color: 'white' }}>
               {" "}
               Alumno{" "}
             </Link>
-            <Link to="/instructor" color="inherit">
+            <Link to="/instructor" style={{ textDecoration: 'none', color: 'white' }}>
               {" "}
               Instructor{" "}
             </Link>
-            <Link to="/admin" color="inherit">
+            <Link to="/admin" style={{ textDecoration: 'none', color: 'white' }}>
               {" "}
               Admin{" "}
             </Link>
-            <Link to="/login" color="inherit">
+            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
               {" "}
               Login{" "}
             </Link>
-            <Link to="/registrarse" color="inherit">
+            <Link to="/registrarse" style={{ textDecoration: 'none', color: 'white' }}>
               {" "}
               Registrarse{" "}
             </Link>

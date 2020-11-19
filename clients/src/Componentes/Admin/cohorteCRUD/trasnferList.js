@@ -10,8 +10,8 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { update_Cohort } from "../../redux/actions/adminActions";
-import { getAllStudents } from "../../redux/actions/studentActions";
+import { update_Cohort } from "../../../redux/actions/adminActions";
+import { getAllStudents } from "../../../redux/actions/studentActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {

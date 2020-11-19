@@ -40,10 +40,10 @@ export const authLogin = (email, password) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  axios.post(`${url}/auth/logout`).then((res) => {
+  axios.post(`${url}/auth/logout`, null, {withCredentials: true}).then((res) => {
     dispatch({
       type: actionTypes.LOGOUT,
       message: "End session",
-    }).catch((err) => console.log(err));
-  });
+    })
+  }).catch((err) => console.log(err));
 };

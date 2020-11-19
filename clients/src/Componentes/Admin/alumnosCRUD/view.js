@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { DataGrid } from "@material-ui/data-grid";
 import {useSelector, useDispatch} from 'react-redux';
-import {useEffect} from 'react'
-import {getAllStudents} from '../../redux/actions/studentActions';
+import {useEffect} from 'react';
+import {getAllStudents} from '../../../redux/actions/studentActions';
 
 const useStyles = makeStyles({
   table: {
@@ -17,7 +17,6 @@ function Crud(props) {
   const students = useSelector(store => store.student.allStudents)
   const dispatch = useDispatch(); 
   
-  console.log(props.match)
   const stdId = (array) => {
     array.forEach(function (element, i) {
       element.id = i + 1;
