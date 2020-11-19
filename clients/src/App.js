@@ -14,6 +14,7 @@ import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
 import Calendario from "./Componentes/Student/Calendar"
+import Calenadmin from './Componentes/Calenadmin/calendarioadmin'
 
 function App() {
   return (
@@ -38,6 +39,12 @@ function App() {
           <Calendario/>
         </Route>
         {/* CALENDARIO */}
+
+         {/* Calendario Admin */}
+       <Route path="/calendarioadmin">
+         <Calenadmin/>
+      </Route>
+      {/* Calendario Admin  */}
 
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>

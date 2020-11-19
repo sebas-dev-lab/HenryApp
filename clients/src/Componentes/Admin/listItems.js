@@ -50,6 +50,15 @@ export const mainListItems = (
         </ListItem>
       </Link>
 
+      <Link to="/calendarioadmin">
+        <ListItem button>
+          <ListItemIcon>
+            <ListAltIcon />
+          </ListItemIcon>
+          <ListItemText secondary="CALENDARIO" />
+        </ListItem>
+      </Link>
+
       <a href="/">
         <ListItem button>
           <ListItemIcon>
