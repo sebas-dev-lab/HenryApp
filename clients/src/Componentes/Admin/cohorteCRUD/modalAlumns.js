@@ -41,9 +41,20 @@ export default function SimpleModal(props) {
   const [open, setOpen] = useState(false);
 
   const users = useSelector((state) => state.student.allStudents);
-  console.log(users);
+  
+  
+  //filtra los alumnos que no tienen cohorte asignado
+  const [usersClean, setUsersClean] = useState([]);
+  console.log('filtro cohorte', usersClean);
+  
+  const filter = (users) => {
+    const filtered = users.filter(user => !user.cohorte)
+    return filtered;
+  }
+
   useEffect(() => {
     dispatch(getAllStudents());
+    setUsersClean(filter(users))
   }, []);
 
   const handleOpen = () => {
@@ -70,7 +81,7 @@ export default function SimpleModal(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Transfer nameRow={nameRow} users={users} />
+        <Transfer nameRow={nameRow} users={usersClean} />
       </Modal>
     </div>
   );

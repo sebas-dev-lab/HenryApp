@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -26,11 +26,12 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import {Link} from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";
-import Dashboard from "./pages/dashboard";
+import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import { logout } from "../../redux/actions/authActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 
 // function Copyright() {
 //   return (
@@ -130,7 +131,8 @@ export default function AdminPanel(props) {
 
 	const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState('usuarios')
+	const [activeTab, setActiveTab] = useState('usuarios')
+	const [cohortFilter, setCohortFilter] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -149,9 +151,17 @@ export default function AdminPanel(props) {
   const logOut = () => {
     dispatch(logout())
     history.push('/')
-  }
+	}
+	
+	const showStudentsByCohort = (cohorte) => {
+		setActiveTab('usuarios');
+		setCohortFilter(cohorte)
+	}
 
 	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+	useEffect(() => {
+		alert('hola')
+	}, [cohortFilter])
 
 	return (
 		<div className={classes.root}>
@@ -200,7 +210,7 @@ export default function AdminPanel(props) {
 					<div>
 						<div class="slideout-sidebar">
 
-								<ListItem button onClick={() => setActive('usuarios')}>
+								<ListItem button onClick={() => showStudentsByCohort(null)}>
 									<ListItemIcon>
 										<PeopleIcon />
 									</ListItemIcon>
@@ -237,10 +247,10 @@ export default function AdminPanel(props) {
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
           { activeTab === 'usuarios' && 
-					<Alumnos />
+					<Alumnos cohort={cohortFilter}/>
           }
           { activeTab === 'cohortes' && 
-					<Dashboard />
+					<Cohortes showStudents={showStudentsByCohort}/>
           }
           { activeTab === 'email' && 
 					<Email />

@@ -17,8 +17,10 @@ const useStyles = makeStyles({
   },
 });
 
-function Crud({ data, edit }) {
+function Crud({ data, edit, showStudents }) {
   const classes = useStyles();
+
+
 
   console.log(data, );
   return (
@@ -50,7 +52,7 @@ function Crud({ data, edit }) {
                   <EditCohort nameRow={row.name} edit={edit} />
                 </TableCell>
                 <TableCell align="right">
-                  <Link to={`/alumn/${row.name}`} >Ver alumnos</Link>
+                  <Link onClick={() => showStudents(row.name)} >Ver alumnos</Link>
                 </TableCell>
               </TableRow>
             ))}
