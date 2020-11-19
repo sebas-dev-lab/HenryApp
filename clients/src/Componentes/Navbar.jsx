@@ -1,10 +1,8 @@
 import React from 'react';
 import s from '../styles/navbar.module.css';
 import {AppBar, Toolbar, Typography, Avatar }from '@material-ui/core';
-import logo from '../Componentes/utils/LogoHenry.png'
-import {Link} from 'react-router-dom'
-
-
+import logo from '../Componentes/utils/LogoHenry.png';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = ()=>{
@@ -19,7 +17,7 @@ const Navbar = ()=>{
         </AppBar>
         <AppBar position="static" className={s.menu2}>            
             <Toolbar variant="dense" className={s.cont_nav2}>
-              <Link href="/"><img src={logo}/></Link>              
+              <Link to="/"><img src={logo}/></Link>              
               <Typography variant="h6" color="inherit" className={s.link2}>
                 <Avatar className={s.avatar}>N</Avatar>
                 <Link to="/perfil" color="inherit"> Mi Perfil </Link>
