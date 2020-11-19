@@ -7,7 +7,7 @@ router.get("/all", async (req, res) => {
           console.log(err);
           return;
         }
-        res.status(200).json(calendar);
+        res.status(200).send(calendar);
       });
     });
 
