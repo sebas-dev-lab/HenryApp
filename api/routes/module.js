@@ -38,6 +38,25 @@ router.get("/all", (req, res) => {
         })
 })
 
+//ruta para obtener los modulos de un estudiante
+
+router.get("/all/:user", (req, res) => {
+    Module.find(function (err, modules) {
+        if (err) {
+            console.log(err);
+            return;
+        };
+    })
+        .populate("students")
+        .populate("cohorte")
+        .then((modules) => {
+            res.status(200).json({ msg: "Ok", modules })
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
+
 // ruta para modificar un modulo
 
 router.put("/:name", (req, res) => {
