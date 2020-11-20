@@ -13,6 +13,8 @@ import Admin from "./Componentes/Admin/Admin";
 import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
+import Calendario from "./Componentes/Student/Calendar";
+import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
@@ -34,6 +36,18 @@ function App() {
           <Home></Home>
         </Route>
         {/* HOME */}
+
+        {/* CALENDARIO */}
+        <Route path="/calendario" exact>
+          <Calendario />
+        </Route>
+        {/* CALENDARIO */}
+
+        {/* Calendario Admin */}
+        <Route path="/calendarioadmin">
+          <Calenadmin />
+        </Route>
+        {/* Calendario Admin  */}
 
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>
