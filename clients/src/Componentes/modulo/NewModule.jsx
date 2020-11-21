@@ -35,6 +35,8 @@ export default function NewModule() {
     const [recursos, setRecursos] = useState([]);
     const [date, setDate] = useState('');
     const [nombre, setNombre] = useState('');
+    const [module, setModule] = useState("");
+    const [create, setCreate] = useState(false);
     const classes = useStyles();
 
     useEffect(() => {
@@ -56,6 +58,23 @@ export default function NewModule() {
 
     }, [students2, cohort])
 
+    useEffect(() => {
+        Axios.put("http://localhost:3001/module/asignate", { _id: module, students: selectedStudents }).then(data => {
+            console.log(data)
+        }).catch(err => {
+            console.log(err.message)
+        })
+    }, [module])
+
+    useEffect(() => {
+        Axios.get(`http://localhost:3001/module/${nombre}`)
+            .then(res =>
+                setModule(res.data.id)
+            )
+            .catch(err => {
+                console.log(err.message)
+            })
+    }, [create])
 
     function filter(arr, coho) {
         var newarr = [{}]
@@ -100,16 +119,18 @@ export default function NewModule() {
             }
 
         })
-        var newm = {};
+
         Axios.post("http://localhost:3001/module/create", { name: nombre, students: selectedStudents, cohorte: cohort._id, checkpoint: date, means: arr })
             .then(res => {
-                newm = res
+                setCreate(true)
                 alert("succes!")
-            }).catch(err => {
+            })
+            .catch(err => {
                 console.log(err.message)
             })
-        console.log(newm)
+
     }
+
     return (
         <div>
             <Container fixed>
