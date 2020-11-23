@@ -50,14 +50,25 @@
 //         </ListItem>
 //       </Link>
 
-//       <a href="/">
-//         <ListItem button>
-//           <ListItemIcon>
-//             <LayersIcon />
-//           </ListItemIcon>
-//           <ListItemText secondary="SALIR" />
-//         </ListItem>
-//       </a>
-//     </div>
-//   </div>
-// );
+
+      <Link to="/calendarioadmin">
+        <ListItem button>
+          <ListItemIcon>
+            <ListAltIcon />
+          </ListItemIcon>
+          <ListItemText secondary="CALENDARIO" />
+        </ListItem>
+      </Link>
+
+      <a href="/">
+        <ListItem button>
+          <ListItemIcon>
+            <LayersIcon />
+          </ListItemIcon>
+          <ListItemText secondary="SALIR" />
+        </ListItem>
+      </a>
+    </div>
+  </div>
+);
+

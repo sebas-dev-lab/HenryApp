@@ -180,15 +180,6 @@ export default function TransferList(props) {
           >
             ≪
           </Button>
-          <Button
-            variant="outlined"
-            size="small"
-            className={classes.button}
-            onClick={traerUser}
-            aria-label="move all left"
-          >
-            mostrame
-          </Button>
         </Grid>
       </Grid>
       <Grid item>{customList(right)}</Grid>

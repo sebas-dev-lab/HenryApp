@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCohort } from "../../../redux/actions/cohortActions";
 
-function Crud() {
+function Crud( {showStudents}) {
   const dispatch = useDispatch();
   const Rows = useSelector((state) => state.cohort.allCohort);
 
@@ -20,7 +20,7 @@ function Crud() {
 
   return (
     <div>
-      <View data={Rows} edit={editarCohorte} />
+      <View showStudents={showStudents} data={Rows} edit={editarCohorte} />
     </div>
   );
 }
