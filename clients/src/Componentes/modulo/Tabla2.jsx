@@ -267,6 +267,7 @@ export default function Tabla2(props) {
                                     const isItemSelected = isSelected(row);
                                     const labelId = `enhanced-table-checkbox-${index}`;
                                     if (!row.name) { return }
+                                    if (row.isPM) { return }
                                     return (
                                         <TableRow
                                             hover
