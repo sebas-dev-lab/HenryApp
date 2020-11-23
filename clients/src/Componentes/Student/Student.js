@@ -16,7 +16,6 @@ import Footer from "../../Componentes/Footer.jsx";
 import Carrusel from "../Carrusel.jsx";
 import Stepper from "../../Componentes/Stepper/Stepper";
 
-
 const Student = () => {
   // const usuario = useSelector(store => store.user.user)
   // const dispatch = useDispatch()
@@ -63,6 +62,7 @@ const Student = () => {
 
       <div>
         {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
+
         <div
           style={{
             alignItems: "center",
@@ -150,6 +150,7 @@ const Student = () => {
               </div>
             </div>
           </section>
+
         </div>
       </div>
       <Footer />
