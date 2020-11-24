@@ -2,7 +2,7 @@ import React from "react";
 import s from "../styles/navbar.module.css";
 import { AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
 import logo from "../Componentes/utils/LogoHenry.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "../redux/actions/authActions";
@@ -10,8 +10,6 @@ import { logout } from "../redux/actions/authActions";
 const Navbar = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const { user } = useSelector((store) => store.auth);
-  console.log(user, "**********Nuevo*****");
 
   const logoutSession = () => {
     dispatch(logout(history));
