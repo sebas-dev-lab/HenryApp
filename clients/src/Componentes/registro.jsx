@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import s from "../styles/login.module.css";
 import { useHistory } from "react-router-dom";
-
+import Bienvenida from "./Bienvenida";
+import Footer from "./Footer";
 import Button from "@material-ui/core/Button";
 import Fondo from "./utils/registro.jpg";
 import { useDispatch } from "react-redux";
@@ -175,6 +176,8 @@ export default function Registro() {
 
   return (
     <div className="Login">
+      <Bienvenida />
+
       <div className={s.container}>
         <div className={s.hijo1}>
           <div className={s.text}>
@@ -253,6 +256,7 @@ export default function Registro() {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

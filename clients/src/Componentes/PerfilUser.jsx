@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import fotoPerfil from "../Componentes/utils/fotoPerfil.jpg";
 import { editUserData } from "../redux/actions/studentActions";
 import { Link } from "react-router-dom";
+import Bienvenida from "./Bienvenida";
+import Footer from "./Footer";
 
 const Perfil = () => {
   const { user } = useSelector((store) => store.auth);
@@ -41,6 +43,7 @@ const Perfil = () => {
 
   return (
     <div>
+      <Bienvenida />
       {user && user.role !== "admin" ? (
         <Breadcrumbs aria-label="breadcrumb" className={s.miga}>
           <Link color="inherit" to="/alumnos">
@@ -301,6 +304,7 @@ const Perfil = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

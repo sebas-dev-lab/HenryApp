@@ -10,6 +10,7 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
+import Navbar from "../Navbar";
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -29,8 +30,8 @@ import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import Module from "../modulo/NewModule";
-import { logout } from "../../redux/actions/authActions";
-import { useDispatch } from "react-redux";
+import { logout, verifySession } from "../../redux/actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // function Copyright() {
@@ -134,6 +135,10 @@ export default function AdminPanel(props) {
   const [cohortFilter, setCohortFilter] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { user } = useSelector((store) => store.auth);
+  useEffect(() => {
+    dispatch(verifySession());
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -148,8 +153,7 @@ export default function AdminPanel(props) {
   };
 
   const logOut = () => {
-    dispatch(logout());
-    history.push("/");
+    dispatch(logout(history));
   };
 
   const showStudentsByCohort = (cohorte) => {
@@ -163,13 +167,16 @@ export default function AdminPanel(props) {
   }, [cohortFilter]);
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        {/* <Toolbar className={classes.toolbar}>
+    <>
+      <Navbar user={user} />
+
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="absolute"
+          className={clsx(classes.appBar, open && classes.appBarShift)}
+        >
+          {/* <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
@@ -191,72 +198,73 @@ export default function AdminPanel(props) {
           ></Typography>
           <IconButton color="inherit"></IconButton>
         </Toolbar> */}
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <div>
-            <div class="slideout-sidebar">
-              <ListItem button onClick={() => showStudentsByCohort(null)}>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText secondary="USUARIOS" />
-              </ListItem>
-
-              <ListItem button onClick={() => setActive("cohortes")}>
-                <ListItemIcon>
-                  <ListAltIcon />
-                </ListItemIcon>
-                <ListItemText secondary="COHORTES" />
-              </ListItem>
-
-              <ListItem button onClick={() => setActive("email")}>
-                <ListItemIcon>
-                  <ListAltIcon />
-                </ListItemIcon>
-                <ListItemText secondary="EMAIL" />
-              </ListItem>
-              <ListItem button onClick={() => setActive("module")}>
-                <ListItemIcon>
-                  <ListAltIcon />
-                </ListItemIcon>
-                <ListItemText secondary="MODULE" />
-              </ListItem>
-
-              <ListItem button onClick={() => logOut()}>
-                <ListItemIcon>
-                  <LayersIcon />
-                </ListItemIcon>
-                <ListItemText secondary="SALIR" />
-              </ListItem>
-            </div>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
           </div>
-        </List>
-        <Divider />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
-          {activeTab === "cohortes" && (
-            <Cohortes showStudents={showStudentsByCohort} />
-          )}
-          {activeTab === "email" && <Email />}
-          {activeTab === "module" && <Module />}
-        </Container>
-      </main>
-    </div>
+          <Divider />
+          <List>
+            <div>
+              <div class="slideout-sidebar">
+                <ListItem button onClick={() => showStudentsByCohort(null)}>
+                  <ListItemIcon>
+                    <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="USUARIOS" />
+                </ListItem>
+
+                <ListItem button onClick={() => setActive("cohortes")}>
+                  <ListItemIcon>
+                    <ListAltIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="COHORTES" />
+                </ListItem>
+
+                <ListItem button onClick={() => setActive("email")}>
+                  <ListItemIcon>
+                    <ListAltIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="EMAIL" />
+                </ListItem>
+                <ListItem button onClick={() => setActive("module")}>
+                  <ListItemIcon>
+                    <ListAltIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="MODULE" />
+                </ListItem>
+
+                <ListItem button onClick={() => logOut()}>
+                  <ListItemIcon>
+                    <LayersIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="SALIR" />
+                </ListItem>
+              </div>
+            </div>
+          </List>
+          <Divider />
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
+            {activeTab === "cohortes" && (
+              <Cohortes showStudents={showStudentsByCohort} />
+            )}
+            {activeTab === "email" && <Email />}
+            {activeTab === "module" && <Module />}
+          </Container>
+        </main>
+      </div>
+    </>
   );
 }

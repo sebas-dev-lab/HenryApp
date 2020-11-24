@@ -1,4 +1,7 @@
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 // import {logoutUser} from '..Redux/u';
 // import "./Components/app.css";
 // import img1 from "./img/pexels-photo-392018.jpeg"
@@ -15,31 +18,34 @@ import calif from "../utils/calif.jpg";
 import Footer from "../../Componentes/Footer.jsx";
 import Carrusel from "../Carrusel.jsx";
 import Stepper from "../../Componentes/Stepper/Stepper";
+import Navbar from "../Navbar";
+import BotonChat from "../Chat/BotonChat";
+import { verifySession } from "../../redux/actions/authActions";
 
 const Student = () => {
-  // const usuario = useSelector(store => store.user.user)
-  // const dispatch = useDispatch()
+  const { user } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
 
-  //  useEffect(()=> {
-  //   if (!usuario.id) {
-  //       history.push("/")
-  //   }
-
-  //  },[usuario]);
+  useEffect(() => {
+    dispatch(verifySession());
+  }, []);
 
   return (
-    <div class="root">
-      {/* <div style ={{backgroundColor: "grey",marginTop: "0rem"}}>
+    <>
+      <Navbar user={user} />
+
+      <div class="root">
+        {/* <div style ={{backgroundColor: "grey",marginTop: "0rem"}}>
     <h6: Juan Perez        cohorte: 6         modulo: 2</h6>
     </div>>YO
     <div style ={{marginTop: "-0.5rem"}}> */}
-      <Carrusel />
-      {/* </div> */}
+        <Carrusel />
+        {/* </div> */}
 
-      <div className="container">
-        <Stepper />
+        <div className="container">
+          <Stepper />
 
-        {/* <div className= "contenedor">
+          {/* <div className= "contenedor">
     <div class="modulos">
           <ul class="progressbar">
           <div> 
@@ -57,92 +63,95 @@ const Student = () => {
             <div> <li class="active">PROYECTO FINAL</li></div>
           </ul>
       </div> */}
-        {/* </div> */}
-      </div>
+          {/* </div> */}
+        </div>
 
-      <div className="algo">
-        {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
-        <div className="conten_taks">
-          <div class="category-box">
-            <img key={img3} src={img3} alt="" />
-            <div class="content">
-              <div>
-                <h2>Calendario</h2>
+        <div className="algo">
+          {/* <h1 style= {{textAlign: "center", marginTop: "35px", fontFamily: "fantasy"}}></h1>  */}
+          <div className="conten_taks">
+            <div class="category-box">
+              <img key={img3} src={img3} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Calendario</h2>
+                  <Link className="link">INGRESAR</Link>
+                </div>
+              </div>
+            </div>
+            <div class="category-box">
+              <img key={img4} src={img4} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Acceso a clase</h2>
+                </div>
+                <Link className="link">INGRESAR</Link>
+              </div>
+            </div>
+
+            <div class="category-box">
+              <img key={img2} src={img2} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Homeworks</h2>
+                </div>
+
                 <Link className="link">INGRESAR</Link>
               </div>
             </div>
           </div>
-          <div class="category-box">
-            <img key={img4} src={img4} alt="" />
-            <div class="content">
-              <div>
-                <h2>Acceso a clase</h2>
+          <div className="conten_taks">
+            <div class="category-box">
+              <img key={coding} src={coding} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Clases grabadas</h2>
+                </div>
+
+                <Link className="link" to="/clases">
+                  INGRESAR
+                </Link>
               </div>
-              <Link className="link">INGRESAR</Link>
+            </div>
+            <div class="category-box">
+              <img key={meeting} src={meeting} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Stand Up</h2>
+                </div>
+
+                <Link className="link">INGRESAR</Link>
+              </div>
+            </div>
+            <div class="category-box">
+              <img key={pairp} src={pairp} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Pair Programming</h2>
+                </div>
+
+                <Link className="link">INGRESAR</Link>
+              </div>
             </div>
           </div>
+          {/* <div style={{ marginLeft: "50px"}} >   */}
+          <div className="conten_taks">
+            <div class="category-box">
+              <img key={calif} src={calif} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Calificaciones</h2>
+                </div>
 
-          <div class="category-box">
-            <img key={img2} src={img2} alt="" />
-            <div class="content">
-              <div>
-                <h2>Homeworks</h2>
+                <Link className="link">INGRESAR</Link>
               </div>
-
-              <Link className="link">INGRESAR</Link>
-            </div>
-          </div>
-        </div>
-        <div className="conten_taks">
-          <div class="category-box">
-            <img key={coding} src={coding} alt="" />
-            <div class="content">
-              <div>
-                <h2>Clases grabadas</h2>
-              </div>
-
-              <Link className="link" to="/clases">
-                INGRESAR
-              </Link>
-            </div>
-          </div>
-          <div class="category-box">
-            <img key={meeting} src={meeting} alt="" />
-            <div class="content">
-              <div>
-                <h2>Stand Up</h2>
-              </div>
-
-              <Link className="link">INGRESAR</Link>
-            </div>
-          </div>
-          <div class="category-box">
-            <img key={pairp} src={pairp} alt="" />
-            <div class="content">
-              <div>
-                <h2>Pair Programming</h2>
-              </div>
-
-              <Link className="link">INGRESAR</Link>
             </div>
           </div>
         </div>
-        {/* <div style={{ marginLeft: "50px"}} >   */}
-        <div className="conten_taks">
-          <div class="category-box">
-            <img key={calif} src={calif} alt="" />
-            <div class="content">
-              <div>
-                <h2>Calificaciones</h2>
-              </div>
+        <BotonChat />
 
-              <Link className="link">INGRESAR</Link>
-            </div>
-          </div>
-        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

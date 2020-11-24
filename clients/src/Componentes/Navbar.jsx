@@ -7,10 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "../redux/actions/authActions";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.auth);
+  // const { user } = useSelector((store) => store.auth);
   console.log(user, "**********Nuevo*****");
 
   const logoutSession = () => {
@@ -32,17 +32,23 @@ const Navbar = () => {
             <img src={logo} />
           </Link>
           <Typography variant="h6" color="inherit" className={s.link2}>
-            <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
             {user && user.role === "admin" ? (
-              <Link to="/admin/perfil" color="inherit">
-                {" "}
-                Mi Perfil{" "}
-              </Link>
+              <>
+                <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
+                <Link to="/perfil" color="inherit">
+                  {" "}
+                  Mi Perfil{" "}
+                </Link>
+              </>
             ) : user.role === "student" ? (
-              <Link to="/student/perfil" color="inherit">
-                {" "}
-                Mi Perfil{" "}
-              </Link>
+              <>
+                <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
+
+                <Link to="/perfil" color="inherit">
+                  {" "}
+                  Mi Perfil{" "}
+                </Link>
+              </>
             ) : null}
           </Typography>
           <Typography variant="h6" color="inherit" className={s.link2}>
