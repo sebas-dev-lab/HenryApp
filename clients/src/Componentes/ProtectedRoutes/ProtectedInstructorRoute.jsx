@@ -15,7 +15,7 @@ const ProtectedInstructorRoute = ({ component: Component, ...rest }) => {
         {...rest}
         render={(props) => {
           if (user.role === "instructor") {
-            return <Component />;
+            return <Component user={user} />;
           } else {
             toast.fire({
               icon: "error",

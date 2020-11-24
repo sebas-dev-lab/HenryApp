@@ -13,9 +13,6 @@ import Axios from "axios";
 import Tabla2 from "./Tabla2.jsx";
 import Chip from "./Chip.jsx";
 import "./NewModule.css";
-import Navbar from "../Navbar";
-import { useSelector, useDispatch } from "react-redux";
-import { verifySession } from "../../redux/actions/authActions.js";
 import Footer from "../Footer";
 
 const useStyles = makeStyles({
@@ -43,11 +40,7 @@ export default function NewModule() {
   const [create, setCreate] = useState(false);
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.auth);
-
   useEffect(() => {
-    dispatch(verifySession());
     Axios.get("http://localhost:3001/cohort/all")
       .then((res) => {
         setCohorts(res.data);
@@ -149,8 +142,6 @@ export default function NewModule() {
 
   return (
     <div>
-      <Navbar user={user} />
-
       <Container fixed>
         <div className="titulo">
           <h3>Crear nuevo modulo</h3>

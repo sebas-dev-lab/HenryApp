@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 import Bienvenida from "./Bienvenida";
 import Footer from "./Footer";
 
-const Perfil = () => {
-  const { user } = useSelector((store) => store.auth);
+const Perfil = ({ user }) => {
   const dispatch = useDispatch();
 
   const [edit, setEdit] = useState(false);

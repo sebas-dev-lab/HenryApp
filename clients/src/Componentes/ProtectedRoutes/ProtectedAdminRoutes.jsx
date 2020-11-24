@@ -15,7 +15,7 @@ const ProtectedAdminRoute = ({ component: Component, ...rest }) => {
         {...rest}
         render={(props) => {
           if (user.role === "admin") {
-            return <Component />;
+            return <Component user={user} />;
           } else {
             toast.fire({
               icon: "error",

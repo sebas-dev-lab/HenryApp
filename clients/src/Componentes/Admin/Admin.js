@@ -17,6 +17,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 //-----------Lista Panel
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -128,24 +129,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminPanel(props) {
+export default function AdminPanel({ user }) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("usuarios");
   const [cohortFilter, setCohortFilter] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector((store) => store.auth);
-  useEffect(() => {
-    dispatch(verifySession());
-  }, []);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleDrawer = () => {
+    setOpen(!open);
   };
 
   const setActive = (tab) => {
@@ -207,8 +200,8 @@ export default function AdminPanel(props) {
           open={open}
         >
           <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
+            <IconButton onClick={handleDrawer}>
+              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
           <Divider />
