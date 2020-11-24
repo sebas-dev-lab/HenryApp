@@ -14,26 +14,11 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
-import { useSelector, useDispatch } from "react-redux";
-import { verifySession } from "./redux/actions/authActions";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
-import ProtectedCommonRoute from "./Componentes/ProtectedRoutes/ProtectedCommonRoute";
 
 function App() {
-  const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.auth);
-  console.log(user, "**********app*****");
-  useEffect(() => {
-    dispatch(verifySession());
-  }, []);
-
-  let userLogin = null;
-  if (user) {
-    userLogin = user;
-  }
-
   return (
     <div>
       <Switch>
@@ -44,10 +29,9 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route path="/registrarse" component={Registro} />
         {/*====================== Protected Routes ===================== */}
-        {/*======== Perfil Route (admin/instructor/student) ==========*/}
-        <ProtectedCommonRoute path="/admin/perfil" component={Perfil} />
         {/*======== Student Routes ======== */}
         <ProtectedStudentRoute exact path="/alumnos" component={Student} />
+        <ProtectedStudentRoute path="/student/perfil" component={Perfil} />
         <ProtectedStudentRoute
           exact
           path="/calendario"
@@ -58,9 +42,14 @@ function App() {
         {/*TODO falta componente instructor*/}
         <ProtectedInstructorRoute path="/instructor" exact />{" "}
         <ProtectedInstructorRoute exact path="/modulo" component={NewModule} />
+        <ProtectedInstructorRoute
+          path="/instructor/perfil"
+          component={Perfil}
+        />
         {/*========== Admin Routes ========= */}
         <ProtectedAdminRoute exact path="/admin" component={Admin} />
         <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
+        <ProtectedAdminRoute path="/admin/perfil" component={Perfil} />
       </Switch>
     </div>
   );

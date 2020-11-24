@@ -11,7 +11,6 @@ import Footer from "./Footer";
 
 const Perfil = () => {
   const { user } = useSelector((store) => store.auth);
-  console.log(user, "*********************************");
   const dispatch = useDispatch();
 
   const [edit, setEdit] = useState(false);
@@ -49,7 +48,7 @@ const Perfil = () => {
           <Link color="inherit" to="/alumnos">
             Alumno
           </Link>
-          <Link color="inherit" to="/perfil">
+          <Link color="inherit" to="/admin/perfil">
             Perfil
           </Link>
         </Breadcrumbs>
@@ -58,7 +57,7 @@ const Perfil = () => {
           <Link color="inherit" to="/admin">
             Administrador
           </Link>
-          <Link color="inherit" to="/perfil">
+          <Link color="inherit" to="/student/perfil">
             Perfil
           </Link>
         </Breadcrumbs>

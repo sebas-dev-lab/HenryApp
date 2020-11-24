@@ -35,7 +35,7 @@ const Navbar = ({ user }) => {
             {user && user.role === "admin" ? (
               <>
                 <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
-                <Link to="/perfil" color="inherit">
+                <Link to="/admin/perfil" color="inherit">
                   {" "}
                   Mi Perfil{" "}
                 </Link>
@@ -44,15 +44,15 @@ const Navbar = ({ user }) => {
               <>
                 <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
 
-                <Link to="/perfil" color="inherit">
+                <Link to="/student/perfil" color="inherit">
                   {" "}
                   Mi Perfil{" "}
                 </Link>
+                <Typography variant="h6" color="inherit" className={s.link2}>
+                  {user && <div onClick={logoutSession}>Logout</div>}
+                </Typography>
               </>
             ) : null}
-          </Typography>
-          <Typography variant="h6" color="inherit" className={s.link2}>
-            {user && <div onClick={logoutSession}>Logout</div>}
           </Typography>
         </Toolbar>
       </AppBar>
