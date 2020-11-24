@@ -16,6 +16,10 @@ import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
 import { useSelector, useDispatch } from "react-redux";
 import { verifySession } from "./redux/actions/authActions";
+import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
+import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
+import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
+import ProtectedCommonRoute from "./Componentes/ProtectedRoutes/ProtectedCommonRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,25 +38,29 @@ function App() {
     <div>
       <Switch>
         {/*===================== Unprotected Routes ===================== */}
+        {/*========  Home route======== */}
+        <Route exact path="/" component={Home} />
         {/*======== Auth Routes ========*/}
         <Route exact path="/login" component={Login} />
         <Route path="/registrarse" component={Registro} />
         {/*====================== Protected Routes ===================== */}
         {/*======== Perfil Route (admin/instructor/student) ==========*/}
-        <Route path="/perfil" component={Perfil} />
-        {/*========  Home route======== */}
-        <Route exact path="/" component={Home} />
+        <ProtectedCommonRoute path="/perfil" component={Perfil} />
         {/*======== Student Routes ======== */}
-        <Route exact path="/alumnos" component={Student} />
-        <Route exact path="/calendario" component={Calendario} />
-        <Route exact path="/clases" component={Modulo} />
+        <ProtectedStudentRoute exact path="/alumnos" component={Student} />
+        <ProtectedStudentRoute
+          exact
+          path="/calendario"
+          component={Calendario}
+        />
+        <ProtectedStudentRoute exact path="/clases" component={Modulo} />
         {/*========= Instructor Routes ======== */}
         {/*TODO falta componente instructor*/}
-        <Route path="/instructor" exact />{" "}
-        <Route exact path="/modulo" component={NewModule} />
+        <ProtectedInstructorRoute path="/instructor" exact />{" "}
+        <ProtectedInstructorRoute exact path="/modulo" component={NewModule} />
         {/*========== Admin Routes ========= */}
-        <Route exact path="/admin" component={Admin} />
-        <Route path="/calendarioadmin" component={Calenadmin} />
+        <ProtectedAdminRoute exact path="/admin" component={Admin} />
+        <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
       </Switch>
     </div>
   );
