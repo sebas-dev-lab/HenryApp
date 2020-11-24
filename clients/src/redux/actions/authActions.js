@@ -8,14 +8,18 @@ const url = "http://localhost:3001";
 export const authLogin = (email, password) => (dispatch) => {
   try {
     axios
-      .post(`${url}/auth/login`, {
-        email: email,
-        password: password,
-      }, {withCredentials: true})
+      .post(
+        `${url}/auth/login`,
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         dispatch({
           type: actionTypes.AUTH_LOGIN_LOCAL,
-          user: res.data,
+          user: res.data.user,
         });
         Swal.fire({
           position: "center",
@@ -23,14 +27,14 @@ export const authLogin = (email, password) => (dispatch) => {
           title: `¡Bienvenido!`,
           showConfirmButton: false,
           timer: 2000,
-        })
-      })
-        .catch((error) => {
-          Toast.fire({
-            icon: "error",
-            title: "Error: email o contraseña no válidos",
-          });
         });
+      })
+      .catch((error) => {
+        Toast.fire({
+          icon: "error",
+          title: "Error: email o contraseña no válidos",
+        });
+      });
   } catch {
     dispatch({
       type: actionTypes.USER_LOGIN_ERROR,
@@ -39,11 +43,46 @@ export const authLogin = (email, password) => (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
-  axios.post(`${url}/auth/logout`, null, {withCredentials: true}).then((res) => {
+export const verifySession = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${url}/auth`, {
+      withCredentials: true,
+    });
+    console.log("auth/", data);
     dispatch({
-      type: actionTypes.LOGOUT,
-      message: "End session",
+      type: actionTypes.VERIFY_LOGUIN,
+      session: data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const logout = (history) => (dispatch) => {
+  Swal.fire({
+    html: `<h5>¿Deseas cerrar sesión?<h5/>`,
+    width: "30%",
+    icon: "info",
+    showCancelButton: true,
+    customClass: {
+      confirmButton: "btn btn-sm btn-primary",
+      cancelButton: "btn btn-sm btn-default border",
+    },
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Cerrar sesión",
+  })
+    .then(async (res) => {
+      if (res.isConfirmed) {
+        await axios
+          .post(`${url}/auth/logout`, null, { withCredentials: true })
+          .then((res) => {
+            Swal.fire("¡Has cerrado sesión!", `Hasta la proxima`, "info");
+            history.push("/");
+            dispatch({
+              type: actionTypes.LOGOUT,
+            });
+          });
+      }
     })
-  }).catch((err) => console.log(err));
+    .catch((err) => console.log(err));
 };

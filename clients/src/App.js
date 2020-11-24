@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Home from "./Componentes/Home";
 import Navbar from "./Componentes/Navbar";
 import { Route, Switch } from "react-router-dom";
@@ -18,8 +19,18 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
+import { useSelector } from "react-redux";
+import { verifySession } from "./redux/actions/authActions";
 
 function App() {
+  const { user } = useSelector((store) => store.auth);
+  console.log(user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifySession());
+  }, []);
+
   return (
     <div>
       <Switch>
@@ -57,7 +68,7 @@ function App() {
         </Route>
         {/* ALUMNOS */}
         {/* Clases */}
-        <Route path="/clases" exact>
+        <Route path="/alumnos/clases" exact>
           <Navbar></Navbar>
           <Modulo />
           <Footer></Footer>
@@ -91,13 +102,19 @@ function App() {
         </Route>
         {/* REGISTRO */}
 
-        {/* PERFIL */}
-        <Route path="/perfil">
+        {/* PERFIL Admin*/}
+        <Route path="/admin/perfil">
           <Bienvenida></Bienvenida>
           <Perfil></Perfil>
           <Footer></Footer>
         </Route>
-        {/* PERFIL  */}
+
+        {/* PERFIL student*/}
+        <Route path="/student/perfil">
+          <Bienvenida></Bienvenida>
+          <Perfil></Perfil>
+          <Footer></Footer>
+        </Route>
       </Switch>
     </div>
   );

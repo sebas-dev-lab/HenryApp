@@ -3,6 +3,7 @@ const router = express();
 
 const User = require("../models/user");
 const Cohort = require("../models/cohort");
+const checkAuthentication = require("../helpers/verifySession");
 
 /*==== user.js continua siendo rutas de "student" ==== */
 
@@ -21,7 +22,7 @@ router.get("/all", (req, res) => {
 });
 
 /*===== Get students by code ===== */
-router.get("/:code", (req, res) => {
+router.get("/:code", checkAuthentication, (req, res) => {
   const { code } = req.params;
 
   User.findOne({ code: code })
@@ -69,7 +70,16 @@ router.post("/create", async (req, res) => {
 /*===== Edit student data ===== */
 router.put("/:code", (req, res) => {
   const { code } = req.params;
-  const { name, lastName, dni, email, city, githubId, googleId, module } = req.body;
+  const {
+    name,
+    lastName,
+    dni,
+    email,
+    city,
+    githubId,
+    googleId,
+    module,
+  } = req.body;
   User.findOneAndUpdate(
     { code: code },
     {
@@ -81,7 +91,6 @@ router.put("/:code", (req, res) => {
       githubId: githubId,
       googleId: googleId,
       module: module,
-
     }
   ).then((user) => {
     res.status(200).json({ msg: "Ok", user: user });

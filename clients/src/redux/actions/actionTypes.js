@@ -23,6 +23,7 @@ export const PUT_INSTRUCTOR = "PUT_INSTRUCTOR";
 export const AUTH_LOGIN_LOCAL = "AUTH_LOGIN_LOCAL";
 export const LOGOUT = "LOGOUT";
 export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
+export const VERIFY_LOGUIN = "VERIFY_LOGUIN";
 
 /*==== Group actionTypes =====*/
 export const GET_ALL_GROUP = "GET_ALL_GROUP";
@@ -45,5 +46,5 @@ export const CREATE_EMAIL = "CREATE_EMAIL";
 export const DELETE_EMAIL = "DELETE_EMAIL";
 
 /* ======= Calendario ======== */
-export const CREATE_EVENT = "CREATE_EVENT"
-export const GET_ALL_EVENTS = "GET_ALL_EVENTS"
+export const CREATE_EVENT = "CREATE_EVENT";
+export const GET_ALL_EVENTS = "GET_ALL_EVENTS";

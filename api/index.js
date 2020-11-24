@@ -4,7 +4,7 @@ const User = require("./models/user");
 
 const database_atlas =
   "mongodb+srv://fayser:Vsl17477@cluster0.bucqc.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const database_localhost = "mongodb://localhost/HenryApp";
+const database_localhost = "mongodb://localhost/HenryApp"; //if not found-> replace 127.0.0.1:27017
 
 mongoose
   .connect(database_atlas, {

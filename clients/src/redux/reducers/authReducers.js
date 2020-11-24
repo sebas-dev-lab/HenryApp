@@ -6,12 +6,17 @@ const initialState = {
 };
 
 const authReducers = (state = initialState, action) => {
-  console.log(action, "********")
+  console.log(action, "********");
   switch (action.type) {
     case actionTypes.AUTH_LOGIN_LOCAL:
       return {
         ...state,
         user: action.user,
+      };
+    case actionTypes.VERIFY_LOGUIN:
+      return {
+        ...state,
+        user: action.session,
       };
     case actionTypes.USER_LOGIN_ERROR:
       return {
