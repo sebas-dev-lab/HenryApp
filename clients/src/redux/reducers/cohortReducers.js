@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const cohortReducers = (state = initialState, action) => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case actionTypes.POST_COHORT:
       return {
@@ -19,7 +19,6 @@ const cohortReducers = (state = initialState, action) => {
         ...state,
         allCohort: action.allCohort,
       };
-
     case actionTypes.PUT_COHORT:
       return {
         ...state,
@@ -30,6 +29,11 @@ const cohortReducers = (state = initialState, action) => {
           return cohort;
         }),
       };
+    case actionTypes.FILTER_COHORT:
+      return {
+        ...state,
+        cohort: action.payload
+      };    
     default:
       return state;
   }

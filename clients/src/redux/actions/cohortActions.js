@@ -50,3 +50,19 @@ export const postCohort = (name, startDate) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const filterCohort = (cohort) => async (dispatch) => {
+  try {
+    await axios
+      .get(`${url}/cohort/students?cohort=${cohort}`,{withCredentials: true})
+      .then((res) => {    
+        dispatch({
+          type: actionTypes.FILTER_COHORT,
+          payload: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  } catch(err) {
+    console.log("error", err);
+  }   
+}

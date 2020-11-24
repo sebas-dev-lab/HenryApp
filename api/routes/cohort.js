@@ -2,6 +2,7 @@ const express = require("express");
 const router = express();
 
 const Cohort = require("../models/cohort");
+const User = require("../models/user");
 
 router.get("/all", (req, res, next) => {
   Cohort.find(function (err, cohorts) {
@@ -37,5 +38,22 @@ router.post("/create", (req, res) => {
     res.status(200).json({ msg: "Ok", cohort });
   });
 });
+
+router.get("/students", (req, res)   => {
+  const {cohort} = req.query;
+
+  User.find({ role: "student"})
+    .populate("cohorte")
+    .populate("group")
+    .populate("module")
+    .then((students) => {
+      const studentsCohort = students.filter(student => student.cohorte)
+      const response = studentsCohort.filter(student => student.cohorte.name === cohort)  
+      res.status(200).send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
 
 module.exports = router;

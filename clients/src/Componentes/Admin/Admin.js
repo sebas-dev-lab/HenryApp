@@ -29,9 +29,12 @@ import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import Module from "../modulo/NewModule";
+import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte";
 import { logout } from "../../redux/actions/authActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {filterCohort} from '../../redux/actions/cohortActions';
+
 
 // function Copyright() {
 //   return (
@@ -131,7 +134,7 @@ export default function AdminPanel(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("usuarios");
-  const [cohortFilter, setCohortFilter] = useState(null);
+  const [cohortFilter, setCohortFilter] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -153,13 +156,14 @@ export default function AdminPanel(props) {
   };
 
   const showStudentsByCohort = (cohorte) => {
-    setActiveTab("usuarios");
     setCohortFilter(cohorte);
+    setActiveTab("cohortesXalumno");
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
   useEffect(() => {
-    //alert("hola");
+    dispatch(filterCohort(cohortFilter));
   }, [cohortFilter]);
 
   return (
@@ -208,7 +212,7 @@ export default function AdminPanel(props) {
         <List>
           <div>
             <div class="slideout-sidebar">
-              <ListItem button onClick={() => showStudentsByCohort(null)}>
+              <ListItem button onClick={() => setActive("usuarios")}>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
@@ -249,12 +253,33 @@ export default function AdminPanel(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
-          {activeTab === "cohortes" && (
+          {
+          activeTab === "usuarios" && 
+            <div>
+              <h1>Todos</h1>
+              <Alumnos cohort={cohortFilter} />
+            </div>
+          }
+          {
+          activeTab === "cohortes" && 
+            (
             <Cohortes showStudents={showStudentsByCohort} />
-          )}
-          {activeTab === "email" && <Email />}
-          {activeTab === "module" && <Module />}
+            )
+          }
+          {
+           activeTab === "cohortesXalumno" && 
+             (
+            <AlumnosXCohorte cohortFilter={cohortFilter} />
+             )
+          }
+          {
+          activeTab === "email" && 
+            <Email />
+          }
+          {
+          activeTab === "module" && 
+            <Module />
+          }
         </Container>
       </main>
     </div>
