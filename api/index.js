@@ -1,14 +1,13 @@
 const app = require("./app");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("./models/user");
-require("dotenv").config();
 
-const { database_atlas } = process.env;
-
+const { DATABASE_ATLAS } = process.env;
 const database_localhost = "mongodb://localhost/HenryApp"; //if not found-> replace 127.0.0.1:27017
 
 mongoose
-  .connect(database_atlas, {
+  .connect(DATABASE_ATLAS, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

@@ -45,7 +45,7 @@ function App() {
         <Route path="/registrarse" component={Registro} />
         {/*====================== Protected Routes ===================== */}
         {/*======== Perfil Route (admin/instructor/student) ==========*/}
-        <ProtectedCommonRoute path="/perfil" component={Perfil} />
+        <ProtectedCommonRoute path="/admin/perfil" component={Perfil} />
         {/*======== Student Routes ======== */}
         <ProtectedStudentRoute exact path="/alumnos" component={Student} />
         <ProtectedStudentRoute
