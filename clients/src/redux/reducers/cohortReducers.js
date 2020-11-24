@@ -19,7 +19,11 @@ const cohortReducers = (state = initialState, action) => {
         ...state,
         allCohort: action.allCohort,
       };
-
+    case actionTypes.GET_ONE_COHORT:
+      return {
+        ...state,
+        cohort: action.cohort,
+      };
     case actionTypes.PUT_COHORT:
       return {
         ...state,

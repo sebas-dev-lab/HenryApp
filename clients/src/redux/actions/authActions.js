@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Toast from "../../Componentes/alerts/toast";
+import { getOneCohort } from "./cohortActions";
 
 const url = "http://localhost:3001";
 /*==== Login users local ==== */
@@ -45,14 +46,16 @@ export const authLogin = (email, password) => (dispatch) => {
 
 export const verifySession = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${url}/auth`, {
-      withCredentials: true,
-    });
-    console.log("auth/", data);
-    dispatch({
-      type: actionTypes.VERIFY_LOGUIN,
-      session: data,
-    });
+    await axios
+      .get(`${url}/auth`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        dispatch({
+          type: actionTypes.VERIFY_LOGUIN,
+          session: res.data,
+        });
+      });
   } catch (err) {
     console.log(err);
   }

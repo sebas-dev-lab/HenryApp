@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express();
-
+const ObjectId = require("mongodb").ObjectId;
 const Cohort = require("../models/cohort");
 
 router.get("/all", (req, res, next) => {
@@ -24,6 +24,20 @@ router.put("/:name", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  if (id) {
+    Cohort.find({ _id: id }, (err, cohort) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.status(200).json({ cohorte: cohort });
+    });
+  }
 });
 
 router.post("/create", (req, res) => {

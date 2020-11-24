@@ -38,7 +38,7 @@ export const PUT_TOASIGN_COHORT_GROUP = "PUT_TOASIGN_COHORT_GROUP";
 export const GET_ALL_COHORT = "GET_ALL_COHORT";
 export const PUT_COHORT = "PUT_COHORT";
 export const POST_COHORT = "POST_COHORT";
-
+export const GET_ONE_COHORT = "GET_ONE_COHORT";
 /*==== Email actionTypes =====*/
 export const GET_EMAIL = "GET_EMAIL";
 export const PUT_EMAIL = "PUT_EMAIL";

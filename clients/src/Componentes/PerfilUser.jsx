@@ -11,7 +11,7 @@ import Footer from "./Footer";
 
 const Perfil = ({ user }) => {
   const dispatch = useDispatch();
-
+  console.log(user);
   const [edit, setEdit] = useState(false);
   const [data, setData] = useState({
     name: "",

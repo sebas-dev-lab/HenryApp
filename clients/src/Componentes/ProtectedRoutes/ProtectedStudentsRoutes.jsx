@@ -9,19 +9,13 @@ const ProtectedStudentRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     dispatch(verifySession());
   }, []);
-  if (user) {
+  if (user && user.role === "student") {
     return (
       <Route
         {...rest}
         render={(props) => {
           if (user.role === "student") {
             return <Component user={user} />;
-          } else {
-            toast.fire({
-              icon: "error",
-              title: `Error: Debes iniciar sesion como estudiante`,
-            });
-            return <Redirect to={`/login`} />;
           }
         }}
       />

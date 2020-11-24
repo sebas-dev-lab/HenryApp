@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const passport = require("passport");
 const checkAuthentication = require("../helpers/verifySession");
+const User = require("../models/user");
+const Cohort = require("../models/cohort");
+const ObjectId = require("mongodb").ObjectId;
 //----------Logueo-------------
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", { session: true }, (err, user, info) => {
@@ -17,16 +20,19 @@ router.post("/login", (req, res, next) => {
         res.status(500).json({ message: "no guardado" });
         return;
       }
-      console.log(req.session);
-
       res.status(200).json({ errors: false, user: user });
     });
   })(req, res, next);
 });
 
-router.get("/", checkAuthentication, (req, res) => {
-  console.log(req.user);
-  res.status(200).json(req.user);
+router.get("/", checkAuthentication, async (req, res) => {
+  await Cohort.find({ _id: req.user.cohorte }, (err, cohort) => {
+    if (err) {
+      console.log(err);
+    }
+    req.user.cohorte = cohort[0];
+    res.status(200).json(req.user);
+  });
 });
 //--------- Autenticación Google -----------
 

@@ -29,6 +29,20 @@ export const updateCohort = (name, values) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getOneCohort = (id) => (dispatch) => {
+  axios
+    .get(`${url}/cohort/${id}`)
+    .then((res) => {
+      dispatch({
+        type: actionTypes.GET_ONE_COHORT,
+        cohort: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const postCohort = (name, startDate) => (dispatch) => {
   return axios
     .post(
@@ -42,8 +56,8 @@ export const postCohort = (name, startDate) => (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res, 'cohortres');
-      dispatch({        
+      console.log(res, "cohortres");
+      dispatch({
         type: actionTypes.POST_COHORT,
         cohort: res.data,
       });
