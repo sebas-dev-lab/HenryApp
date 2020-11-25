@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 
 const { DATABASE_ATLAS } = process.env;
-const database_localhost = "mongodb://localhost/HenryApp"; //if not found-> replace 127.0.0.1:27017
+// const database_localhost = "mongodb://localhost/HenryApp"; //if not found-> replace 127.0.0.1:27017
 
 mongoose
   .connect(DATABASE_ATLAS, {

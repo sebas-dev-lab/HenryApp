@@ -4,6 +4,7 @@ import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
 import Footer from "../Footer";
+import Bienvenida from "../Bienvenida";
 import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
@@ -38,6 +39,7 @@ export default function Login() {
 
   return (
     <>
+      <Bienvenida />
       <div className="align">
         <div className="grid">
           <form className="form login">

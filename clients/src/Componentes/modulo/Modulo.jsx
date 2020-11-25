@@ -3,7 +3,6 @@ import Vimeo from "@u-wave/react-vimeo";
 import "./Modulo.css";
 import { Button, MenuItem, Menu } from "@material-ui/core";
 import Navbar from "../Navbar";
-import Footer from "../Footer";
 import { verifySession } from "../../redux/actions/authActions";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -67,7 +66,6 @@ export default function Modulo() {
           );
         })}
       </div>
-      <Footer />
     </div>
-  );
+  ); 
 }

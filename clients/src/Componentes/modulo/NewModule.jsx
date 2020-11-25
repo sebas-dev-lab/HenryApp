@@ -192,7 +192,6 @@ export default function NewModule() {
         <Chip recursos={handleRecursos} />
         <Tabla2 students={students2} selected={handleSelectedStudent} />
       </Container>
-      <Footer />
     </div>
   );
 }

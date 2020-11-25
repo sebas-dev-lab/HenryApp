@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -262,6 +263,7 @@ export default function AdminPanel({ user }) {
           </Container>
         </main>
       </div>
+      <Footer />
     </>
   );
 }
