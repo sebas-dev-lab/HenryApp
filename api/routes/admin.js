@@ -91,6 +91,7 @@ router.put("/cohort/:code/:cohort", (req, res) => {
 /*===== Update student/instructor - group===== */
 router.put("/group/:code/:group", (req, res) => {
   const { code, group } = req.params;
+
   //asignar grupo al estudiante
   //sumar el estudiante al array del grupo
   User.findOne({ code: code }, function (err, findStudent) {
@@ -109,7 +110,7 @@ router.put("/group/:code/:group", (req, res) => {
           return;
         }
         User.findOneAndUpdate(
-          { name: student },
+          { code: code },
           { $set: { group: group } },
           { new: true }
         ).then(() => {

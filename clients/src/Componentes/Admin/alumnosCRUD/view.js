@@ -31,15 +31,15 @@ function Crud(props) {
   const stdId = (array) => {
     array.forEach(function (element, i) {
       element.id = i + 1;
-      const cohort = element.cohorte && element.cohorte.name || null
+      const cohort = element.cohorte && element.cohorte.name
       element.cohorte = cohort;
     });
     return array
   }
 
   const showProfile = (data) => {
-    setOpenModal(true)
     setStudent(data)    
+    setOpenModal(true)  
   }
 
   const toggle = () => {
@@ -47,7 +47,7 @@ function Crud(props) {
     setStudent()
   }
   
-  useEffect( () => {   
+  useEffect(() => {   
     dispatch(getAllStudents());   
   }, [])   
 
@@ -63,12 +63,12 @@ function Crud(props) {
                   onRowSelected={(item) => showProfile(item.data)}
                   />
       } 
-      <Modal isOpen={openModal} toggle={toggle} className="ficha">
+      <Modal isOpen={openModal} toggle={toggle} >
         <div >
           <div>
             {
               student &&
-            <PerfilUser user={student} toggle={toggle}/>
+            <PerfilUser userData={student} toggle={toggle}/>
             }
           </div>          
         </div>

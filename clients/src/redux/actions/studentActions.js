@@ -51,10 +51,10 @@ export const getAllStudents = () => async (dispatch) => {
 export const getStudent = (code) => (dispatch) => {
   axios
     .get(`${url}/student/${code}`)
-    .then((res) => {
+    .then((res) => {   
       dispatch({
         type: actionTypes.GET_ONE_USER,
-        student: res.data,
+        student: res.data.user,
       });
     })
     .catch((err) => console.log(err));

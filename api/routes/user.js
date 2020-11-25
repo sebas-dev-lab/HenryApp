@@ -22,13 +22,14 @@ router.get("/all", (req, res) => {
 });
 
 /*===== Get students by code ===== */
-router.get("/:code", checkAuthentication, (req, res) => {
+router.get("/:code", (req, res) => {
   const { code } = req.params;
 
   User.findOne({ code: code })
     .populate("cohorte")
     .populate("PP")
     .populate("module")
+    .populate("group")
     .then((user) => {
       res.status(200).json({ msg: "OK", user });
     })
