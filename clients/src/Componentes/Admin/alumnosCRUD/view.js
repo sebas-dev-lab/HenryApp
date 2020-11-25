@@ -6,14 +6,18 @@ import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
 import {filterCohort} from '../../../redux/actions/cohortActions';
 import {Modal} from 'reactstrap';
-import s from '../../../styles/viewAdminUserProf.module.css';
-import PerfilUser from '../../PerfilUser'
+import s from '../../../styles/fichaAlumno.module.css';
+import PerfilUser from './fichaAlumno'
+import './view.css';
+
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 });
+
+const modalClassname = s.modal_gral
 
 function Crud(props) {
   const { rows, columns, cohort } = props;
@@ -56,15 +60,14 @@ function Crud(props) {
                   onRowSelected={(item) => showProfile(item.data)}
                   />
       } 
-      <Modal isOpen={openModal} toggle={toggle} className='lg'>
+      <Modal isOpen={openModal} toggle={toggle} className="modal ficha">
         <div >
           <div>
             {
               student &&
-            <PerfilUser user={student}/>
+            <PerfilUser user={student} toggle={toggle}/>
             }
-          </div>
-          <button onClick={toggle}>cerrar</button>
+          </div>          
         </div>
       </Modal>
 
