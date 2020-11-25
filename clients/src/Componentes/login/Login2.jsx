@@ -36,14 +36,23 @@ export default function Login() {
     }
   }, [userLogin]);
 
+  useEffect(() => {
+    if (userLogin && userLogin.role === "admin") {
+      history.push("/admin");
+    }
+    if (userLogin && userLogin.role === "student") {
+      history.push("/alumnos");
+    }
+  }, [userLogin]);
+
   return (
     <>
       <div className="align">
         <div className="grid">
           <form className="form login">
             <div className="form__field">
-              <label for="login__username" className="cont_label">
-                <Mail />
+              <label for="login__username">
+                <span className="hidden">Usuario</span>
               </label>
               <input
                 onChange={userchange}

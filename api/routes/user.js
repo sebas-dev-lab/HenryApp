@@ -55,7 +55,7 @@ router.post("/create", async (req, res) => {
           dni,
           email,
           password,
-          cohorte: cohorte,
+          cohorte: cohort,
           module: module,
         });
         newStudent.role = "student";
@@ -79,6 +79,7 @@ router.put("/:code", (req, res) => {
     githubId,
     googleId,
     module,
+    cohorte,
   } = req.body;
   User.findOneAndUpdate(
     { code: code },
@@ -92,9 +93,32 @@ router.put("/:code", (req, res) => {
       googleId: googleId,
       module: module,
     }
-  ).then((user) => {
-    res.status(200).json({ msg: "Ok", user: user });
-  });
+  )
+    .then((user) => {
+      res.status(200).json({ msg: "Ok", user: user });
+    })
+    .catch((err) => {
+      res.status(400).json({ msg: err.message });
+    });
+});
+
+// ruta para agregar cohorte
+
+router.put("/cohort/:code", (req, res) => {
+  const { code } = req.params;
+  const { cohorte } = req.body;
+  User.findOneAndUpdate(
+    { code: code },
+    {
+      cohorte: cohorte,
+    }
+  )
+    .then((user) => {
+      res.status(200).json({ msg: "Ok", user: user });
+    })
+    .catch((err) => {
+      res.status(400).json({ msg: err.message });
+    });
 });
 
 module.exports = router;
