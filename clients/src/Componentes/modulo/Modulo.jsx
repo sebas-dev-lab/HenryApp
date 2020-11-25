@@ -33,7 +33,7 @@ export default function Modulo() {
   }
 
   return (
-    <div>
+    <div className="cont_videos">
       <Navbar user={user} />
 
       <div className="boton">
