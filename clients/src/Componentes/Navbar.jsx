@@ -2,8 +2,7 @@ import React from "react";
 import s from "../styles/navbar.module.css";
 import { AppBar, Toolbar, Typography, Avatar } from "@material-ui/core";
 import logo from "../Componentes/utils/LogoHenry.png";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "../redux/actions/authActions";
 

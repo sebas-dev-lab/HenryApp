@@ -17,6 +17,7 @@ import NewModule from "./Componentes/modulo/NewModule";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
+import Pair from "./Componentes/pairprogramming/Pair";
 
 function App() {
   return (

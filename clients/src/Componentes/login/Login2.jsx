@@ -74,6 +74,22 @@ export default function Login() {
             <div className="form__field" onClick={enviar}>
               <input type="submit" value="Ingresar" />
             </div>
+
+            {/* Boton GitHub  */}
+            <a href="http://localhost:3001/auth/github">
+              <div className="btn-alternativo" id="github" value="github">
+                <img src="https://image.flaticon.com/icons/png/512/25/25231.png" />
+                <p>Continuar con GitHub</p>
+              </div>
+            </a>
+
+            {/* Boton Google */}
+            <a href="http://localhost:3001/auth/google">
+              <div className="btn-alternativo" id="goog" value="google">
+                <img src="https://cdn.icon-icons.com/icons2/673/PNG/128/Google_icon-icons.com_60497.png" />
+                <p>CONTINUAR CON GOOGLE</p>
+              </div>
+            </a>
           </form>
         </div>
       </div>

@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Vimeo from "@u-wave/react-vimeo";
 import "./Modulo.css";
 import { Button, MenuItem, Menu } from "@material-ui/core";
+import Axios from "axios";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { verifySession } from "../../redux/actions/authActions";
-import { useSelector, useDispatch } from "react-redux";
 
 export default function Modulo() {
+  var id = useSelector((store) => store.auth.user.user.module);
+  const { user } = (useSelector = (state) => state.auth);
+  const [means, setMeans] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  useEffect(() => {
+    console.log(id);
+    Axios.get(`http://localhost:3001/module/means/${id}`)
+      .then((res) => {
+        setMeans(res.data.means);
+        console.log(res.data.means);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
+
   useEffect(() => {
     dispatch(verifySession());
-  }, []);
-  const videos = [
-    "426044757",
-    "425254623",
-    "425235994",
-    "423898676",
-    "426044757",
-    "425254623",
-    "425235994",
-    "423898676",
-  ];
-  const [anchorEl, setAnchorEl] = useState(null);
+  }, [means]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,14 +64,16 @@ export default function Modulo() {
       </div>
 
       <div className="videos">
-        {videos.map((e) => {
+        {means.map((e) => {
           return (
             <div className="vid">
+              {console.log(e)}
               <Vimeo video={e} autoplay id={e} onPlay={console.log("playo")} />
             </div>
           );
         })}
       </div>
+
       <Footer />
     </div>
   );
