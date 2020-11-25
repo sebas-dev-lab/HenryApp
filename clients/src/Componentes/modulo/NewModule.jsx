@@ -42,7 +42,7 @@ export default function NewModule() {
     useEffect(() => {
         Axios.get("http://localhost:3001/cohort/all").then(res => {
             setCohorts(res.data);
-            console.log(res.data)
+
         }).catch(err => {
             console.log(err.message)
         })
@@ -60,7 +60,7 @@ export default function NewModule() {
 
     useEffect(() => {
         Axios.put("http://localhost:3001/module/asignate", { _id: module, students: selectedStudents }).then(data => {
-            console.log(data)
+
         }).catch(err => {
             console.log(err.message)
         })

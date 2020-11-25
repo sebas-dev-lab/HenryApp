@@ -69,6 +69,18 @@ router.put("/asignate", (req, res) => {
 
 })
 
+//ruta para obtener los recursos de un modulo por su id
+
+router.get("/means/:id", async (req, res) => {
+    var { id } = req.params;
+    try {
+        const module = await Module.findOne({ _id: id })
+        return res.status(200).json({ means: module.means })
+    }
+    catch { err => console.log(err.message) }
+
+})
+
 // ruta para modificar un modulo
 
 router.put("/:name", (req, res) => {
