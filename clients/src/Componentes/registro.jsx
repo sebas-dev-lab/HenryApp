@@ -176,73 +176,76 @@ export default function Registro() {
   return (
     <div className="Login">
       <div className={s.container}>
-        <div className={s.hijo1}>
+        {/* <div className={s.hijo1}>
           <div className={s.text}>
             <h6>REGISTRO</h6>
             <img src={Fondo} alt="" style={{ width: "700px" }} />
           </div>
-        </div>
+        </div> */}
         <div className={s.hijo2}>
-          <form className={s.sing_in}>
+              <div className={s.cont_titleForm}>
+                <h6>Crear Usuario</h6>
+              </div>
+          <form className={s.sing_in}>              
             <div class="form-group">
-              <label>Name</label>
+              {/* <label>Nombre</label> */}
               <input
                 name="name"
                 onChange={inputsChange_name}
                 type="text"
                 class="form-control"
-                style={{ color: "black", width: "450px" }}
-                placeholder="ingresar nombre"
+                style={{ color: "black", width: "400px" }}
+                placeholder="Ingresar Nombre"
               />
               <small className="detail">{errors.nameError}</small>
             </div>
             <div class="form-group">
-              <label>Lastname</label>
+              {/* <label>Apellido</label> */}
               <input
                 name="lastName"
                 onChange={inputsChange_lastName}
                 type="text"
                 class="form-control"
-                style={{ color: "black", width: "450px" }}
-                placeholder="ingresa apellido"
+                style={{ color: "black", width: "400px" }}
+                placeholder="Ingresar Apellido"
               />
               <small className="detail">{errors.lastnameError}</small>
             </div>
             <div class="form-group">
-              <label>Email address</label>
+              {/* <label>Email</label> */}
               <input
                 name="email"
                 onChange={inputsChange_email}
                 type="email"
                 class="form-control"
-                style={{ color: "black", width: "450px" }}
+                style={{ color: "black", width: "400px" }}
                 aria-describedby="emailHelp"
-                placeholder="Enter email"
+                placeholder="Ingresar email"
               />
               <small id="emailHelp" class="detail">
                 {errors.emailError}
               </small>
             </div>
             <div class="form-group">
-              <label>Password</label>
+              {/* <label>Password</label> */}
               <input
                 name="password"
                 onChange={inputsChange_password}
                 type="password"
                 class="form-control"
-                style={{ color: "black", width: "450px" }}
+                style={{ color: "black", width: "400px" }}
                 placeholder="Password"
               />
               <small className="detail">{errors.passwordError}</small>
             </div>
             <div class="form-group">
-              <label>Dni</label>
+              {/* <label>Dni</label> */}
               <input
                 name="dni"
                 onChange={inputsChange_dni}
                 type="dni"
                 class="form-control"
-                style={{ color: "black", width: "450px" }}
+                style={{ color: "black", width: "400px" }}
                 placeholder="DNI"
               />
               <small className="detail">{errors.dniError}</small>

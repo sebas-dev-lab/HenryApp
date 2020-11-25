@@ -15,7 +15,7 @@ export default function Modulo() {
     }
 
     return (
-        <div>
+        <div className="cont_videos">
             <div className="boton">
                 <Button className="bot" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     Links utiles

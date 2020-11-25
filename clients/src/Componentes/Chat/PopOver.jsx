@@ -14,7 +14,7 @@ export default function PopOver() {
             {(popupState) => (
                 <div>
                     <button className="boton__chat" {...bindTrigger(popupState)}>
-                        chat
+                        Chat
                     </button>
                     <Popover
                         {...bindPopover(popupState)}

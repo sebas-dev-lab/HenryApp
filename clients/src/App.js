@@ -34,6 +34,7 @@ function App() {
         {/* HOME */}
         <Route path="/" exact>
           <Home></Home>
+          <Footer></Footer>
         </Route>
         {/* HOME */}
 
@@ -80,6 +81,7 @@ function App() {
         <Route exact path="/admin">
           <Navbar></Navbar>
           <Admin />
+          <Footer></Footer>
         </Route>
         {/* ADMIN */}
 

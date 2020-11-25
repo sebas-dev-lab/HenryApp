@@ -48,7 +48,7 @@ const Home = () => {
           <h6>BIENVENIDO</h6>
           <p>
             A tu campus virtual donde podras interactuar con toda la comunidad
-            de henry
+            de HENRY
           </p>
           <div className={s.cont_selec}>
             <InputLabel className={s.label}>Ingresar como:</InputLabel>

@@ -4,6 +4,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
+import s from '../../../styles/alumno.module.css'
 
 const useStyles = makeStyles({
   table: {
@@ -38,11 +39,14 @@ function Crud(props) {
   }, [])   
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div className={s.cont_alum}>
+      <h1>Usuarios de HenryApp</h1>
+    <div style={{ height: 450, width: "73%", backgroundColor: "white", margin:"auto"}}>
       {
         students.length > 0 &&
         <DataGrid rows={renderStudents && stdId(renderStudents)} columns={columns} pageSize={5} />
       }
+    </div>
     </div>
   );
 }

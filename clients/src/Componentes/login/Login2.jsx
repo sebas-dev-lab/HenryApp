@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Login2.css";
 import { authLogin } from '../../redux/actions/authActions';
 import { useHistory } from  'react-router-dom';
+import {Mail, Lock } from "@material-ui/icons";
 
 
 export default function Login() { 
@@ -46,12 +47,12 @@ export default function Login() {
                 <form className="form login">
 
                     <div className="form__field">
-                        <label for="login__username"><span className="hidden">Usuario</span></label>
+                        <label for="login__username" className="cont_label"><Mail/></label>
                         <input onChange={userchange} id="login__username" type="text" name="username" className="form__input" placeholder="Correo" required />
                     </div>
 
                     <div class="form__field">
-                        <label for="login__password"><span className="hidden">Contraseña</span></label>
+                        <label for="login__password" className="cont_label"><Lock/></label>
                         <input onChange={passchange} id="login__password" type="password" name="password" className="form__input" placeholder="Contraseña" required />
                     </div>
 

@@ -23,6 +23,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PeopleIcon from "@material-ui/icons/People";
 import LayersIcon from "@material-ui/icons/Layers";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import MailIcon from '@material-ui/icons/Mail';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import { Link } from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";
@@ -217,27 +221,27 @@ export default function AdminPanel(props) {
 
               <ListItem button onClick={() => setActive("cohortes")}>
                 <ListItemIcon>
-                  <ListAltIcon />
+                  <RemoveRedEyeIcon />
                 </ListItemIcon>
                 <ListItemText secondary="COHORTES" />
               </ListItem>
 
               <ListItem button onClick={() => setActive("email")}>
                 <ListItemIcon>
-                  <ListAltIcon />
+                  <MailIcon />
                 </ListItemIcon>
                 <ListItemText secondary="EMAIL" />
               </ListItem>
               <ListItem button onClick={() => setActive("module")}>
                 <ListItemIcon>
-                  <ListAltIcon />
+                  <LibraryBooksIcon />
                 </ListItemIcon>
                 <ListItemText secondary="MODULE" />
               </ListItem>
 
               <ListItem button onClick={() => logOut()}>
                 <ListItemIcon>
-                  <LayersIcon />
+                  <ExitToAppIcon />
                 </ListItemIcon>
                 <ListItemText secondary="SALIR" />
               </ListItem>
