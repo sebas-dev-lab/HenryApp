@@ -25,6 +25,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PeopleIcon from "@material-ui/icons/People";
 import LayersIcon from "@material-ui/icons/Layers";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import MailIcon from "@material-ui/icons/Mail";
+import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import { Link } from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";

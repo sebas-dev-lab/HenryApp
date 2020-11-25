@@ -3,7 +3,7 @@
   display: flex;
   place-items: center;
   box-sizing: inherit;
-  background-color:  #2c3338;
+  background-color:  #181a1b;
   color: #606468;
   font-size: 0.875rem;
   font-weight: 400;
@@ -31,10 +31,9 @@
   width: 1px;
 }
 
-.icons {
-  display: none;
+.cont_label{
+  margin-bottom: 0px !important;
 }
-
 .icon {
   display: inline-block;
   fill:  #606468;

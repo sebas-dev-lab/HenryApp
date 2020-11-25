@@ -4,6 +4,7 @@ import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
 import Footer from "../Footer";
+import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
   const userLogin = useSelector((store) => store.auth.user);
@@ -41,8 +42,8 @@ export default function Login() {
         <div className="grid">
           <form className="form login">
             <div className="form__field">
-              <label for="login__username">
-                <span className="hidden">Usuario</span>
+              <label for="login__username" className="cont_label">
+                <Mail />
               </label>
               <input
                 onChange={userchange}
@@ -56,8 +57,8 @@ export default function Login() {
             </div>
 
             <div class="form__field">
-              <label for="login__password">
-                <span className="hidden">Contraseña</span>
+              <label for="login__password" className="cont_label">
+                <Lock />
               </label>
               <input
                 onChange={passchange}

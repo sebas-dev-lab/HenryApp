@@ -6,10 +6,11 @@ import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
 import {filterCohort} from '../../../redux/actions/cohortActions';
 import {Modal} from 'reactstrap';
-import s from '../../../styles/fichaAlumno.module.css';
+
 import PerfilUser from './fichaAlumno'
 import './view.css';
 
+import s from '../../../styles/alumno.module.css'
 
 const useStyles = makeStyles({
   table: {
@@ -51,7 +52,9 @@ function Crud(props) {
   }, [])   
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div className={s.cont_alum}>
+      <h1>Usuarios de HenryApp</h1>
+    <div style={{ height: 450, width: "73%", backgroundColor: "white", margin:"auto"}}>
       {
         students.length > 0 &&
         <DataGrid rows={students && stdId(students)} 
@@ -60,7 +63,7 @@ function Crud(props) {
                   onRowSelected={(item) => showProfile(item.data)}
                   />
       } 
-      <Modal isOpen={openModal} toggle={toggle} className="modal ficha">
+      <Modal isOpen={openModal} toggle={toggle} className="ficha">
         <div >
           <div>
             {
@@ -71,6 +74,7 @@ function Crud(props) {
         </div>
       </Modal>
 
+    </div>
     </div>
   );
 }
