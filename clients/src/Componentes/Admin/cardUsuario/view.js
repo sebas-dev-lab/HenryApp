@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 const ViewCardUsuario =(props)=>{
     const classes = useStyles();
     const {perfil} = props
-    console.log(perfil)
+    // console.log(perfil)
     return (
         <Card className={classes.root}>
       <CardActionArea>

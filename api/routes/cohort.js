@@ -27,19 +27,19 @@ router.put("/:name", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-  const { id } = req.params;
+// router.get("/:id", (req, res) => {
+//   const { id } = req.params;
 
-  if (id) {
-    Cohort.find({ _id: id }, (err, cohort) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(200).json({ cohorte: cohort });
-    });
-  }
-});
+//   if (id) {
+//     Cohort.find({ _id: id }, (err, cohort) => {
+//       if (err) {
+//         console.log(err);
+//         return;
+//       }
+//       res.status(200).json({ cohorte: cohort });
+//     });
+//   }
+// });
 
 router.post("/create", (req, res) => {
   const { name, startDate } = req.body;

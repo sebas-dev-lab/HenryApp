@@ -5,7 +5,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
 import {filterCohort} from '../../../redux/actions/cohortActions';
-
+import {Modal} from 'reactstrap';
+import s from '../../../styles/viewAdminUserProf.module.css';
+import PerfilUser from '../../PerfilUser'
 
 const useStyles = makeStyles({
   table: {
@@ -18,6 +20,8 @@ function Crud(props) {
 
   const students = useSelector(store => store.student.allStudents)
   const dispatch = useDispatch();  
+  const [openModal, setOpenModal] = useState(false);
+  const [student, setStudent] = useState()
 
   const stdId = (array) => {
     array.forEach(function (element, i) {
@@ -27,17 +31,43 @@ function Crud(props) {
     });
     return array
   }
+
+  const showProfile = (data) => {
+    setOpenModal(true)
+    setStudent(data)    
+  }
+
+  const toggle = () => {
+    setOpenModal(false)
+    setStudent()
+  }
   
   useEffect( () => {   
-    dispatch(getAllStudents());    
+    dispatch(getAllStudents());   
   }, [])   
 
   return (
     <div style={{ height: 400, width: "100%" }}>
       {
         students.length > 0 &&
-        <DataGrid rows={students && stdId(students)} columns={columns} pageSize={5} />
-      }
+        <DataGrid rows={students && stdId(students)} 
+                  columns={columns} 
+                  pageSize={5} 
+                  onRowSelected={(item) => showProfile(item.data)}
+                  />
+      } 
+      <Modal isOpen={openModal} toggle={toggle} className='lg'>
+        <div >
+          <div>
+            {
+              student &&
+            <PerfilUser user={student}/>
+            }
+          </div>
+          <button onClick={toggle}>cerrar</button>
+        </div>
+      </Modal>
+
     </div>
   );
 }
