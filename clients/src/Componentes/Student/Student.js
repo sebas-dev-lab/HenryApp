@@ -64,76 +64,75 @@ const Student = () => {
                   </div>
                 </div>
               </div>
-
-              <div class="category-box">
-                <img key={img2} src={img2} alt="" />
-                <div class="content">
-                  <div>
-                    <h2>Homeworks</h2>
-                    <div className="boton_link">
-                      <Link className="link">Ingresar</Link>
-                    </div>
+            </div>
+            <div class="category-box">
+              <img key={img2} src={img2} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Homeworks</h2>
+                  <div className="boton_link">
+                    <Link className="link">Ingresar</Link>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="conten_taks">
-              <div class="category-box">
-                <img key={coding} src={coding} alt="" />
-                <div class="content">
-                  <div>
-                    <h2>Clases grabadas</h2>
-                    <div className="boton_link">
-                      <Link className="link" to="/clases">
-                        Ingresar
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="category-box">
-                <img key={meeting} src={meeting} alt="" />
-                <div class="content">
-                  <div>
-                    <h2>Stand Up</h2>
-                    <div className="boton_link">
-                      <Link className="link">Ingresar</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="category-box">
-                <img key={pairp} src={pairp} alt="" />
-                <div class="content">
-                  <div>
-                    <h2>Pair Programming</h2>
-                    <div className="boton_link">
-                      <Link className="link">Ingresar</Link>
-                    </div>
+          </div>
+          <div className="conten_taks">
+            <div class="category-box">
+              <img key={coding} src={coding} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Clases grabadas</h2>
+                  <div className="boton_link">
+                    <Link className="link" to="/clases">
+                      Ingresar
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-            {/* <div style={{ marginLeft: "50px"}} >   */}
-            <div className="conten_taks">
-              <div class="category-box">
-                <img key={calif} src={calif} alt="" />
-                <div class="content">
-                  <div>
-                    <h2>Calificaciones</h2>
-                    <div className="boton_link">
-                      <Link className="link">Ingresar</Link>
-                    </div>
+            <div class="category-box">
+              <img key={meeting} src={meeting} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Stand Up</h2>
+                  <div className="boton_link">
+                    <Link className="link">Ingresar</Link>
                   </div>
                 </div>
               </div>
             </div>
-            <BotonChat />
-
-            <Footer />
+            <div class="category-box">
+              <img key={pairp} src={pairp} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Pair Programming</h2>
+                  <div className="boton_link">
+                    <Link className="link">Ingresar</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <div style={{ marginLeft: "50px"}} >   */}
+          <div className="conten_taks">
+            <div class="category-box">
+              <img key={calif} src={calif} alt="" />
+              <div class="content">
+                <div>
+                  <h2>Calificaciones</h2>
+                  <div className="boton_link">
+                    <Link className="link">Ingresar</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <BotonChat />
       </div>
+
+      <Footer />
     </>
   );
 };
