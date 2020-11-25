@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from "react";
 import Container from '@material-ui/core/Container';
-import swal from "sweetalert2"
+import Swal from "sweetalert2";
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import { makeStyles } from '@material-ui/core/styles';
@@ -123,7 +123,13 @@ export default function NewModule() {
         Axios.post("http://localhost:3001/module/create", { name: nombre, students: selectedStudents, cohorte: cohort._id, checkpoint: date, means: arr })
             .then(res => {
                 setCreate(true)
-                alert("succes!")
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `¡El modulo se ha creado exitosamente!`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                  })
             })
             .catch(err => {
                 console.log(err.message)

@@ -18,6 +18,7 @@ import {
   CheckCircle,
   Cancel,
 } from "@material-ui/icons";
+import Swal from "sweetalert2";
 import style from "../../../styles/email.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteEmail, getEmail, createEmail } from "../../../redux/actions/email";
@@ -65,11 +66,24 @@ export default function Emails() {
     //prettier-ignore
     dispatch(createEmail(emailSeleccionado));
     AbrirCerrar();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡Email Agregado!`,
+      showConfirmButton: false,
+      timer: 2000,
+    })
   };
 
   const deleteEm = (email) => {
     dispatch(deleteEmail(email));
-    console.log("ando");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡Email Eliminado!`,
+      showConfirmButton: false,
+      timer: 2000,
+    })
   };
   //Funcion para abrir y cerrar el modal
   const AbrirCerrar = () => {
@@ -79,6 +93,13 @@ export default function Emails() {
   //Funcion para abrir y cerrar el modal al Editar
   const Editar = () => {
     setModalEditar(!modalEditar);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡El email se ha editado!`,
+      showConfirmButton: false,
+      timer: 2000,
+    })
   };
 
   const bodyInsertar = (
