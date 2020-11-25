@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
-import Footer from "../Footer";
-import { Mail, Lock } from "@material-ui/icons";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import GoogleIcon from "../utils/google.ico";
+import Footer from "../Footer";
+import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
-  const userLogin = useSelector((store) => store.auth.user.user);
+  const userLogin = useSelector((store) => store.auth.user);
   console.log(userLogin, "*********************************");
 
   const [user, setUser] = useState("");
@@ -45,6 +45,7 @@ export default function Login() {
         <form className="form login">
           <div className="form__field">
             <label for="login__username">
+              <Mail />
               <span className="hidden">Usuario</span>
             </label>
             <input
@@ -60,6 +61,7 @@ export default function Login() {
 
           <div class="form__field">
             <label for="login__password">
+              <Lock />
               <span className="hidden">Contraseña</span>
             </label>
             <input
