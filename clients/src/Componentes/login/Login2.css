@@ -2,7 +2,7 @@
     display: flex;
     place-items: center;
     box-sizing: inherit;
-    background-color: #2c3338;
+    background-color: #181a1b;
     color: #606468;
     font-size: 0.875rem;
     font-weight: 400;
@@ -30,8 +30,8 @@
     width: 1px;
 }
 
-.icons {
-    display: none;
+.cont_label {
+    margin-bottom: 0px !important;
 }
 
 .icon {
@@ -165,7 +165,7 @@ p {
     background: #3b5998;
     opacity: 1;
     padding: 0px 0;
-    color: rgb(44, 44, 44);
+    color: white;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -175,6 +175,7 @@ p {
     opacity: 1;
     padding: 0px 0;
     color: #000;
+    margin-top: 5px;
 }
 
 .btn-alternativo p {

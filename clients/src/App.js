@@ -18,6 +18,7 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
+import Pair from "./Componentes/pairprogramming/Pair"
 
 function App() {
   return (
@@ -56,6 +57,13 @@ function App() {
           <Student />
         </Route>
         {/* ALUMNOS */}
+        {/* PAIR PROGRAMMING */}
+        <Route path="/pair" exact>
+          <Navbar></Navbar>
+          <Pair />
+          <Footer></Footer>
+        </Route>
+        {/* PAIR PROGRAMMING */}
         {/* Clases */}
         <Route path="/clases" exact>
           <Navbar></Navbar>

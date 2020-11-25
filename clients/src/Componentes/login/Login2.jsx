@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
-import GitHubIcon from '@material-ui/icons/GitHub'
-import GoogleIcon from '../utils/google.ico'
-
+import Footer from "../Footer";
+import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
-  const userLogin = useSelector((store) => store.auth.user.user);
-  console.log(userLogin, "*********************************");
+  const userLogin = useSelector((store) => store.auth.user);
 
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
@@ -39,51 +37,52 @@ export default function Login() {
   }, [userLogin]);
 
   return (
-    <div className="align">
-      <div className="grid">
-        <form className="form login">
-          <div className="form__field">
-            <label for="login__username">
-              <span className="hidden">Usuario</span>
-            </label>
-            <input
-              onChange={userchange}
-              id="login__username"
-              type="text"
-              name="username"
-              className="form__input"
-              placeholder="Correo"
-              required
-            />
-          </div>
+    <>
+      <div className="align">
+        <div className="grid">
+          <form className="form login">
+            <div className="form__field">
+              <label for="login__username" className="cont_label">
+                <Mail />
+              </label>
+              <input
+                onChange={userchange}
+                id="login__username"
+                type="text"
+                name="username"
+                className="form__input"
+                placeholder="Correo"
+                required
+              />
+            </div>
 
-          <div class="form__field">
-            <label for="login__password">
-              <span className="hidden">Contraseña</span>
-            </label>
-            <input
-              onChange={passchange}
-              id="login__password"
-              type="password"
-              name="password"
-              className="form__input"
-              placeholder="Contraseña"
-              required
-            />
-          </div>
+            <div class="form__field">
+              <label for="login__password" className="cont_label">
+                <Lock />
+              </label>
+              <input
+                onChange={passchange}
+                id="login__password"
+                type="password"
+                name="password"
+                className="form__input"
+                placeholder="Contraseña"
+                required
+              />
+            </div>
 
-          <div className="form__field" onClick={enviar}>
-            <input type="submit" value="Ingresar" />
-          </div>
+            <div className="form__field" onClick={enviar}>
+              <input type="submit" value="Ingresar" />
+            </div>
 
-          {/* Boton Facebook  */}
+          {/* Boton GitHub  */}
           <a href="http://localhost:3001/auth/github" >
             <div
               className="btn-alternativo"
               id="github"
               value="github"
             >
-                {/* <GitHubIcon/> */}
+            
                 <img src="https://image.flaticon.com/icons/png/512/25/25231.png" />
                 <p>Continuar con GitHub</p>
          
@@ -102,8 +101,10 @@ export default function Login() {
                 
     </div>
           </a>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
