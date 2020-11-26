@@ -9,7 +9,7 @@ export const getAllGroups = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.GET_ALL_GROUP,
-        allGroups: res.data,
+        allGroups: res.data.groups,
       });
     })
     .catch((err) => console.log(err));

@@ -18,7 +18,9 @@ router.put("/:name", async (req, res) => {
   const { name } = req.params;
   const body = req.body;
 
-  const newCohort = await Cohort.findOneAndUpdate({ name }, body);
+  const newCohort = await Cohort.findOneAndUpdate({ name }, body, {
+    new: true,
+  });
   res.status(200).json({ msg: "Ok", cohort: newCohort });
 });
 
