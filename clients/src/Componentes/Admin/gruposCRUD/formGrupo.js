@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {updateGroup} from '../../../redux/actions/adminActions'
 import {putGroup} from '../../../redux/actions/groupActions'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import MenuItem from '@material-ui/core/MenuItem';
 import Transfer from './trasnferList'
 
@@ -28,6 +28,8 @@ export default function BasicTextFields() {
    //este hook guarda el nombre que se pone en el grupo 
     const [groupName,setGroupName] = useState('')
     const [Pm,setPm] = useState('')
+    const [tode, setTode] = useState([])
+    const alumnos = useSelector(store=>store.cohort.cohort)
 
 
     const dispatch = useDispatch()
@@ -59,7 +61,9 @@ export default function BasicTextFields() {
 
  //esta funcion trae una lista de usuarios que pertenecen al cohorte // usar la logica del search de cohorte 
   function traerPosiblesPM(){
-     
+    return alumnos.map(alum=>{
+       return {name:alum.name,code:alum.code}
+     })
   }
 
 
@@ -68,7 +72,7 @@ export default function BasicTextFields() {
 
 
   useEffect(()=>{
-    
+    setTode(traerPosiblesPM())
   },[])
 
 
@@ -88,15 +92,15 @@ export default function BasicTextFields() {
           helperText="seleccione un instructor"
           variant="outlined"
         >
-          {/* example.map((example) => (
-            <MenuItem key={example.value} value={example.value}>
-              {example.label}
+          {tode.map((example) => (
+            <MenuItem key={example.code} value={example.code}>
+              {example.name}
             </MenuItem>
-          )) */}
+          ))}
         </TextField>
           <Transfer/>
         <Button variant="contained">Crear grupo</Button>
-
+        
 
         </form>
       </div>

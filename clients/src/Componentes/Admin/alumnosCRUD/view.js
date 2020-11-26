@@ -27,13 +27,13 @@ function Crud(props) {
   const {columns, cohort } = props;
 
   const students = useSelector(store => store.student.allStudents)
-  const dispatch = useDispatch(); 
+    const dispatch = useDispatch(); 
+
+
   const [renderStudents, setRenderStudents] = useState([]);
   const[alumnos,setAlumnos] = useState([])
   const[filasSeleccionadas,setFilasSeleccionadas] = useState([])
 
-
-  const dispatch = useDispatch();  
   const [openModal, setOpenModal] = useState(false);
   const [student, setStudent] = useState()
 
@@ -60,7 +60,7 @@ function Crud(props) {
     const filtered = students[0] && students.filter(student => student.cohorte && student.cohorte.name === cohort)
     return filtered
   } 
-  
+
   const showProfile = (data) => {
     setOpenModal(true)
     setStudent(data)    
@@ -79,8 +79,8 @@ function Crud(props) {
   
   useEffect( () => {   
     dispatch(getAllStudents()); 
-    dispatch(alumnCohortGLobal(filter(students,cohort)))
     setRenderStudents(filter(students, cohort))  
+    dispatch(alumnCohortGLobal(filter(students,cohort)))
 
   }, [])   
 

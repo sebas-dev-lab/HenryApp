@@ -3,6 +3,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 import {filterCohort} from '../../../redux/actions/cohortActions';
+import {Link} from 'react-router-dom'
 
 
 export default function AlumnosXCohorte ({cohortFilter}) {
@@ -39,6 +40,7 @@ export default function AlumnosXCohorte ({cohortFilter}) {
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid rows={cohorte[0] && stdId(cohorte) || []} columns={columns} pageSize={5} />
       </div>
+      <button> <Link to="/test"> ir a grupos</Link> </button>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -41,18 +41,29 @@ export default function TransferList(props) {
   const dispatch = useDispatch();
   const { nameRow, users } = props;
   const classes = useStyles();
+  const alumnos = useSelector(store=>store.cohort.cohort)
 
 
 
 
-  const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([]);
-  const [right, setRight] = React.useState([]);
+
+  const [checked, setChecked] = useState([]);
+  const [left, setLeft] = useState([]);
+  const [right, setRight] = useState([]);
+  const [nAlum, setNAlum] =useState([]) 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
+  const tranducirAlumno= async()=>{
+    return alumnos.map(alum=>{return {name:alum.name,
+    code:alum.code}})
+  }
+
+
   useEffect(() => {
-    setLeft([]);
+  tranducirAlumno().then((res)=>{
+    console.log(res)
+    setLeft(res)})
   }, []);
 
   const handleToggle = (value) => () => {
@@ -90,7 +101,7 @@ export default function TransferList(props) {
 
 
 
-
+//aca abajo es donde tiene que venir el codigo para agregar a grupo 
 
 
   const agregarACohorte = (nameCode) => {
@@ -110,18 +121,18 @@ export default function TransferList(props) {
       <List dense component="div" role="list">
         {items.length > 0 &&
           items.map((value) => {
-            const labelId = `transfer-list-item-${value}-label`;
+            const labelId = `transfer-list-item-${value.code}-label`;
 
             return (
               <ListItem
-                key={value}
+                key={value.code}
                 role="listitem"
                 button
-                onClick={handleToggle(value)}
+                onClick={handleToggle(value.code)}
               >
                 <ListItemIcon>
                   <Checkbox
-                    checked={checked.indexOf(value) !== -1}
+                    checked={checked.indexOf(value.code) !== -1}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": labelId }}
@@ -164,7 +175,7 @@ export default function TransferList(props) {
             size="small"
             className={classes.button}
             onClick={handleCheckedRight}
-            disabled={leftChecked.length === 0}
+            
             aria-label="move selected right"
           >
             &gt;
@@ -184,7 +195,7 @@ export default function TransferList(props) {
             size="small"
             className={classes.button}
             onClick={handleAllLeft}
-            disabled={right.length === 0}
+            
             aria-label="move all left"
           >
             ≪
