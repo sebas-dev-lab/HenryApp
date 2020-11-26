@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch } from "react-redux";
 import { postCalendar } from "../../../redux/actions/calendarActions";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -31,6 +33,7 @@ export default function DateAndTimePickers() {
   const [endFieldValue, setEndFieldValue] = useState('');
   const classes = useStyles();
   const dispatch = useDispatch();
+  
   
 
   function handleDateFieldChange(e) {
@@ -79,9 +82,21 @@ function handleEndDateFieldChange(e) {
           endHour:tercero[0],
           endMinute:tercero[1],
           allDay:false
-          }
-        console.log('que evento???', event)
+          }       
         dispatch(postCalendar(event));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Evento Creado!`,
+          showConfirmButton: true         
+        })
+        .then(()=>{
+          setListener(false)
+          setTextFieldValue('')
+          setDateFieldValue('')
+          setEndFieldValue('')
+        })
+        
       }
       
     }, [handleSubmit]);
@@ -127,6 +142,17 @@ function handleEndDateFieldChange(e) {
         onChange={handleTitleFieldChange} />
     </form>
     <button onClick={handleSubmit}>Submit</button>
+
+   <div><br></br></div>
+   
+    <div>
+      <div className="boton_link">
+          <Link className="link" to="/calendario">
+            <button >Ver Calendario</button>
+            </Link>
+            </div>
+      </div>
+
     </div>
   );
 } //
