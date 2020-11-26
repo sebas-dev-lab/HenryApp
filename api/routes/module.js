@@ -56,6 +56,7 @@ router.get("/:nombre", async (req, res) => {
 
 router.put("/asignate", (req, res) => {
     var { _id, students } = req.body;
+    if (_id === "") { return }
     students.forEach(e => {
         User.findOneAndUpdate({ code: e.code }, { module: _id })
             .then(res => {

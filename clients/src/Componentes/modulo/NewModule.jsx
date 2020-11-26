@@ -14,6 +14,7 @@ import Tabla2 from "./Tabla2.jsx";
 import Chip from "./Chip.jsx";
 import "./NewModule.css";
 import Footer from "../Footer";
+import Clases from "../../Componentes/Instructor/Clases/clases"
 
 const useStyles = makeStyles({
   root: {
@@ -38,6 +39,7 @@ export default function NewModule() {
   const [nombre, setNombre] = useState("");
   const [module, setModule] = useState("");
   const [create, setCreate] = useState(false);
+  const [clases, setClases] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
@@ -58,27 +60,22 @@ export default function NewModule() {
       });
   }, []);
 
-  useEffect(() => {}, [students2, cohort]);
+  useEffect(() => { }, [students2, cohort]);
 
   useEffect(() => {
-    Axios.put("http://localhost:3001/module/asignate", {
-      _id: module,
-      students: selectedStudents,
-    })
-      .then((data) => {
-        console.log(data);
-      })
+    Axios.get(`http://localhost:3001/module/${nombre}`)
+      .then((res) => { setModule(res.data.id) })
       .catch((err) => {
         console.log(err.message);
       });
-  }, [module]);
+  }, [create]);
 
   useEffect(() => {
     Axios.put("http://localhost:3001/module/asignate", {
       _id: module,
       students: selectedStudents,
     })
-      .then((data) => {})
+      .then((data) => { })
       .catch((err) => {
         console.log(err.message);
       });
@@ -88,8 +85,10 @@ export default function NewModule() {
     var newarr = [{}];
     console.log(arr);
     arr.map((a) => {
-      if (a.cohorte !== null && a.cohorte.name === coho.name) {
-        newarr.push(a);
+      if (a.cohorte !== undefined) {
+        if (a.cohorte.name === coho.name) {
+          newarr.push(a);
+        }
       }
     });
     return newarr;
@@ -120,12 +119,23 @@ export default function NewModule() {
   }
   function handleSend() {
     let arr = [];
+    let cla = [];
     recursos.map((e) => {
       if (e.label) {
         arr.push(e.label);
       }
     });
-
+    clases.map((e) => {
+      if (e.label) {
+        cla.push(e.label);
+      }
+    });
+    console.log(cla)
+    Axios.post("http://localhost:3001/clases/create", { link: cla, cohorte: cohort._id }).then((res) => {
+      console.log(res.data)
+    }).catch(err => {
+      console.log(err.message)
+    })
     Axios.post("http://localhost:3001/module/create", {
       name: nombre,
       students: selectedStudents,
@@ -146,6 +156,10 @@ export default function NewModule() {
       .catch((err) => {
         console.log(err.message);
       });
+  }
+
+  function handleClases(arr) {
+    setClases(arr);
   }
 
   return (
@@ -174,8 +188,8 @@ export default function NewModule() {
                   return <MenuItem value={c}>{c.name}</MenuItem>;
                 })
               ) : (
-                <p>no hay cohortes cargados</p>
-              )}
+                  <p>no hay cohortes cargados</p>
+                )}
             </Select>
             <FormHelperText>
               Seleccione un cohorte para el modulo
@@ -197,10 +211,12 @@ export default function NewModule() {
             Crear
           </Button>
         </form>
+        <Clases recursos={handleClases} />
         <Chip recursos={handleRecursos} />
+
         <Tabla2 students={students2} selected={handleSelectedStudent} />
       </Container>
-      <Footer />
+
     </div>
   );
 }

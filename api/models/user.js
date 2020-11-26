@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   dni: {
     type: Number,
     //required: true,
-    unique: true,
+    // unique: false,
   },
   isPM: {
     type: Boolean,

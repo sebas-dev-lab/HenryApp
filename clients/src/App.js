@@ -8,6 +8,7 @@ import Login from "./Componentes/login/Login2.jsx";
 // import Email from "./Componentes/email/Email";
 import Student from "./Componentes/Student/Student";
 import Admin from "./Componentes/Admin/Admin";
+import Instructor from "./Componentes/Instructor/index.jsx";
 import Perfil from "./Componentes/PerfilUser";
 import Calendario from "./Componentes/Student/Calendar";
 import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
@@ -18,6 +19,8 @@ import Pair from "./Componentes/pairprogramming/Pair";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
+import ClasesRender from "./Componentes/Instructor/ClasesRender";
+
 
 function App() {
   return (
@@ -38,15 +41,17 @@ function App() {
           path="/calendario"
           component={Calendario}
         />
+        <ProtectedStudentRoute exact path="/claseslink" component={ClasesRender} />
         <ProtectedStudentRoute exact path="/clases" component={Modulo} />
-        {/*========= Instructor Routes ======== */}
+        {/* ========= Instructor Routes ======== */}
         {/*TODO falta componente instructor*/}
-        <ProtectedInstructorRoute path="/instructor" exact />{" "}
+        <ProtectedInstructorRoute exact path="/instructor" component={Instructor} />{" "}
         <ProtectedInstructorRoute exact path="/modulo" component={NewModule} />
         <ProtectedInstructorRoute
           path="/instructor/perfil"
           component={Perfil}
         />
+
         {/*========== Admin Routes ========= */}
         <ProtectedAdminRoute exact path="/admin" component={Admin} />
         <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
