@@ -12,6 +12,7 @@ const calendarSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+
   start: {
     type: String, 
     required: true
@@ -19,6 +20,47 @@ const calendarSchema = new mongoose.Schema({
   end: {
     type: String,
     required:true
+
+  year: {
+    type: Number, 
+    required: true
+  },
+  month: {
+    type: Number, 
+    required: true
+  },
+  day: {
+    type: Number, 
+    required: true
+  },
+  hour: {
+    type: Number, 
+    required: true
+  },
+  minute: {
+    type: Number, 
+    required: true
+  },
+  endYear: {
+    type: Number, 
+    required: true
+  },
+  endMonth: {
+    type: Number, 
+    required: true
+  },
+  endDay: {
+    type: Number, 
+    required: true
+  },
+  endHour: {
+    type: Number, 
+    required: true
+  },
+  endMinute: {
+    type: Number, 
+    required: true
+
   },
   allDay: {
       type: Boolean,

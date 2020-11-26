@@ -1,0 +1,8 @@
+.titulo{
+    margin-top: 20px;
+}
+.form__newmodule{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

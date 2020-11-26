@@ -13,7 +13,15 @@ import Admin from "./Componentes/Admin/Admin";
 import Bienvenida from "./Componentes/Bienvenida";
 import Footer from "./Componentes/Footer";
 import Perfil from "./Componentes/PerfilUser";
+
 import Calendario from "./Componentes/Student/Calendar"
+
+import Calendario from "./Componentes/Student/Calendar";
+import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
+import Modulo from "./Componentes/modulo/Modulo";
+import CrudModulo from "./Componentes/modulo/CrudModulo";
+import NewModule from "./Componentes/modulo/NewModule";
+
 
 function App() {
   return (
@@ -35,9 +43,22 @@ function App() {
 
         {/* CALENDARIO */}
         <Route path="/calendario" exact>
+
           <Calendario/>
         </Route>
         {/* CALENDARIO */}
+
+
+          <Calendario />
+        </Route>
+        {/* CALENDARIO */}
+
+        {/* Calendario Admin */}
+        <Route path="/calendarioadmin">
+          <Calenadmin />
+        </Route>
+        {/* Calendario Admin  */}
+
 
         {/* ALUMNOS */}
         <Route path="/alumnos" exact>
@@ -46,23 +67,32 @@ function App() {
           <Student />
         </Route>
         {/* ALUMNOS */}
-
+        {/* Clases */}
+        <Route path="/clases" exact>
+          <Navbar></Navbar>
+          <Modulo />
+          <Footer></Footer>
+        </Route>
+        {/* Clases */}
         {/* INSTRUCTOR */}
         <Route path="/instructor" exact>
           <Navbar></Navbar>
         </Route>
         {/* INSTRUCTOR */}
+        {/* MODULO */}
+        <Route path="/modulo" exact>
+          <Navbar></Navbar>
+          <NewModule />
+          <Footer></Footer>
+        </Route>
+        {/* MODULO */}
 
         {/* ADMIN */}
         <Route exact path="/admin">
           <Navbar></Navbar>
           <Admin />
-        </Route>       
-        {/* ADMIN */}       
-
-        {/* alumn crud*/}
-        
-        {/* alumn crud*/}
+        </Route>
+        {/* ADMIN */}
 
         {/* REGISTRO */}
         <Route path="/registrarse">
@@ -70,7 +100,7 @@ function App() {
           <Registro />
           <Footer></Footer>
         </Route>
-        {/* REGISTRO */}        
+        {/* REGISTRO */}
 
         {/* PERFIL */}
         <Route path="/perfil">
