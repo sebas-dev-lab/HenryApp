@@ -60,7 +60,7 @@ const Student = () => {
                 <div>
                   <h2>Acceso a clase</h2>
                   <div className="boton_link">
-                    <Link className="link">Ingresar</Link>
+                    <Link className="link" to="/claseslink">Ingresar</Link>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ const Student = () => {
                 <div>
                   <h2>Homeworks</h2>
                   <div className="boton_link">
-                    <Link className="link">Ingresar</Link>
+                    <Link className="link" to="https://github.com/">Ingresar</Link>
                   </div>
                 </div>
               </div>

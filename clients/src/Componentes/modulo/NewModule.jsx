@@ -63,6 +63,14 @@ export default function NewModule() {
   useEffect(() => { }, [students2, cohort]);
 
   useEffect(() => {
+    Axios.get(`http://localhost:3001/module/${nombre}`)
+      .then((res) => { setModule(res.data.id) })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [create]);
+
+  useEffect(() => {
     Axios.put("http://localhost:3001/module/asignate", {
       _id: module,
       students: selectedStudents,
@@ -77,8 +85,10 @@ export default function NewModule() {
     var newarr = [{}];
     console.log(arr);
     arr.map((a) => {
-      if (a.cohorte !== null && a.cohorte.name === coho.name) {
-        newarr.push(a);
+      if (a.cohorte !== undefined) {
+        if (a.cohorte.name === coho.name) {
+          newarr.push(a);
+        }
       }
     });
     return newarr;
@@ -120,6 +130,7 @@ export default function NewModule() {
         cla.push(e.label);
       }
     });
+    console.log(cla)
     Axios.post("http://localhost:3001/clases/create", { link: cla, cohorte: cohort._id }).then((res) => {
       console.log(res.data)
     }).catch(err => {

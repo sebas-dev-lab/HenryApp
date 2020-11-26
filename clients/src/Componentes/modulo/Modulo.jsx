@@ -9,24 +9,26 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 export default function Modulo() {
-  var id = useSelector((store) => store.auth.user.user.module);
+  var id = useSelector((store) => store.auth.user.module);
   const { user } = useSelector((state) => state.auth);
   const [means, setMeans] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    console.log(id);
+
     Axios.get(`http://localhost:3001/module/means/${id}`)
       .then((res) => {
+        console.log(res.data.means)
         setMeans(res.data.means);
         console.log(res.data.means);
       })
       .catch((err) => {
         console.log(err.message);
       });
+
   }, []);
 
-  useEffect(() => {}, [means]);
+  useEffect(() => { }, [means]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

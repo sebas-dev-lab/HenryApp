@@ -19,6 +19,7 @@ import Pair from "./Componentes/pairprogramming/Pair";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
+import ClasesRender from "./Componentes/Instructor/ClasesRender";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           path="/calendario"
           component={Calendario}
         />
+        <ProtectedStudentRoute exact path="/claseslink" component={ClasesRender} />
         <ProtectedStudentRoute exact path="/clases" component={Modulo} />
         {/* ========= Instructor Routes ======== */}
         {/*TODO falta componente instructor*/}
@@ -48,7 +50,7 @@ function App() {
         <ProtectedInstructorRoute
           path="/instructor/perfil"
           component={Perfil}
-        /> 
+        />
 
         {/*========== Admin Routes ========= */}
         <ProtectedAdminRoute exact path="/admin" component={Admin} />

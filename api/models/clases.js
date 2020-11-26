@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const clasesSchema = new mongoose.Schema({
     link: [{
         type: String,
-        unique: true,
+
     }],
     cohorte: {
         type: Schema.Types.ObjectId,
