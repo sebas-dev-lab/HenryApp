@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   dni: {
     type: Number,
     //required: true,
+    default: 0,
     unique: true,
   },
   isPM: {
@@ -86,6 +87,12 @@ userSchema.methods.matchPassword = async function (password) {
 userSchema.plugin(autoIncrement.plugin, {
   model: "User",
   field: "code",
+  startAt: 1,
+  incrementBy: 1,
+});
+userSchema.plugin(autoIncrement.plugin, {
+  model: "User",
+  field: "dni",
   startAt: 1,
   incrementBy: 1,
 });
