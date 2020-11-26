@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 import Toast from "../../Componentes/alerts/toast";
 import Dialog from "../../Componentes/alerts/dialog";
+import { getStudent } from './studentActions';
 
 const url = "http://localhost:3001";
 
@@ -106,6 +107,7 @@ export const update_Cohort = (code, cohort) => (dispatch) => {
   return axios
     .put(`${url}/admin/cohort/${code}/${cohort}`)
     .then((res) => {
+      dispatch(getStudent(code));
       dispatch({
         type: actionTypes.UPDATE_COHORT_BY_CODE,
         update: res.data,
@@ -120,6 +122,7 @@ export const updateGroup = (code, group) => (dispatch) => {
   return axios
     .put(`${url}/admin/group/${code}/${group}`)
     .then((res) => {
+      dispatch(getStudent(code));
       dispatch({
         type: actionTypes.UPDATE_GROUP_BY_CODE,
         code: code, //group

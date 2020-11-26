@@ -39,7 +39,6 @@ function Crud(props) {
   const showProfile = (data) => {
     setStudent(data);
     setOpenModal(true);
-    dispatch(getStudent(data.code));
   };
 
   const toggle = () => {
