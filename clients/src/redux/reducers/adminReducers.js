@@ -8,7 +8,6 @@ const initialState = {
 };
 
 const adminReducers = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.POST_USER_ADMIN:
       return {
@@ -36,7 +35,6 @@ const adminReducers = (state = initialState, action) => {
         message: action.message,
       };
     case actionTypes.UPDATE_COHORT_BY_CODE:
-      console.log(action)
       return {
         ...state,
         allUsers: state.allUsers.map((user) => {

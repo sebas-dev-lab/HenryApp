@@ -11,6 +11,7 @@ import { filterCohort } from "../../../redux/actions/cohortActions";
 import { getStudent } from "../../../redux/actions/studentActions";
 import PerfilUser from "./fichaAlumno";
 import Button from '@material-ui/core/Button';
+import FichaAlumno from "./fichaAlumno";
 
 import s from "../../../styles/alumno.module.css";
 
@@ -63,7 +64,6 @@ function Crud(props) {
   const showProfile = (data) => {
     setStudent(data);
     setOpenModal(true);
-    dispatch(getStudent(data.code));
   };
 
   const toggle = () => {
@@ -106,7 +106,7 @@ function Crud(props) {
         <Modal isOpen={openModal} toggle={toggle}>
           <div>
             <div>
-              {student && <PerfilUser userData={student} toggle={toggle} />}
+              {student && <FichaAlumno userData={student} toggle={toggle} />}
             </div>
           </div>
         </Modal>

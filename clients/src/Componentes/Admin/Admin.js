@@ -32,6 +32,7 @@ import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import Calenadmin from './calenadmin/calenadmin'
 import Module from "../modulo/NewModule";
+import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte"
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -151,13 +152,12 @@ export default function AdminPanel({ user }) {
   };
 
   const showStudentsByCohort = (cohorte) => {
-    setActiveTab("usuarios");
+    setActiveTab("usuariosXCohorte");
     setCohortFilter(cohorte);
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   useEffect(() => {
-    //alert("hola");
   }, [cohortFilter]);
 
   return (
@@ -257,6 +257,7 @@ export default function AdminPanel({ user }) {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
+            {activeTab === "usuariosXCohorte" && <AlumnosXCohorte cohort={cohortFilter} />}            
             {activeTab === "cohortes" && (
               <Cohortes showStudents={showStudentsByCohort} />
             )}

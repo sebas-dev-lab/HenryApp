@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const studentReducers = (state = initialState, action) => {
-  console.log(action, "****action*****")
   switch (action.type) {
     case actionTypes.POST_STUDENT:
       return {
@@ -15,8 +14,6 @@ const studentReducers = (state = initialState, action) => {
         allStudent: state.allStudents.concat(action.newUser),
       };
     case actionTypes.GET_ALL_STUDENTS:
-      console.log(action);
-
       return {
         ...state,
         allStudents: action.allStudents,
