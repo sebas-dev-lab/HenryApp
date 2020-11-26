@@ -38,23 +38,9 @@ import Module from "../modulo/NewModule";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte";
-// import { logout } from "../../redux/actions/authActions";
-// import { useDispatch } from "react-redux";
+
 import { useHistory } from "react-router-dom";
 import { filterCohort } from "../../redux/actions/cohortActions";
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 const drawerWidth = 240;
 
@@ -137,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminPanel({ user }) {
+export default function Instructor({ user }) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("usuarios");
@@ -237,6 +223,7 @@ export default function AdminPanel({ user }) {
           <Container maxWidth="lg" className={classes.container}>
             {activeTab === "usuarios" && (
               <div>
+                <h1>Todos</h1>
                 <Alumnos cohort={cohortFilter} />
               </div>
             )}
