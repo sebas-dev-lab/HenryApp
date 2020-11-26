@@ -59,7 +59,7 @@ export default function ChipsArray(props) {
                     <TextField id="videos" label="Videos" />
                     <FormHelperText>ingrese solo el ID de Vimeo</FormHelperText>
                 </div>
-                <Button type="submit">agregar</Button>
+                <Button type="submit" className="botonAgregar">agregar</Button>
             </form>
             <div>
                 <Paper component="ul" className={classes.root}>

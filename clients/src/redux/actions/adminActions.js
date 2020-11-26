@@ -85,17 +85,27 @@ export const getAllUsers = () => (dispatch) => {
 // };
 
 /*===== Delete user by code (admin, instructor o admin)===== */
-export const deleteStudent = (code) => (dispatch) => {
-  const data = "usuario";
-  Dialog(data).then((res) => {
+export const deleteStudent = (code, type) => (dispatch) => {
+  Dialog().then(async(res) => {
     if (res.isConfirmed) {
-      axios
+      await axios
         .delete(`${url}/admin/${code}`)
         .then((res) => {
-          dispatch({
-            type: actionTypes.DELETE_USER,
-            message: `Delete user with code: ${code}`,
-          });
+          if(type === "instructor"){
+            dispatch({
+              type: actionTypes.DELETE_INSTRUCTOR,
+              message: `Delete user with code: ${code}`,
+              code: code
+            });
+          }
+          else if(type === "student"){
+            dispatch({
+              type: actionTypes.DELETE_USER,
+              message: `Delete user with code: ${code}`,
+              code: code
+            });
+          }
+          
         })
         .catch((err) => console.log(err));
     }

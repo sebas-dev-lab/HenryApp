@@ -9,7 +9,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 export default function Modulo() {
-  var id = useSelector((store) => store.auth.user.user.module);
+  var id = useSelector((store) => store.auth.user.module);
   const { user } = useSelector((state) => state.auth);
   const [means, setMeans] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,5 +74,5 @@ export default function Modulo() {
 
       <Footer />
     </div>
-  );
+  ); 
 }

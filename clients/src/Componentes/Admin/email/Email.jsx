@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2),
-    top: "50%",
-    left: "50px",
+    top: "30%",
+    left: "40%",
     transform: "translate (-50%, -50%)",
   },
 }));
@@ -80,32 +80,32 @@ export default function Emails() {
     });
   };
 
-  // const deleteEm = (email) => {
-  //   dispatch(deleteEmail(email));
-  //   Swal.fire({
-  //     position: "center",
-  //     icon: "success",
-  //     title: `¡Email Eliminado!`,
-  //     showConfirmButton: false,
-  //     timer: 2000,
-  //   });
-  // };
+  const deleteEm = (email) => {
+    dispatch(deleteEmail(email));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡Email Eliminado!`,
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  };
   //Funcion para abrir y cerrar el modal
   const AbrirCerrar = () => {
     setModalInsertar(!modalInsertar);
   };
 
   //Funcion para abrir y cerrar el modal al Editar
-  // const Editar = () => {
-  //   setModalEditar(!modalEditar);
-  //   Swal.fire({
-  //     position: "center",
-  //     icon: "success",
-  //     title: `¡El email se ha editado!`,
-  //     showConfirmButton: false,
-  //     timer: 2000,
-  //   });
-  // };
+  const Editar = () => {
+    setModalEditar(!modalEditar);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡El email se ha editado!`,
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  };
 
   const bodyInsertar = (
     <div className={styles.modal}>
@@ -135,43 +135,62 @@ export default function Emails() {
   );
 
   return (
+    <div className={style.cont_prinEmail}>
     <div className={style.cont_email}>
-      <h1>Enviar invitación</h1>
-      <div className={style.emails}>
-        <br />
-        <AddCircle
-          className={style.add}
-          fontSize="large"
-          onClick={AbrirCerrar}
-        />
-        <br />
-        <br />
-        <TableContainer>
-          <Table className={style.table} aria-label="customized table">
-            <TableHead className={style.contenedor}>
-              <TableRow>
-                <TableCell align="left">
-                  <h3>
-                    <b>Email</b>
-                  </h3>
+      <h1>Agregar Nuevo Correo</h1>
+    <div className={style.emails}>
+      <TableContainer >
+        <Table className={style.table} >
+          <TableHead >
+            <TableRow className={style.titleEmail}>
+              <TableCell align="center" padding="none">
+                <h3 >
+                  <b>Email</b>
+                </h3>
+              </TableCell>
+              <TableCell align="center" padding="none">
+                <h3>
+                  <b>Acciones</b>
+                </h3>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {emails.map((newEmail, idx) => (
+              <TableRow key={idx}>
+                <TableCell component="th" scope="row" padding="none" align="center" className={style.emailNew}>
+                  {newEmail.email}
+                </TableCell>
+                <TableCell component="th" scope="row" align="right" padding="none" className={style.acciones}>
+                  <Button onClick={Editar} className={style.botonEdit}>
+                    <Edit className={style.editar} />
+                  </Button>
+                  <Modal open={modalEditar}>
+                    <BodyEditar
+                      email={newEmail.email}
+                      modalEditar={modalEditar}
+                      setModalEditar={setModalEditar}
+                      styles={styles}
+                    />
+                  </Modal>
+                  &nbsp; &nbsp; &nbsp;
+                  <Button onClick={() => deleteEm(newEmail.email)}>
+                    <Delete className={style.delete} />
+                  </Button>
                 </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {emails.map((newEmail, idx) => (
-                <TableRow key={idx}>
-                  <TableCell component="th" scope="row">
-                    {newEmail.email}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Modal open={modalInsertar} onClose={AbrirCerrar}>
-          {bodyInsertar}
-        </Modal>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Modal open={modalInsertar} onClose={AbrirCerrar}>
+        {bodyInsertar}
+      </Modal>
+      <div className={style.addEmail}>
+      <AddCircle className={style.add} fontSize="large" onClick={AbrirCerrar} />
       </div>
+    </div>
+    </div>
     </div>
   );
 }

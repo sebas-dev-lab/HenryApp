@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import GoogleIcon from "../utils/google.ico";
 import Footer from "../Footer";
+import Bienvenida from "../Bienvenida";
 import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
@@ -40,6 +41,8 @@ export default function Login() {
   }, [userLogin]);
 
   return (
+    <>
+    <Bienvenida />
     <div className="align">
       <div className="grid">
         <form className="form login">
@@ -98,5 +101,7 @@ export default function Login() {
         </form>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

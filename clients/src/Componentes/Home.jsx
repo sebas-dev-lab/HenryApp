@@ -8,6 +8,7 @@ import {
   InputLabel,
   Select,
 } from "@material-ui/core";
+import Footer from "../Componentes/Footer";
 import logo from "./utils/LogoHenry.png";
 import home from "./utils/Home3.jpg";
 import { Link, useHistory } from "react-router-dom";
@@ -125,7 +126,9 @@ const Home = () => {
           <img src={home} alt="" />
         </div>
       </div>
+      <Footer />
     </div>
+    
   );
 };
 

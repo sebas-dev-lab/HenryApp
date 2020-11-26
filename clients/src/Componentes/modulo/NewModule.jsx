@@ -154,7 +154,7 @@ export default function NewModule() {
         <div className="titulo">
           <h3>Crear nuevo modulo</h3>
         </div>
-
+        <div className="contededorModulo">
         <form className="form__newmodule" noValidate autoComplete="off">
           <TextField id="standard-basic" label="Nombre" onChange={handleName} />
           <FormControl className="form__cohorts">
@@ -199,8 +199,8 @@ export default function NewModule() {
         </form>
         <Chip recursos={handleRecursos} />
         <Tabla2 students={students2} selected={handleSelectedStudent} />
+        </div>
       </Container>
-      <Footer />
     </div>
   );
 }
