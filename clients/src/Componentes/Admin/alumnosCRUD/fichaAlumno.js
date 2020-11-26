@@ -4,49 +4,20 @@ import s from "../../../styles/fichaAlumno.module.css";
 import { Typography, Breadcrumbs, TextField, Button } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-
 import { useSelector, useDispatch } from "react-redux";
 import fotoPerfil from "../../utils/fotoPerfil.jpg";
-
 import { Link } from "react-router-dom";
-
-import Footer from "../../Footer";
 import { getAllCohort } from "../../../redux/actions/cohortActions";
 import { getAllGroups } from "../../../redux/actions/groupActions";
 import { getStudent } from "../../../redux/actions/studentActions";
 
 const Perfil = ({ userData, toggle }) => {
+	
 	const dispatch = useDispatch();
-
 	const cohorts = useSelector((store) => store.cohort.allCohort);
 	const groups = useSelector((store) => store.group.allGroups);
 	const user = useSelector((store) => store.student.student);
-  console.log('user******', user);
 	
-	const [edit, setEdit] = useState(false);
-	const [data, setData] = useState({
-		name: "",
-		lastName: "",
-		dni: null,
-		city: "",
-		googleId: "",
-		githubId: "",
-	});
-
-	const Editar = () => {
-		setEdit(!edit);
-	};
-
-	const update = () => {
-		// dispatch(editUserData(user.code, data));
-		Editar();
-	};
-
-	const handlerChange = (e) => {
-		e.preventDefault();
-		setData({ ...data, [e.target.name]: e.target.value });
-	};
-
 	useEffect(() => {
     dispatch(getAllCohort());
 		dispatch(getAllGroups());
@@ -77,12 +48,13 @@ const Perfil = ({ userData, toggle }) => {
 								</div>
 								<div className={s.form}>
 									<h1>Datos Personales</h1>
-									<div>
+									{ user &&
+										<div>
 										<TextField
 											disabled
 											id="standard-disabled"
 											label="Nombre"
-											defaultValue={user.name}
+											value={user.name}
 											style={{ margin: 8, width: "90%" }}
 											fullWidth
 											margin="normal"
@@ -94,7 +66,7 @@ const Perfil = ({ userData, toggle }) => {
 											disabled
 											id="standard-disabled"
 											label="Apellido"
-											defaultValue={user.lastName}
+											value={user.lastName}
 											style={{ margin: 8, width: "90%" }}
 											fullWidth
 											margin="normal"
@@ -106,7 +78,7 @@ const Perfil = ({ userData, toggle }) => {
 											disabled
 											id="standard-disabled"
 											label="DNI"
-											defaultValue={user.dni}
+											value={user.dni}
 											style={{ margin: 8, width: "90%" }}
 											fullWidth
 											margin="normal"
@@ -125,7 +97,7 @@ const Perfil = ({ userData, toggle }) => {
 												shrink: true,
 											}}
 										/>
-									</div>
+									</div>}
 								</div>
 							</div>
 							<div className={s.info2}>
@@ -137,7 +109,7 @@ const Perfil = ({ userData, toggle }) => {
 												disabled
 												id="standard-disabled"
 												label="Cuenta Google"
-												defaultValue={user.email}
+												value={user.email}
 												style={{ margin: 8, width: "90%" }}
 												fullWidth
 												margin="normal"

@@ -48,16 +48,18 @@ export const getAllStudents = () => async (dispatch) => {
 };
 
 /*===== Get students by code ===== */
-export const getStudent = (code) => (dispatch) => {
-  axios
-    .get(`${url}/student/${code}`)
-    .then((res) => {   
-      dispatch({
-        type: actionTypes.GET_ONE_USER,
-        student: res.data.user,
-      });
-    })
-    .catch((err) => console.log(err));
+export const getStudent = (code) => async(dispatch) => {
+
+  try{
+    const {data} = await axios.get(`${url}/student/${code}`)
+    dispatch({
+          type: actionTypes.GET_ONE_USER,
+          student: data.user,
+    });     
+  } catch(err) {
+    console.log(err);
+    
+  }
 };
 
 /*===== Edit student personal data ===== */

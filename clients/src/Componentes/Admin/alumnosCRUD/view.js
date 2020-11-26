@@ -6,6 +6,7 @@ import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
 import {filterCohort} from '../../../redux/actions/cohortActions';
 import {Modal} from 'reactstrap';
+import { getStudent } from "../../../redux/actions/studentActions";
 
 import PerfilUser from './fichaAlumno'
 import './view.css';
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 const modalClassname = s.modal_gral
 
 function Crud(props) {
+
   const { rows, columns, cohort } = props;
 
   const students = useSelector(store => store.student.allStudents)
@@ -30,7 +32,7 @@ function Crud(props) {
 
   const stdId = (array) => {
     array.forEach(function (element, i) {
-      element.id = i + 1;
+      element.id = i;
       const cohort = element.cohorte && element.cohorte.name
       element.cohorte = cohort;
     });
@@ -40,6 +42,7 @@ function Crud(props) {
   const showProfile = (data) => {
     setStudent(data)    
     setOpenModal(true)  
+		dispatch(getStudent(data.code));
   }
 
   const toggle = () => {
