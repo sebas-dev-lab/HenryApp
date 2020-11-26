@@ -18,6 +18,11 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
+import GrupoPP from "./Componentes/Admin/pairPrograming/logic"
+import Grupos from "./Componentes/Admin/gruposCRUD/logic"
+
+
+
 
 function App() {
   return (
@@ -96,6 +101,17 @@ function App() {
           <Bienvenida></Bienvenida>
           <Perfil></Perfil>
           <Footer></Footer>
+        </Route>
+
+
+        <Route path="/test">
+          <Grupos/>
+        </Route>
+        
+
+
+        <Route path="/test2">
+          <GrupoPP/>
         </Route>
         {/* PERFIL  */}
       </Switch>

@@ -10,6 +10,7 @@ import calendarReducers from "./calendarReducers";
 import cohortReducers from "./cohortReducers";
 import groupReducers from "./groupReducers";
 import pair_progReducers from "./pair-progReducers";
+import alumnsCohortReducer from './alumnCohortReducer'
 /*==== Eamil ===== */
 import emailReducers from "./emailReducers";
 /* ==== Redux ==== */
@@ -25,6 +26,7 @@ const mainReducers = combineReducers({
   cohort: cohortReducers,
   group: groupReducers,
   pair_prog: pair_progReducers,
+  alumnCohort: alumnsCohortReducer
 });
 
 export default mainReducers;

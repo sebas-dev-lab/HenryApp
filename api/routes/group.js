@@ -6,12 +6,7 @@ const User = require("../models/user");
 const Cohort = require("../models/cohort");
 
 router.get("/all", (req, res) => {
-	Group.find(function (err, groups) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-	})
+	Group.find()
 		.populate("pms")
 		.populate("students")
 		.populate("cohort")
@@ -45,7 +40,7 @@ router.get("/:name", (req, res) => {
 router.post("/create", (req, res) => {
 	const newGroup = req.body;
 
-	Group.create(newGroup, function (err, newGroup) {
+	Group.create({name:newGroup.newGroup}, function (err, newGroup) {
 		if (err) {
 			console.log(err);
 			return;

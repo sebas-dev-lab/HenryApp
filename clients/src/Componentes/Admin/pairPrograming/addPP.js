@@ -1,9 +1,7 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Formco from './form'
-import Button from '@material-ui/core/Button';
-
+import FormPP from './formPP'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -31,12 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal(props) {
+export default function SimpleModal() {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = useState(getModalStyle);
-  const [open, setOpen] = useState(false);
-  
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,17 +46,17 @@ export default function SimpleModal(props) {
  
 
   return (
-    <div >
-       <Button variant="contained" color="primary" onClick={handleOpen}>
-        Agregar Cohorte
-      </Button>
+    <div>
+      <button type="button" onClick={handleOpen}>
+        Nuevo pair
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-      > 
-        <Formco/>  
+      >
+        <FormPP />
       </Modal>
     </div>
   );

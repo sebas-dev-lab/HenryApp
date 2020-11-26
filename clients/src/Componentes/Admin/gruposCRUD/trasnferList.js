@@ -12,7 +12,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { update_Cohort } from "../../../redux/actions/adminActions";
 import { getAllStudents } from "../../../redux/actions/studentActions";
-import SearchAlumn from './searchAlumn'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,18 +42,19 @@ export default function TransferList(props) {
   const { nameRow, users } = props;
   const classes = useStyles();
 
+
+
+
   const [checked, setChecked] = React.useState([]);
-
   const [left, setLeft] = React.useState([]);
-
   const [right, setRight] = React.useState([]);
-
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
   useEffect(() => {
-    setLeft(users);
+    setLeft([]);
   }, []);
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -87,6 +88,11 @@ export default function TransferList(props) {
     setChecked(not(checked, rightChecked));
   };
 
+
+
+
+
+
   const agregarACohorte = (nameCode) => {
     dispatch(update_Cohort(nameCode, nameRow));
   };
@@ -97,7 +103,7 @@ export default function TransferList(props) {
     });
   };
 
-  const traerUser = () => {}; //??
+  
 
   const customList = (items) => (
     <Paper className={classes.paper}>
@@ -139,7 +145,7 @@ export default function TransferList(props) {
       className={classes.root}
       style={{ backgroundColor: "white", width: "60%", marginTop: "15%" }}
     >
-      <SearchAlumn/>
+      
       <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">

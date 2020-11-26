@@ -9,7 +9,7 @@ export const getAllGroups = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.GET_ALL_GROUP,
-        allGroups: res.data,
+        payload: res.data,
       });
     })
     .catch((err) => console.log(err));
@@ -30,7 +30,7 @@ export const getOneGroup = (name) => (dispatch) => {
 export const postGroup = (newGroup) => (dispatch) => {
   axios
     .post(`${url}/group/create`, {
-      newGroup: newGroup,
+      newGroup: newGroup
     })
     .then((res) => {
       dispatch({
