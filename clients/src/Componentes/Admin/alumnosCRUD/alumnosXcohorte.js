@@ -18,7 +18,7 @@ export default function AlumnosXCohorte({ cohortFilter }) {
     { field: "name", headerName: "Nombre", width: 130 },
     { field: "lastName", headerName: "Apellido", width: 130 },
     { field: "dni", headerName: "DNI", width: 130 },
-    { field: "email", headerName: "Email", width: 90 },
+    { field: "email", headerName: "Email", width: 200 },
     { field: "cohorte", headerName: "Cohorte", width: 90 },
   ];
 
@@ -47,10 +47,10 @@ export default function AlumnosXCohorte({ cohortFilter }) {
 
   return (
     <div>
-      <div>
-        <h1>{cohortFilter}</h1>
+      <div style={{textAlign:"center"}}>
+        <h3>Alumnos {cohortFilter}</h3>
       </div>
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: 400, width: "65%", backgroundColor: "white", margin: "auto" }}>
         <DataGrid
           rows={(cohorte[0] && stdId(cohorte)) || []}
           columns={columns}

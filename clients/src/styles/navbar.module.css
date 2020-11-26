@@ -5,6 +5,7 @@
     
 }
 .link{
+    /* background-color: red; */
     width: 50%;
     display: flex;
     color: black !important;
@@ -38,4 +39,17 @@
     align-items: center;
     font-size: 1em !important;
     font-weight: normal;
+}
+.miPerfil{
+    /* background-color: blue; */
+    width: 10%;
+}
+.logout{
+    /* background-color: brown; */
+    width: 10%;
+    color: white ;
+    font-size: 1em !important;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
 }

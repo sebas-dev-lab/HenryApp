@@ -1,7 +1,9 @@
 .form__videos{
-    margin-left: 71px;
-    margin-top: 20px;
-    margin-bottom: 30px;
     display: flex;
-    flex-direction: row;
+    margin-left: 4%;
+}
+.botonAgregar{
+    margin-left: 3% !important;
+    color: black !important;
+    font-weight: bold !important;
 }
