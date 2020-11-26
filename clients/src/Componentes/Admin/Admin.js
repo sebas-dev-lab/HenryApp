@@ -36,8 +36,6 @@ import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import Clases from "../Instructor/Clases/"
-
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">

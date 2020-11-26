@@ -34,7 +34,7 @@ import { Link } from "react-router-dom";
 import Module from "../modulo/NewModule";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import AlumnosXCohorte from "../Admin/alumnosCRUD/alumnosXcohorte";
+
 
 import { useHistory } from "react-router-dom";
 import { filterCohort } from "../../redux/actions/cohortActions";
@@ -120,7 +120,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Instructor({ user }) {
+export default function Instructor(user) {
+;
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("usuarios");
