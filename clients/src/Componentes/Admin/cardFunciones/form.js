@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import { postCohort, getAllCohort } from "../../../redux/actions/cohortActions";
 import {update_Cohort} from '../../../redux/actions/adminActions'
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicTextFields() {
+export default function BasicTextFields({ open, handleOpen }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -77,6 +78,15 @@ export default function BasicTextFields() {
       setInstructores(response)
     }) 
   
+  
+    handleOpen();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `¡El modulo se ha creado con exito!`,
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
 
 
@@ -111,12 +121,16 @@ export default function BasicTextFields() {
           onChange={handleOnchange}
         />
         <TextField
-          id="outlined-basic"
-          label="fecha de inicio"
-          variant="outlined"
-          style={{ marginBottom: "10px" }}
-          onChange={handleOnchange_2}
-        />
+        id="date"
+        label="Cohorte"
+        type="date"
+        defaultValue="2020-18-11"
+        className="date__select"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={handleOnchange_2}
+      />
       <div>
         <TextField
           id="outlined-select-currency"

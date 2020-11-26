@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Fondo from "./utils/registro.jpg";
 import { useDispatch } from "react-redux";
 import { postStudent } from "../redux/actions/studentActions";
+
 export default function Registro() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -170,6 +171,7 @@ export default function Registro() {
   async function sendData(e) {
     e.preventDefault();
     console.log(data);
+
     await dispatch(postStudent(data));
     history.push("/login");
   }
@@ -186,10 +188,10 @@ export default function Registro() {
           </div>
         </div> */}
         <div className={s.hijo2}>
-              <div className={s.cont_titleForm}>
-                <h6>Crear Usuario</h6>
-              </div>
-          <form className={s.sing_in}>              
+          <div className={s.cont_titleForm}>
+            <h6>Crear Usuario</h6>
+          </div>
+          <form className={s.sing_in}>
             <div class="form-group">
               {/* <label>Nombre</label> */}
               <input

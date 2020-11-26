@@ -6,14 +6,12 @@ import {useEffect} from 'react';
 import {getAllStudents} from '../../../redux/actions/studentActions';
 import {alumnCohortGLobal} from '../../../redux/actions/alum-cohort-action'
 import {Link} from 'react-router-dom'
-
-import {filterCohort} from '../../../redux/actions/cohortActions';
 import {Modal} from 'reactstrap';
+import { filterCohort } from "../../../redux/actions/cohortActions";
+import { getStudent } from "../../../redux/actions/studentActions";
+import PerfilUser from "./fichaAlumno";
 
-import PerfilUser from './fichaAlumno'
-import './view.css';
-
-import s from '../../../styles/alumno.module.css'
+import s from "../../../styles/alumno.module.css";
 
 const useStyles = makeStyles({
   table: {
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const modalClassname = s.modal_gral
+const modalClassname = s.modal_gral;
 
 function Crud(props) {
   const {columns, cohort } = props;
@@ -35,16 +33,16 @@ function Crud(props) {
   const[filasSeleccionadas,setFilasSeleccionadas] = useState([])
 
   const [openModal, setOpenModal] = useState(false);
-  const [student, setStudent] = useState()
+  const [student, setStudent] = useState();
 
   const stdId = (array) => {
     array.forEach(function (element, i) {
-      element.id = i + 1;
-      const cohort = element.cohorte && element.cohorte.name || null
+      element.id = i;
+      const cohort = element.cohorte && element.cohorte.name;
       element.cohorte = cohort;
     });
-    return array
-  }
+    return array;
+  };
 
 
   const check = (data)=>{
@@ -62,9 +60,10 @@ function Crud(props) {
   } 
 
   const showProfile = (data) => {
-    setOpenModal(true)
-    setStudent(data)    
-  }
+    setStudent(data);
+    setOpenModal(true);
+    dispatch(getStudent(data.code));
+  };
 
   const toggle = () => {
     setOpenModal(false)
@@ -88,27 +87,30 @@ function Crud(props) {
     <div>
     <div className={s.cont_alum}>
       <h1>Usuarios de HenryApp</h1>
-    <div style={{ height: 450, width: "73%", backgroundColor: "white", margin:"auto"}}>
-      {
-        students.length > 0 &&
-        <DataGrid rows={students && stdId(students)} 
-                  columns={columns} 
-                  pageSize={5} 
-                  onRowSelected={(item) => showProfile(item.data)}
-                  />
-      } 
-      <Modal isOpen={openModal} toggle={toggle} className="ficha">
-        <div >
+      <div
+        style={{
+          height: 450,
+          width: "73%",
+          backgroundColor: "white",
+          margin: "auto",
+        }}
+      >
+        {students.length > 0 && (
+          <DataGrid
+            rows={students && stdId(students)}
+            columns={columns}
+            pageSize={5}
+            onRowSelected={(item) => showProfile(item.data)}
+          />
+        )}
+        <Modal isOpen={openModal} toggle={toggle}>
           <div>
-            {
-              student &&
-            <PerfilUser user={student} toggle={toggle}/>
-            }
-          </div>          
-        </div>
-      </Modal>
-
-    </div>
+            <div>
+              {student && <PerfilUser userData={student} toggle={toggle} />}
+            </div>
+          </div>
+        </Modal>
+      </div>
     </div>
      <button> <Link to="/test"> ir a grupos</Link> </button>
      </div>

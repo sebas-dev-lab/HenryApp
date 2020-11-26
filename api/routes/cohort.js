@@ -41,6 +41,18 @@ router.put("/:name", (req, res) => {
 //   }
 // });
 
+router.delete("/:code", (req, res) => {
+  const { code } = req.params;
+  Cohort.deleteOne({ code: code }, function (err, deleted) {
+    if (!deleted) {
+      res.status(400).json({ msg: "error" });
+      return;
+    } else {
+      res.status(200).json({ msg: "Ok" });
+    }
+  });
+});
+
 router.post("/create", (req, res) => {
   const { name, startDate } = req.body;
 
@@ -49,25 +61,27 @@ router.post("/create", (req, res) => {
       console.log(err);
       return;
     }
-    res.status(200).json({ msg: "Ok", cohort });
+    res.status(200).json({ msg: "Ok", cohort: cohort });
   });
 });
 
-router.get("/students", (req, res)   => {
-  const {cohort} = req.query;
+router.get("/students", (req, res) => {
+  const { cohort } = req.query;
 
-  User.find({ role: "student"})
+  User.find({ role: "student" })
     .populate("cohorte")
     .populate("group")
     .populate("module")
     .then((students) => {
-      const studentsCohort = students.filter(student => student.cohorte)
-      const response = studentsCohort.filter(student => student.cohorte.name === cohort)  
+      const studentsCohort = students.filter((student) => student.cohorte);
+      const response = studentsCohort.filter(
+        (student) => student.cohorte.name === cohort
+      );
       res.status(200).send(response);
     })
     .catch((err) => {
       console.log(err);
     });
-})
+});
 
 module.exports = router;

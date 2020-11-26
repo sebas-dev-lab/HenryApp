@@ -40,6 +40,7 @@ export const PUT_COHORT = "PUT_COHORT";
 export const POST_COHORT = "POST_COHORT";
 export const GET_ONE_COHORT = "GET_ONE_COHORT";
 export const FILTER_COHORT = "FILTER_COHORT";
+export const DELETE_COHORT = "DELETE_COHORT";
 
 /*==== Email actionTypes =====*/
 export const GET_EMAIL = "GET_EMAIL";
@@ -55,9 +56,8 @@ export const GET_PAIR_BY_ID = "GET_PAIR_BY_ID";
 
 
 /* ======= Calendario ======== */
-export const CREATE_EVENT = "CREATE_EVENT"
-export const GET_ALL_EVENTS = "GET_ALL_EVENTS"
-
-
+export const CREATE_EVENT = "CREATE_EVENT";
+export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
+export const DELETE_EVENT = "DELETE_EVENT";
 /* ======= ALUMN-COHORT-GLOBAL ======== */
 export const ALUMN_COHORT_GLOBAL = "ALUMN_COHORT_GLOBAL"
