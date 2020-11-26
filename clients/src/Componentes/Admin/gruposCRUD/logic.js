@@ -11,23 +11,17 @@ const columns = [
 
 
 
-export default function DataTable({cohort}) {  
+export default function DataTable() {  
 
 const dispatch = useDispatch()
+const nombreCohorte = localStorage.getItem("cohorte")
 
-const grupos = useSelector(store=>store.group.allGroups)
-
-
-const traerGrupos = ()=>{
-  dispatch(getAllGroups())
-}
 
 
 useEffect(()=>{
-  traerGrupos()
-  console.log(grupos.group)
+  dispatch(getAllGroups())
   
 },[])
 //se van a renderizar los grupos 
-  return <View columns={columns} grupos={grupos} cohort={cohort}/>;
+  return <View columns={columns} cohort={nombreCohorte} />;
 }

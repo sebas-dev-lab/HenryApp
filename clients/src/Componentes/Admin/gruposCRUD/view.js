@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { DataGrid } from "@material-ui/data-grid";
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
-import {getAllStudents} from '../../../redux/actions/studentActions';
 import AddGrupo from './addGrupo'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,6 +13,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import axios from 'axios'
+import Borrar from './modalBorrar'
 
 const useStyles = makeStyles({
   table: {
@@ -25,52 +26,31 @@ const useStyles = makeStyles({
 
 
 
-function Crud(props) {
+function Crud({cohort}) {
 
 
-
-  const {columns,grupos} = props;
-
-  const dispatch = useDispatch(); 
-  const[alumnos,setAlumnos] = useState([])
-  const [filasSeleccionadas,setFilasSeleccionadas]=useState('')
-
+const[grup,setGrup] = useState([])
 
 const classes = useStyles();
+ 
+function traerGrupos(){
+    axios.get('http://localhost:3001/group/all').then((res)=>{
+      console.log(res.data)
+      let filtrado = res.data.groups.filter(grupe => grupe.cohort.name == cohort)
+      console.log(filtrado)
+      return filtrado
+    }).then(response=>{
+      setGrup(response)
 
-
-
-  const check = (data)=>{
-    if(data.isSelected==true){
-      setAlumnos(state => [...state,data.data.name])
-    }
-  }
-
-
-
-
-
-  const hardcode = [
-    {id:1,name:"grupo01",},
-    {id:2,name:"grupo02",},
-    {id:3,name:"grupo03",},
-    {id:4,name:"grupo04",},
-
-  ]
-
-
-
-
-
-
-  useEffect( () => {   
-   console.log(grupos)
-    
-  },[] )   
-
+    })
+}
 
   
 
+  useEffect( () => {   
+   traerGrupos()
+   
+  },[] )   
 
 
 
@@ -88,19 +68,19 @@ const classes = useStyles();
         </TableRow>
       </TableHead>
       <TableBody>
-        {hardcode.map((row) => (
-          <TableRow key={row.id}>
-            <TableCell component="th" scope="row">{row.name}</TableCell>
+        {grup.map((grupo) => (
+          <TableRow key={grupo._id}>
+            <TableCell component="th" scope="row">{grupo.name}</TableCell>
             <TableCell align="right"><Button variant="contained" color="primary">Editar</Button></TableCell>
-            <TableCell align="right"><Button variant="contained" color="primary">Borrar</Button></TableCell>
-            <TableCell align="right">{<Link to={"/test2"}>ver grupo</Link> }</TableCell>
+            <TableCell align="right"><Borrar grupo={grupo.name}/></TableCell>
+            <TableCell align="right">{<Link to={`/test2/${grupo.name}`}>ver grupo</Link> }</TableCell>
 
           </TableRow>
         ))}
       </TableBody>
     </Table>
   </TableContainer>
-    <AddGrupo/>
+    <AddGrupo cohort={cohort}/>
     </div>
     
   );

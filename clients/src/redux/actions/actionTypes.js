@@ -61,3 +61,6 @@ export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
 export const DELETE_EVENT = "DELETE_EVENT";
 /* ======= ALUMN-COHORT-GLOBAL ======== */
 export const ALUMN_COHORT_GLOBAL = "ALUMN_COHORT_GLOBAL"
+export const ALUMN_GRUPO_GLOBAL = "ALUMN_GRUPO_GLOBAL"
+
+

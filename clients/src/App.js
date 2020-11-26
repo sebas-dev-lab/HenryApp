@@ -63,7 +63,7 @@ function App() {
         
 
 
-        <Route path="/test2">
+        <Route path="/test2/:grupo">
           <GrupoPP/>
         </Route>
         

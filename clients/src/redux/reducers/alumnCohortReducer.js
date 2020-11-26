@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  alumnsCohort: []
+  alumnsCohort: [],
+  alumnsGrupo:[],
 };
 
 const alumnsCohortReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const alumnsCohortReducer = (state = initialState, action) => {
       return {
         ...state,
         alumnsCohort: action.payload,
+      };
+    case actionTypes.ALUMN_GRUPO_GLOBAL:
+      return {
+        ...state,
+        alumnsGrupo: action.payload,
       };
     default:
       return state;

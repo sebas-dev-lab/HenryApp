@@ -8,3 +8,15 @@ export const alumnCohortGLobal = (alumns) => (dispatch) => {
         payload: alumns
       })
     }
+
+
+
+export const alumnosGrupoGlobal = (alumns) => (dispatch) => {
+    
+      dispatch({
+        type: actionTypes.ALUMN_GRUPO_GLOBAL,
+        payload: alumns
+      })
+    }
+
+  

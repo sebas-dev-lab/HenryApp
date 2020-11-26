@@ -10,6 +10,7 @@ import {Modal} from 'reactstrap';
 import { filterCohort } from "../../../redux/actions/cohortActions";
 import { getStudent } from "../../../redux/actions/studentActions";
 import PerfilUser from "./fichaAlumno";
+import Button from '@material-ui/core/Button';
 
 import s from "../../../styles/alumno.module.css";
 
@@ -23,7 +24,7 @@ const modalClassname = s.modal_gral;
 
 function Crud(props) {
   const {columns, cohort } = props;
-
+  localStorage.setItem("cohorte",cohort)
   const students = useSelector(store => store.student.allStudents)
     const dispatch = useDispatch(); 
 
@@ -72,14 +73,13 @@ function Crud(props) {
   
 
 
-
-
-
   
   useEffect( () => {   
     dispatch(getAllStudents()); 
     setRenderStudents(filter(students, cohort))  
     dispatch(alumnCohortGLobal(filter(students,cohort)))
+    
+    
 
   }, [])   
 
@@ -95,9 +95,9 @@ function Crud(props) {
           margin: "auto",
         }}
       >
-        {students.length > 0 && (
+        {renderStudents.length > 0 && (
           <DataGrid
-            rows={students && stdId(students)}
+            rows={renderStudents && stdId(renderStudents)}
             columns={columns}
             pageSize={5}
             onRowSelected={(item) => showProfile(item.data)}
@@ -112,7 +112,7 @@ function Crud(props) {
         </Modal>
       </div>
     </div>
-     <button> <Link to="/test"> ir a grupos</Link> </button>
+    <Button variant="contained" color="primary"><Link to="/test" style={{textDecoration:"none", color:"white"}}> ir a grupos</Link> </Button>
      </div>
   );
 }

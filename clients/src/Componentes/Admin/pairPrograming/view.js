@@ -12,16 +12,10 @@ export default function DataTable({rows,columns}) {
 
 
 
-const traerPair=()=>{
-  axios.get ('http://localhost:3001/PP/all').then((res)=>{
-    console.log(res.data)
-  })
-}
 
 
 
 useEffect(()=>{
-traerPair()
 
 },[])
 
@@ -34,7 +28,7 @@ traerPair()
         
       </div>
       {/* le paso los datos de alumno */}
-    <AddPP />
+    <AddPP personas={rows}/>
     </div>
     );
 }

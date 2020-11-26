@@ -11,5 +11,5 @@ const columns = [
 
 
 export default function DataTable({ cohort }) {
-  return <View columns={columns} rows={rows} cohort={cohort} />;
+  return <View columns={columns} cohort={cohort} />;
 }

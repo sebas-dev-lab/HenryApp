@@ -3,17 +3,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {updateGroup} from '../../../redux/actions/adminActions'
-import {putGroup} from '../../../redux/actions/groupActions'
+import {putGroup,postGroup} from '../../../redux/actions/groupActions'
 import {useDispatch,useSelector} from 'react-redux'
 import MenuItem from '@material-ui/core/MenuItem';
 import Transfer from './trasnferList'
+import axios from 'axios'
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
       width: '25ch',
     },
   },
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function BasicTextFields() {
+export default function BasicTextFields({cohort}) {
   const classes = useStyles();
    // console.log(alumnos)
 
@@ -29,13 +29,13 @@ export default function BasicTextFields() {
     const [groupName,setGroupName] = useState('')
     const [Pm,setPm] = useState('')
     const [tode, setTode] = useState([])
-    const alumnos = useSelector(store=>store.cohort.cohort)
+    const alumnos = useSelector(store=>store.alumnCohort.alumnsCohort)
+    const elegidos = useSelector(store=>store.alumnCohort.alumnsGrupo)
+
+
 
 
     const dispatch = useDispatch()
-
-
-
 
     const handleChange = (event) => {
       setPm(event.target.value);
@@ -52,12 +52,7 @@ export default function BasicTextFields() {
    }
 
 
-   //esta funcion despacha el pm para el grupo 
-   function dispatchPmToGroup(pm){
-
-      dispatch(putGroup(pm, groupName ))
-    
- }
+  
 
  //esta funcion trae una lista de usuarios que pertenecen al cohorte // usar la logica del search de cohorte 
   function traerPosiblesPM(){
@@ -66,8 +61,45 @@ export default function BasicTextFields() {
      })
   }
 
+ //esta funcion despacha el pm para el grupo 
+ function dispatchPmToGroup(pm){
+
+  dispatch(putGroup(pm, groupName ))
+
+}
+
+
+
+
+function GrupoCohorte (){
+  axios.put(`http://localhost:3001/group/cohort/${groupName}/${cohort}`)
+}
+
+
+
+
+function enviarPm(pm){
+  axios
+    .post(`http://localhost:3001/group/pm/${pm}`, groupName)
+}
+
+
+
+
+
+function CrearGrupo(){
+  dispatch(postGroup(groupName))
+  enviarPm(Pm)
+  dispatchAlumnToGroup(elegidos)
+  GrupoCohorte()
+
+}
+
 
    
+
+
+
 
 
 
@@ -77,29 +109,35 @@ export default function BasicTextFields() {
 
 
   return (
-      <div style={{backgroundColor:"white"}}>
+      <div style={{backgroundColor:"white",display:"flex",flexDirection:"column",width:"30%",padding:"15px", position:"relative",left:"35%",top:"25%"}}>
           <h2>Cree su grupo</h2>
 
         <form className={classes.root} noValidate autoComplete="off">
            
-        <TextField id="outlined-basic" label="nombre del grupo" variant="outlined" onChange={e=>setGroupName(e.target.value)}/>
+           <TextField id="outlined-basic" label="nombre del grupo" variant="outlined" onChange={e=>setGroupName(e.target.value)}/>
         <TextField
           id="outlined-select-currency"
           select
           label="PM"
           onChange={handleChange}
           value={Pm}
-          helperText="seleccione un instructor"
+          helperText="seleccione un PM"
           variant="outlined"
         >
           {tode.map((example) => (
-            <MenuItem key={example.code} value={example.code}>
+            <MenuItem key={example.code} value={example.name}>
               {example.name}
             </MenuItem>
           ))}
+          
         </TextField>
-          <Transfer/>
-        <Button variant="contained">Crear grupo</Button>
+           
+       
+        <div style={{width:"900px"}}>
+            
+        <Transfer/>
+          </div>
+        <Button variant="contained" onClick={CrearGrupo}>Crear grupo</Button>
         
 
         </form>

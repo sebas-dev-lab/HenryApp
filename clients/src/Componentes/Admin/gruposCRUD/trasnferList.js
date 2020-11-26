@@ -10,19 +10,21 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { update_Cohort } from "../../../redux/actions/adminActions";
-import { getAllStudents } from "../../../redux/actions/studentActions";
+import { alumnosGrupoGlobal } from "../../../redux/actions/alum-cohort-action";
+
 
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "auto",
+  root:{
+    marginTop:"15px",
+    marginBottom:"15px"
   },
   paper: {
     width: 200,
     height: 230,
-    overflow: "auto",
+    overflow: 'auto'
+    
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -39,18 +41,14 @@ function intersection(a, b) {
 
 export default function TransferList(props) {
   const dispatch = useDispatch();
-  const { nameRow, users } = props;
   const classes = useStyles();
-  const alumnos = useSelector(store=>store.cohort.cohort)
-
-
+  const alumnos = useSelector(store=>store.alumnCohort.alumnsCohort)
 
 
 
   const [checked, setChecked] = useState([]);
   const [left, setLeft] = useState([]);
   const [right, setRight] = useState([]);
-  const [nAlum, setNAlum] =useState([]) 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
@@ -60,12 +58,7 @@ export default function TransferList(props) {
   }
 
 
-  useEffect(() => {
-  tranducirAlumno().then((res)=>{
-    console.log(res)
-    setLeft(res)})
-  }, []);
-
+ 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -79,18 +72,23 @@ export default function TransferList(props) {
 
   const handleAllRight = () => {
     setRight(right.concat(left));
+    dispatch(alumnosGrupoGlobal(right.concat(left)))
     setLeft([]);
+    
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
     setRight([]);
+   
   };
 
   const handleCheckedRight = () => {
     setRight(right.concat(leftChecked));
+    dispatch(alumnosGrupoGlobal(right.concat(leftChecked)))
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
+    
   };
 
   const handleCheckedLeft = () => {
@@ -100,20 +98,18 @@ export default function TransferList(props) {
   };
 
 
+ 
+  useEffect(() => {
+    tranducirAlumno().then((res)=>{
+      console.log(res)
+      setLeft(res)})
+      
+    }, []);
+  
 
-//aca abajo es donde tiene que venir el codigo para agregar a grupo 
-
-
-  const agregarACohorte = (nameCode) => {
-    dispatch(update_Cohort(nameCode, nameRow));
-  };
-
-  const enviarAlumnos = () => {
-    right.map((alumno) => {
-      agregarACohorte(alumno.code);
-    });
-  };
-
+    const ejecutar=()=>{
+      handleAllRight()
+    }
   
 
   const customList = (items) => (
@@ -121,18 +117,18 @@ export default function TransferList(props) {
       <List dense component="div" role="list">
         {items.length > 0 &&
           items.map((value) => {
-            const labelId = `transfer-list-item-${value.code}-label`;
+            const labelId = `transfer-list-item-${value}-label`;
 
             return (
               <ListItem
-                key={value.code}
+                key={value}
                 role="listitem"
                 button
-                onClick={handleToggle(value.code)}
+                onClick={handleToggle(value)}
               >
                 <ListItemIcon>
                   <Checkbox
-                    checked={checked.indexOf(value.code) !== -1}
+                    checked={checked.indexOf(value) !== -1}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ "aria-labelledby": labelId }}
@@ -154,7 +150,7 @@ export default function TransferList(props) {
       justify="center"
       alignItems="center"
       className={classes.root}
-      style={{ backgroundColor: "white", width: "60%", marginTop: "15%" }}
+      style={{ backgroundColor: "white", width: "60%" }}
     >
       
       <Grid item>{customList(left)}</Grid>
@@ -174,6 +170,7 @@ export default function TransferList(props) {
             variant="outlined"
             size="small"
             className={classes.button}
+            disabled={leftChecked.length === 0}
             onClick={handleCheckedRight}
             
             aria-label="move selected right"
@@ -195,6 +192,7 @@ export default function TransferList(props) {
             size="small"
             className={classes.button}
             onClick={handleAllLeft}
+            disabled={right.length === 0}
             
             aria-label="move all left"
           >
@@ -203,15 +201,6 @@ export default function TransferList(props) {
         </Grid>
       </Grid>
       <Grid item>{customList(right)}</Grid>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={enviarAlumnos}
-        aria-label="mostrar"
-      >
-        Agregar Alumnos
-      </Button>
     </Grid>
   );
 }

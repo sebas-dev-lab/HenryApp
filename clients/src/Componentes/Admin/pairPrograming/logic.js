@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from "react";
 import View from "./view";
 import axios from 'axios'
-
+import {useSelector} from 'react-redux'
+import {useParams} from 'react-router-dom'
 
 
 function Crud() {
   
   
   const [rows,setRows] = useState([])
+  const grupo = useParams()
+  console.log(grupo)
+
+
+  const alumnos = useSelector(state=>state.cohort.cohort)
+
 
   const traerAlumnado = ()=>{
-    axios.get("http://localhost:3001/student/all")
+    axios.get(`http://localhost:3001/group/${grupo.grupo}`)
    
     .then((res)=>{
-      
-      let data = res.data.map(user=>{
+     let dato = res.data.groups[0].students.map(user=>{
         return {
             name:user.name + " " + user.lastName,
-            id: user.code
+            code: user.code,
+            id:user._id
         }
       })
 
-      return data 
+      return dato 
     }).then((resolve)=>{
       setRows(resolve)
-    })
+    }) 
   }
 
 
@@ -33,8 +40,8 @@ function Crud() {
 
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'integrantes', headerName: ' integrantes', width: 130 },
+    { field: 'code', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: ' nombre', width: 130 },
     { field: 'pair', headerName: ' numero de pair ', width: 130 },
     
     
@@ -74,7 +81,7 @@ function Crud() {
 
   return (
     <div>
-      <View columns={columns} rows={[]}/>
+      <View columns={columns} rows={rows}/>
     </div>
   );
 }
