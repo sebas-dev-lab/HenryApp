@@ -71,7 +71,8 @@ export const getAllUsers = () => (dispatch) => {
 
 /*===== Delete user by code (admin, instructor o admin)===== */
 export const deleteStudent = (code) => (dispatch) => {
-  Dialog().then((res) => {
+  const data = "usuario";
+  Dialog(data).then((res) => {
     if (res.isConfirmed) {
       axios
         .delete(`${url}/admin/${code}`)
