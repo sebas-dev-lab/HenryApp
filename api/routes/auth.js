@@ -54,14 +54,14 @@ router.get(
 router.get(
   "/github",
   passport.authenticate("github", {
-    scope: ["email", "profile"],
+    scope: ["user:email"],
   })
 );
 router.get(
   "/github/callback",
   passport.authenticate("github", {
-    successRedirect: "http://localhost:3000/",
-    session: false,
+    successRedirect: "http://localhost:3000/alumnos",
+    session: true,
   })
 );
 
