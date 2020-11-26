@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 const modalClassname = s.modal_gral;
 
 function Crud(props) {
-  const { rows, columns, cohort } = props;
+  const { rows, columns} = props;
 
   const students = useSelector((store) => store.student.allStudents);
   const dispatch = useDispatch();
