@@ -10,18 +10,58 @@ import { Link } from "react-router-dom";
 import { getAllCohort } from "../../../redux/actions/cohortActions";
 import { getAllGroups } from "../../../redux/actions/groupActions";
 import { getStudent } from "../../../redux/actions/studentActions";
+import { update_Cohort } from '../../../redux/actions/adminActions';
+import { updateGroup } from '../../../redux/actions/adminActions';
+import Alert from '../../alerts/migrateCohort';
 
 const Perfil = ({ userData, toggle }) => {
-  const dispatch = useDispatch();
+
+	const dispatch = useDispatch();
+	
   const cohorts = useSelector((store) => store.cohort.allCohort);
   const groups = useSelector((store) => store.group.allGroups);
-  const user = useSelector((store) => store.student.student);
+	const user = useSelector((store) => store.student.student);
+
+	const [migrar, setMigrar] = useState(false);
+	const [migrarGroup, setMigrarGroup] = useState(false);
+
+	const handleMigrarCohorte = () => {
+	  setMigrar(true)
+	}
+
+	const cancelMigrarCohorte = () => {
+		setMigrar(false)
+	}
+
+	const handleMigrarGroup = () => {
+	  setMigrarGroup(true)
+	}
+
+	const cancelMigrarGroup = () => {		
+		setMigrarGroup(false)
+	}
+
+	const handleChangeGroup = (e) => {
+		const name = e.target.value.name
+		Alert(name).then(() => {
+			dispatch(updateGroup(user.code, name))
+			cancelMigrarGroup()
+		})
+	}	
+
+	const handleChangeCohorte = (e) => {
+		const name = e.target.value.name
+		Alert(name).then(() => {
+		dispatch(update_Cohort(user.code, name))
+		cancelMigrarCohorte()
+		})
+	}
 
   useEffect(() => {
     dispatch(getAllCohort());
     dispatch(getAllGroups());
     dispatch(getStudent(userData.code));
-  }, []);
+	}, []);
 
   return (
     <div>
@@ -133,19 +173,21 @@ const Perfil = ({ userData, toggle }) => {
                 </div>
                 <div className={s.form}>
                   <h1>Henry</h1>
-                  <div className={s.infoHenry}>
-                    <label>Cohorte</label>
+                  <div className={s.infoHenry}>                   
                     <Typography>
-                      Cohorte: {user.cohorte && user.cohorte.name}
-                      <Breadcrumbs aria-label="breadcrumb">
-                        <Link color="inherit" onClick={toggle}>
-                          {user.cohorte && user.cohorte.name}
+                      Cohorte: {user.cohorte && user.cohorte.name}                      
+											{ migrar ?
+												<div>
+												<Breadcrumbs aria-label="breadcrumb">
+                        <Link color="inherit" onClick={cancelMigrarCohorte}>
+                          Cancelar
                         </Link>
                       </Breadcrumbs>
-                      <Select
+												<Select
                         labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                      >
+												id="demo-simple-select-helper"
+												onChange={handleChangeCohorte}
+                      	>
                         <MenuItem value="todos">
                           <em>...</em>
                         </MenuItem>
@@ -157,11 +199,48 @@ const Perfil = ({ userData, toggle }) => {
                           <p>no hay cohortes cargados</p>
                         )}
                       </Select>
-                    </Typography>
-
-                    <label>Grupo</label>
+											</div>
+											: 
+											<Breadcrumbs aria-label="breadcrumb">
+                        <Link color="inherit" onClick={handleMigrarCohorte}>
+                          Migrar
+                        </Link>
+                      </Breadcrumbs>
+											}
+                    </Typography>                   
                     <Typography>
-                      Tus compañeros de PP esta semana son:
+                      Grupo: {user.group && user.group.name}                      
+											{ migrarGroup ?
+												<div>
+												<Breadcrumbs aria-label="breadcrumb">
+                        <Link color="inherit" onClick={cancelMigrarGroup}>
+                          Cancelar
+                        </Link>
+                      </Breadcrumbs>
+												<Select
+                        labelId="demo-simple-select-helper-label"
+												id="demo-simple-select-helper"
+												onChange={handleChangeGroup}
+                      	>
+                        <MenuItem value="todos">
+                          <em>...</em>
+                        </MenuItem>
+                        {groups ? (
+                          groups.map((g) => {
+                            return <MenuItem value={g}>{g.name}</MenuItem>;
+                          })
+                        ) : (
+                          <p>no hay cohortes cargados</p>
+                        )}
+                      </Select>
+											</div>
+											: 
+											<Breadcrumbs aria-label="breadcrumb">
+                        <Link color="inherit" onClick={handleMigrarGroup}>
+                          Migrar
+                        </Link>
+                      </Breadcrumbs>
+											}
                     </Typography>
 
                     <label>Nombre PM´s</label>

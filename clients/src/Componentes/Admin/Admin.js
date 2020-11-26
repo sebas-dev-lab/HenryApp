@@ -30,24 +30,13 @@ import { Link } from "react-router-dom";
 import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
-import Calenadmin from './calenadmin/calenadmin'
+import Calenadmin from '../Calenadmin/calendarioadmin'
+
 import Module from "../modulo/NewModule";
+import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte"
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 const drawerWidth = 240;
 
@@ -151,13 +140,12 @@ export default function AdminPanel({ user }) {
   };
 
   const showStudentsByCohort = (cohorte) => {
-    setActiveTab("usuarios");
+    setActiveTab("usuariosXCohorte");
     setCohortFilter(cohorte);
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   useEffect(() => {
-    //alert("hola");
   }, [cohortFilter]);
 
   return (
@@ -170,28 +158,6 @@ export default function AdminPanel({ user }) {
           position="absolute"
           className={clsx(classes.appBar, open && classes.appBarShift)}
         >
-          {/* <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          ></Typography>
-          <IconButton color="inherit"></IconButton>
-        </Toolbar> */}
         </AppBar>
         <Drawer
           variant="permanent"
@@ -256,7 +222,9 @@ export default function AdminPanel({ user }) {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
+            {activeTab === "usuarios" && <Alumnos />}
+            {activeTab === "usuariosXCohorte" && <AlumnosXCohorte cohortFilter={cohortFilter} />}  
+
             {activeTab === "cohortes" && (
               <Cohortes showStudents={showStudentsByCohort} />
             )}
