@@ -149,7 +149,7 @@ const Perfil = ({ userData, toggle }) => {
                         <MenuItem value="todos">
                           <em>...</em>
                         </MenuItem>
-                        {cohorts.length !== 0 ? (
+                        {cohorts ? (
                           cohorts.map((c) => {
                             return <MenuItem value={c}>{c.name}</MenuItem>;
                           })
