@@ -10,7 +10,8 @@ const authRoutes = require("./auth");
 const emailRoutes = require("./email");
 const calendarRoutes = require("./calendar")
 const moduleRoutes = require("./module");
-const feedbackRoutes = require("./feedback")
+const feedbackRoutes = require("./feedback");
+const clasesRoutes = require("./clases")
 
 
 router.use("/admin", adminRoutes);
@@ -24,6 +25,7 @@ router.use("/auth", authRoutes);
 router.use("/email", emailRoutes);
 router.use("/calendar", calendarRoutes);
 router.use("/module", moduleRoutes);
+router.use("/clases", clasesRoutes)
 
 
 module.exports = router;

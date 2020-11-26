@@ -31,13 +31,10 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import { Link } from "react-router-dom";
 //-------------Componentes
-import Alumnos from "./alumnosCRUD/logic";
-import Cohortes from "./CohortPanel/cohortePanel";
-import Email from "./email/Email";
 import Module from "../modulo/NewModule";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte";
+import AlumnosXCohorte from "../Admin/alumnosCRUD/alumnosXcohorte";
 
 import { useHistory } from "react-router-dom";
 import { filterCohort } from "../../redux/actions/cohortActions";
@@ -180,27 +177,7 @@ export default function Instructor({ user }) {
           <List>
             <div>
               <div class="slideout-sidebar">
-                <ListItem button onClick={() => setActive("usuarios")}>
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText secondary="USUARIOS" />
-                </ListItem>
-
-                <ListItem button onClick={() => setActive("cohortes")}>
-                  <ListItemIcon>
-                    <ListAltIcon />
-                  </ListItemIcon>
-                  <ListItemText secondary="COHORTES" />
-                </ListItem>
-
-                <ListItem button onClick={() => setActive("email")}>
-                  <ListItemIcon>
-                    <ListAltIcon />
-                  </ListItemIcon>
-                  <ListItemText secondary="EMAIL" />
-                </ListItem>
-                <ListItem button onClick={() => setActive("module")}>
+              <ListItem button onClick={() => setActive("module")}>
                   <ListItemIcon>
                     <ListAltIcon />
                   </ListItemIcon>
@@ -221,20 +198,7 @@ export default function Instructor({ user }) {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            {activeTab === "usuarios" && (
-              <div>
-                <h1>Todos</h1>
-                <Alumnos cohort={cohortFilter} />
-              </div>
-            )}
-            {activeTab === "cohortes" && (
-              <Cohortes showStudents={showStudentsByCohort} />
-            )}
-            {activeTab === "cohortesXalumno" && (
-              <AlumnosXCohorte cohortFilter={cohortFilter} />
-            )}
-            {activeTab === "email" && <Email />}
-            {activeTab === "module" && <Module />}
+           {activeTab === "module" && <Module />}
           </Container>
         </main>
       </div>
