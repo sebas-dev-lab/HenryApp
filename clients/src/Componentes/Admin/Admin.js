@@ -25,23 +25,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PeopleIcon from "@material-ui/icons/People";
 import LayersIcon from "@material-ui/icons/Layers";
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import MailIcon from "@material-ui/icons/Mail";
-import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import { Link } from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
+import Calenadmin from './calenadmin/calenadmin'
 import Module from "../modulo/NewModule";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte";
-// import { logout } from "../../redux/actions/authActions";
-// import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { filterCohort } from "../../redux/actions/cohortActions";
 
 // function Copyright() {
 //   return (
@@ -141,7 +134,7 @@ export default function AdminPanel({ user }) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("usuarios");
-  const [cohortFilter, setCohortFilter] = useState(false);
+  const [cohortFilter, setCohortFilter] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -158,18 +151,17 @@ export default function AdminPanel({ user }) {
   };
 
   const showStudentsByCohort = (cohorte) => {
+    setActiveTab("usuarios");
     setCohortFilter(cohorte);
-    setActiveTab("cohortesXalumno");
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
   useEffect(() => {
-    dispatch(filterCohort(cohortFilter));
+    //alert("hola");
   }, [cohortFilter]);
 
   return (
-    <div>
+    <>
       <Navbar user={user} />
 
       <div className={classes.root}>
@@ -177,7 +169,30 @@ export default function AdminPanel({ user }) {
         <AppBar
           position="absolute"
           className={clsx(classes.appBar, open && classes.appBarShift)}
-        ></AppBar>
+        >
+          {/* <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          ></Typography>
+          <IconButton color="inherit"></IconButton>
+        </Toolbar> */}
+        </AppBar>
         <Drawer
           variant="permanent"
           classes={{
@@ -194,7 +209,7 @@ export default function AdminPanel({ user }) {
           <List>
             <div>
               <div class="slideout-sidebar">
-                <ListItem button onClick={() => setActive("usuarios")}>
+                <ListItem button onClick={() => showStudentsByCohort(null)}>
                   <ListItemIcon>
                     <PeopleIcon />
                   </ListItemIcon>
@@ -208,6 +223,12 @@ export default function AdminPanel({ user }) {
                   <ListItemText secondary="COHORTES" />
                 </ListItem>
 
+				<ListItem button onClick={() => setActive("calenadmin")}>
+                  <ListItemIcon>
+                    <ListAltIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="CALENDARIO" />
+                </ListItem>
                 <ListItem button onClick={() => setActive("email")}>
                   <ListItemIcon>
                     <ListAltIcon />
@@ -235,22 +256,16 @@ export default function AdminPanel({ user }) {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            {activeTab === "usuarios" && (
-              <div>
-                <Alumnos cohort={cohortFilter} />
-              </div>
-            )}
+            {activeTab === "usuarios" && <Alumnos cohort={cohortFilter} />}
             {activeTab === "cohortes" && (
               <Cohortes showStudents={showStudentsByCohort} />
             )}
-            {activeTab === "cohortesXalumno" && (
-              <AlumnosXCohorte cohortFilter={cohortFilter} />
-            )}
+			{activeTab === "calenadmin" && <Calenadmin />}
             {activeTab === "email" && <Email />}
             {activeTab === "module" && <Module />}
           </Container>
         </main>
       </div>
-    </div>
+    </>
   );
 }
