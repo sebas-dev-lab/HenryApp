@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
-import "./Chip.css"
+import "./clases.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ChipsArray(props) {
+export default function Clases(props) {
     const classes = useStyles();
     const [key, setKey] = useState(1);
     const [chipData, setChipData] = useState([
         { key: 0, label: '' },
     ]);
-    const [video, setVideo] = useState();
+    const [clase, setClase] = useState();
 
     useEffect(() => {
         sendChipData(chipData)
@@ -39,11 +39,11 @@ export default function ChipsArray(props) {
 
     const handleChange = (e) => {
         e.preventDefault();
-        setVideo(e.target.value)
+        setClase(e.target.value)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        setChipData([...chipData, { key: key, label: video }])
+        setChipData([...chipData, { key: key, label: clase }])
         setKey((k) => {
             return k + 1;
         })
@@ -51,15 +51,14 @@ export default function ChipsArray(props) {
     const sendChipData = (arr) => {
         props.recursos(arr)
     }
-
     return (
         <div className="chip">
-            <form className="form__videos" onSubmit={handleSubmit} onChange={handleChange}>
+            <form className="form__clases" onSubmit={handleSubmit} onChange={handleChange}>
                 <div>
-                    <TextField id="videos" label="Videos" />
-                    <FormHelperText>ingrese solo el ID de Vimeo</FormHelperText>
+                    <TextField id="videos" label="Clases" />
+                    <FormHelperText>ingrese el link de su clase</FormHelperText>
                 </div>
-                <Button variant="outlined" color="primary" type="submit">agregar</Button>
+                <Button variant="outlined" color="primary" type="submit">Agregar</Button>
             </form>
             <div>
                 <Paper component="ul" className={classes.root}>
