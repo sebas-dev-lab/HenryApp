@@ -6,10 +6,11 @@ const Clases = require("../models/clases");
 
 //--------------Post------------------------
 router.post("/create", (req, res) => {
-    const { link } = req.body
+    const { link, cohorte } = req.body
     Clases.create({
-        link
-    }, function(err, data) {
+        link,
+        cohorte
+    }, function (err, data) {
         if (err) {
             console.log(err);
             return;
@@ -21,7 +22,7 @@ router.post("/create", (req, res) => {
 //---------------Get----------------
 
 router.get("/all", (req, res, next) => {
-    Clases.find(function(err, clases) {
+    Clases.find(function (err, clases) {
         if (err) {
             console.log(err);
             return;

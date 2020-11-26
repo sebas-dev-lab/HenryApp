@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const clasesSchema = new mongoose.Schema({
-    link: {
+    link: [{
         type: String,
         unique: true,
+    }],
+    cohorte: {
+        type: Schema.Types.ObjectId,
+        ref: "Cohort",
     },
 });
 

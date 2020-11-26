@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Clases() {
+export default function Clases(props) {
     const classes = useStyles();
     const [key, setKey] = useState(1);
     const [chipData, setChipData] = useState([
@@ -48,7 +48,9 @@ export default function Clases() {
             return k + 1;
         })
     }
-   
+    const sendChipData = (arr) => {
+        props.recursos(arr)
+    }
     return (
         <div className="chip">
             <form className="form__clases" onSubmit={handleSubmit} onChange={handleChange}>
@@ -56,7 +58,7 @@ export default function Clases() {
                     <TextField id="videos" label="Clases" />
                     <FormHelperText>ingrese el link de su clase</FormHelperText>
                 </div>
-                <Button type="submit">Agregar</Button>
+                <Button variant="outlined" color="primary" type="submit">Agregar</Button>
             </form>
             <div>
                 <Paper component="ul" className={classes.root}>

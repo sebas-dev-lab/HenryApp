@@ -4,6 +4,7 @@ const ObjectId = require("mongodb").ObjectId;
 const Cohort = require("../models/cohort");
 const User = require("../models/user");
 
+
 router.get("/all", (req, res, next) => {
   Cohort.find(function (err, cohorts) {
     if (err) {
@@ -69,6 +70,7 @@ router.get("/students", (req, res) => {
     .populate("cohorte")
     .populate("group")
     .populate("module")
+    .populate("clases")
     .then((students) => {
       const studentsCohort = students.filter((student) => student.cohorte);
       const response = studentsCohort.filter(
