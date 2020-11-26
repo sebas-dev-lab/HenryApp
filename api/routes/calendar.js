@@ -41,8 +41,8 @@ router.post("/create", async (req, res) => {
     });
 
     router.delete("/delete", async (req, res) => {
-        const {id} = req.body
-        Calendar.deleteOne({ _id: id }, function(err, deleted){
+        const {title} = req.body
+        Calendar.deleteOne({ title: title }, function(err, deleted){
             if(err) {
               console.log(err);
               return     
