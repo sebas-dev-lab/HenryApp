@@ -38,27 +38,47 @@ router.get("/all", (req, res) => {
         })
 })
 
-//ruta para obtener los modulos de un estudiante
+//ruta para obtener un _id de  modulo por su nombre
 
-router.get("/all/user", async (req, res) => {
-    const id = req.body;
-    const modu = {}
-    var modulos = await Module.find()
-        .populate("students")
-        .populate("cohorte")
+router.get("/:nombre", async (req, res) => {
+    const nombre = req.params.nombre;
+    try {
+        var module = await Module.findOne({ name: nombre })
+        res.status(200).json({ id: module._id })
+    }
+    catch {
+        console.log("algo salio mal")
+    }
+})
 
-    modulos.map(modulo => {
-        if (modulo.students.forEach(student => {
-            if (student._id == id.id) {
-                return true;
-            }
-        })) {
-            console.log(modulo)
-            modu = modulo;
-        }
-        console.log(JSON.parse(modulo.students))
+
+//ruta para asignar el modulo a los alumnos
+
+router.put("/asignate", (req, res) => {
+    var { _id, students } = req.body;
+    students.forEach(e => {
+        User.findOneAndUpdate({ code: e.code }, { module: _id })
+            .then(res => {
+
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
     })
-    return res.status(200).json({ msg: "esto", modu })
+    return res.status(200).json({ msg: `se actualizaron los alumnos` })
+
+})
+
+//ruta para obtener los recursos de un modulo por su id
+
+router.get("/means/:id", async (req, res) => {
+    var { id } = req.params;
+    try {
+        const module = await Module.findOne({ _id: id })
+        return res.status(200).json({ means: module.means })
+    }
+    catch { err => console.log(err.message) }
+
 })
 
 // ruta para modificar un modulo
