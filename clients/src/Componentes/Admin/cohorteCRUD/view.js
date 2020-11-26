@@ -66,9 +66,9 @@ function Crud({ data, edit, showStudents }) {
                   <EditCohort nameRow={row.name} edit={edit} />
                 </TableCell>
                 <TableCell align="right">
-                  <Link onClick={() => showStudents(row.name)}>
+                  <Button onClick={() => showStudents(row.name)}>
                     Ver alumnos
-                  </Link>
+                  </Button>
                 </TableCell>
                 <TableCell>
                   <Button onClick={() => deleteEm(row.code)}>
