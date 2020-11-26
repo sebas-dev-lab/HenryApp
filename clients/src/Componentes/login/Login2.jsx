@@ -4,6 +4,7 @@ import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
 import Footer from "../Footer";
+import Bienvenida from "../Bienvenida";
 import { Mail, Lock } from "@material-ui/icons";
 
 export default function Login() {
@@ -41,11 +42,13 @@ export default function Login() {
   }, [userLogin]);
 
   return (
+    <>
+    <Bienvenida />
     <div className="align">
       <div className="grid">
         <form className="form login">
           <div className="form__field">
-            <label for="login__username">
+            <label for="login__username" className="cont_label">
               <Mail />
               <span className="hidden">Usuario</span>
             </label>
@@ -61,7 +64,7 @@ export default function Login() {
           </div>
 
           <div class="form__field">
-            <label for="login__password">
+            <label for="login__password" className="cont_label">
               <Lock />
               <span className="hidden">Contraseña</span>
             </label>
@@ -99,5 +102,7 @@ export default function Login() {
         </form>
       </div>
     </div>
+    <Footer />
+    </>
   );
 }

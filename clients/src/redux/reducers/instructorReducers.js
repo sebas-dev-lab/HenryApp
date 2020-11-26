@@ -30,6 +30,12 @@ const instructorReducers = (state = initialState, action) => {
         }),
       };
 
+      case actionTypes.DELETE_INSTRUCTOR :
+        return{
+          ...state,
+          allInstructor: state.allInstructor.filter(item => item.code !== action.code)
+        }
+
     default:
       return state;
   }

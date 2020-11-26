@@ -51,8 +51,7 @@ function Crud(props) {
   }, []);
 
   return (
-    <div className={s.cont_alum}>
-      <h1>Usuarios de HenryApp</h1>
+    <div>     
       <div
         style={{
           height: 450,

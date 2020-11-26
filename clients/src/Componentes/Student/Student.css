@@ -15,9 +15,18 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+.cont_oscuro{
+  background-color: rgba(0,0,0, 0.4);
+  height: 370px;
+  width: 340px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* z-index: 1; */
+
+}
 .category-box {
   background-color: red;
-  background-blend-mode: soft-light;
   height: 370px;
   width: 340px;
   position: relative;
@@ -36,6 +45,7 @@
   width: 90%;
   height: 80%;
   border: 1px solid white;
+  /* z-index: 2; */
 
 }
 .category-box .content h2 {

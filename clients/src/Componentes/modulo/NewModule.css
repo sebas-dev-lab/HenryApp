@@ -1,8 +1,12 @@
 .titulo{
-    margin-top: 20px;
+    text-align: center;
 }
 .form__newmodule{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+.contededorModulo{
+    background-color: white;
+    padding-top: 2%;
 }

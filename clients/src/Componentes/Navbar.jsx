@@ -41,13 +41,13 @@ const Navbar = ({ user }) => {
             ) : user.role === "student" ? (
               <>
                 <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
-
-                <Link to="/student/perfil" color="inherit">
+                
+                <Link to="/student/perfil" color="inherit" className={s.miPerfil}>
                   {" "}
                   Mi Perfil{" "}
                 </Link>
-                <Typography variant="h6" color="inherit" className={s.link2}>
-                  {user && <div onClick={logoutSession}>Logout</div>}
+                <Typography variant="h6" color="inherit" className={s.logout}>
+                  {user && <div onClick={logoutSession}>Salir</div>}
                 </Typography>
               </>
             ): user.role === "instructor" ? (

@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
+import "../Admin/Admin.css";
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -20,20 +22,24 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 //-----------Lista Panel
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemIcon from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import PeopleIcon from "@material-ui/icons/People";
-import LayersIcon from "@material-ui/icons/Layers";
+import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import MailIcon from "@material-ui/icons/Mail";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 //-------------Componentes
 import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
-import Calenadmin from '../Admin/calenadmin/calenadmin'
+import Calenadmin from "./calenadmin/calenadmin";
 
 import Module from "../modulo/NewModule";
-import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte"
+import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte";
+import Instructor from "./instructor/Instructor";
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -145,8 +151,7 @@ export default function AdminPanel({ user }) {
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  useEffect(() => {
-  }, [cohortFilter]);
+  useEffect(() => {}, [cohortFilter]);
 
   return (
     <>
@@ -157,8 +162,7 @@ export default function AdminPanel({ user }) {
         <AppBar
           position="absolute"
           className={clsx(classes.appBar, open && classes.appBarShift)}
-        >
-        </AppBar>
+        ></AppBar>
         <Drawer
           variant="permanent"
           classes={{
@@ -176,41 +180,48 @@ export default function AdminPanel({ user }) {
             <div>
               <div class="slideout-sidebar">
                 <ListItem button onClick={() => showStudentsByCohort(null)}>
-                  <ListItemIcon>
+                  <ListItemIcon className="iconsAdmin">
                     <PeopleIcon />
                   </ListItemIcon>
                   <ListItemText secondary="USUARIOS" />
                 </ListItem>
 
                 <ListItem button onClick={() => setActive("cohortes")}>
-                  <ListItemIcon>
-                    <ListAltIcon />
+                  <ListItemIcon className="iconsAdmin">
+                    <RemoveRedEyeIcon />
                   </ListItemIcon>
                   <ListItemText secondary="COHORTES" />
                 </ListItem>
 
-				<ListItem button onClick={() => setActive("calenadmin")}>
-                  <ListItemIcon>
+                <ListItem button onClick={() => setActive("calenadmin")}>
+                  <ListItemIcon className="iconsAdmin">
                     <ListAltIcon />
                   </ListItemIcon>
                   <ListItemText secondary="CALENDARIO" />
                 </ListItem>
                 <ListItem button onClick={() => setActive("email")}>
-                  <ListItemIcon>
-                    <ListAltIcon />
+                  <ListItemIcon className="iconsAdmin">
+                    <MailIcon />
                   </ListItemIcon>
                   <ListItemText secondary="EMAIL" />
                 </ListItem>
                 <ListItem button onClick={() => setActive("module")}>
-                  <ListItemIcon>
-                    <ListAltIcon />
+                  <ListItemIcon className="iconsAdmin">
+                    <LibraryBooksIcon />
                   </ListItemIcon>
                   <ListItemText secondary="MODULE" />
                 </ListItem>
 
+                <ListItem button onClick={() => setActive("instructor")}>
+                  <ListItemIcon className="iconsAdmin">
+                    <RemoveRedEyeIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="INSTRUCTOR" />
+                </ListItem>
+
                 <ListItem button onClick={() => logOut()}>
-                  <ListItemIcon>
-                    <LayersIcon />
+                  <ListItemIcon className="iconsAdmin">
+                    <ExitToAppIcon />
                   </ListItemIcon>
                   <ListItemText secondary="SALIR" />
                 </ListItem>
@@ -223,17 +234,21 @@ export default function AdminPanel({ user }) {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             {activeTab === "usuarios" && <Alumnos />}
-            {activeTab === "usuariosXCohorte" && <AlumnosXCohorte cohortFilter={cohortFilter} />}  
+            {activeTab === "usuariosXCohorte" && (
+              <AlumnosXCohorte cohortFilter={cohortFilter} />
+            )}
 
             {activeTab === "cohortes" && (
               <Cohortes showStudents={showStudentsByCohort} />
             )}
-			{activeTab === "calenadmin" && <Calenadmin />}
+            {activeTab === "calenadmin" && <Calenadmin />}
             {activeTab === "email" && <Email />}
             {activeTab === "module" && <Module />}
+            {activeTab === "instructor" && <Instructor />}
           </Container>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

@@ -30,6 +30,7 @@ const Student = () => {
         dispatch(verifySession());
     }, []);
 
+
     return (
         <>
             <Navbar user={user} />
@@ -130,6 +131,7 @@ const Student = () => {
                     </div>
                 </div>
                 <BotonChat />
+
             </div>
 
             <Footer />
