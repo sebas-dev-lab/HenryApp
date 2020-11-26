@@ -24,7 +24,7 @@ export const updateCohort = (name, values) => async (dispatch) => {
     .then((res) => {
       dispatch({
         type: actionTypes.PUT_COHORT,
-        update: res.data,
+        update: res.data.cohort,
         name: name,
       });
     })

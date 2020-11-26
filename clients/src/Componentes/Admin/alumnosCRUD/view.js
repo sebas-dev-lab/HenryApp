@@ -24,6 +24,7 @@ const useStyles = makeStyles({
 const modalClassname = s.modal_gral;
 
 function Crud(props) {
+
   const {columns, cohort } = props;
   localStorage.setItem("cohorte",cohort)
   const students = useSelector(store => store.student.allStudents)
@@ -33,6 +34,7 @@ function Crud(props) {
   const [renderStudents, setRenderStudents] = useState([]);
   const[alumnos,setAlumnos] = useState([])
   const[filasSeleccionadas,setFilasSeleccionadas] = useState([])
+
 
   const [openModal, setOpenModal] = useState(false);
   const [student, setStudent] = useState();
@@ -46,14 +48,11 @@ function Crud(props) {
     return array;
   };
 
-
   const check = (data)=>{
     if(data.isSelected==true){
       setAlumnos(state => [...state,data.data.name])
     }
   }
-
-
 
   const filter = (students, cohort) => {
     if(!cohort) return students;
@@ -71,16 +70,10 @@ function Crud(props) {
     setStudent()
   }
   
-
-
-  
   useEffect( () => {   
     dispatch(getAllStudents()); 
     setRenderStudents(filter(students, cohort))  
-    dispatch(alumnCohortGLobal(filter(students,cohort)))
-    
-    
-
+    dispatch(alumnCohortGLobal(filter(students,cohort))) 
   }, [])   
 
   return (
