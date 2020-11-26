@@ -69,9 +69,24 @@ export const getAllUsers = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+/*========== promover student-instructor ==========0 */
+// export const update_Cohort = (code, cohort) => (dispatch) => {
+//   return axios
+//     .put(`${url}/admin/cohort/${code}/${cohort}`)
+//     .then((res) => {
+//       dispatch({
+//         type: actionTypes.UPDATE_COHORT_BY_CODE,
+//         update: res.data,
+//         code: code,
+//       });
+//     })
+//     .catch((err) => console.log(err));
+// };
+
 /*===== Delete user by code (admin, instructor o admin)===== */
 export const deleteStudent = (code) => (dispatch) => {
-  Dialog().then((res) => {
+  const data = "usuario";
+  Dialog(data).then((res) => {
     if (res.isConfirmed) {
       axios
         .delete(`${url}/admin/${code}`)

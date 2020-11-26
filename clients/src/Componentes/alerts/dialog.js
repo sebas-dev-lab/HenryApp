@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
 
-export default async () =>
+export default async (data) =>
   Swal.fire({
-    html: `<h5>¿Desea eliminar el usuario?<h5/>`,
+    html: `<h5>¿Desea eliminar el ${data}?<h5/>`,
     width: "30%",
     text: "No podrás revertir esta cambio!",
     icon: "warning",
