@@ -30,7 +30,7 @@ import { Link } from "react-router-dom";
 import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
-import Calenadmin from '../Calenadmin/calendarioadmin'
+import Calenadmin from '../Admin/calenadmin/calenadmin'
 
 import Module from "../modulo/NewModule";
 import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte"
