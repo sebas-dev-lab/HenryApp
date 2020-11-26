@@ -33,7 +33,7 @@ const adminReducers = (state = initialState, action) => {
     case actionTypes.DELETE_USER:
       return {
         ...state,
-        message: action.message,
+        allUsers: state.allUsers.filter(item => item.code !== action.code)
       };
     case actionTypes.UPDATE_COHORT_BY_CODE:
       console.log(action)

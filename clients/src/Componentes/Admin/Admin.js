@@ -36,6 +36,7 @@ import Alumnos from "./alumnosCRUD/logic";
 import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import Module from "../modulo/NewModule";
+import Instructor from "./instructor/Instructor"; 
 import { logout, verifySession } from "../../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -222,27 +223,34 @@ export default function AdminPanel({ user }) {
 
                 <ListItem button onClick={() => setActive("cohortes")}>
                   <ListItemIcon>
-                    <ListAltIcon />
+                    <RemoveRedEyeIcon />
                   </ListItemIcon>
                   <ListItemText secondary="COHORTES" />
                 </ListItem>
 
                 <ListItem button onClick={() => setActive("email")}>
                   <ListItemIcon>
-                    <ListAltIcon />
+                    <MailIcon />
                   </ListItemIcon>
                   <ListItemText secondary="EMAIL" />
                 </ListItem>
                 <ListItem button onClick={() => setActive("module")}>
                   <ListItemIcon>
-                    <ListAltIcon />
+                    <LibraryBooksIcon />
                   </ListItemIcon>
                   <ListItemText secondary="MODULE" />
                 </ListItem>
 
+                <ListItem button onClick={() => setActive("instructor")}>
+                  <ListItemIcon>
+                    <RemoveRedEyeIcon />
+                  </ListItemIcon>
+                  <ListItemText secondary="INSTRUCTOR" />
+                </ListItem>
+
                 <ListItem button onClick={() => logOut()}>
                   <ListItemIcon>
-                    <LayersIcon />
+                    <ExitToAppIcon />
                   </ListItemIcon>
                   <ListItemText secondary="SALIR" />
                 </ListItem>
@@ -260,6 +268,7 @@ export default function AdminPanel({ user }) {
             )}
             {activeTab === "email" && <Email />}
             {activeTab === "module" && <Module />}
+            {activeTab === "instructor" && <Instructor />}
           </Container>
         </main>
       </div>

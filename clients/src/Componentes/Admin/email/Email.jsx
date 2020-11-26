@@ -111,23 +111,20 @@ export default function Emails() {
   );
 
   return (
+    <div className={style.cont_prinEmail}>
     <div className={style.cont_email}>
       <h1>Agregar Nuevo Correo</h1>
     <div className={style.emails}>
-      <br />
-      <AddCircle className={style.add} fontSize="large" onClick={AbrirCerrar} />
-      <br />
-      <br />
-      <TableContainer>
-        <Table className={style.table} aria-label="customized table">
-          <TableHead className={style.contenedor}>
-            <TableRow>
-              <TableCell align="left">
-                <h3>
+      <TableContainer >
+        <Table className={style.table} >
+          <TableHead >
+            <TableRow className={style.titleEmail}>
+              <TableCell align="center" padding="none">
+                <h3 >
                   <b>Email</b>
                 </h3>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center" padding="none">
                 <h3>
                   <b>Acciones</b>
                 </h3>
@@ -137,11 +134,11 @@ export default function Emails() {
           <TableBody>
             {emails.map((newEmail, idx) => (
               <TableRow key={idx}>
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" padding="none" align="center" className={style.emailNew}>
                   {newEmail.email}
                 </TableCell>
-                <TableCell component="th" scope="row" align="right">
-                  <Button onClick={Editar}>
+                <TableCell component="th" scope="row" align="right" padding="none" className={style.acciones}>
+                  <Button onClick={Editar} className={style.botonEdit}>
                     <Edit className={style.editar} />
                   </Button>
                   <Modal open={modalEditar}>
@@ -165,6 +162,10 @@ export default function Emails() {
       <Modal open={modalInsertar} onClose={AbrirCerrar}>
         {bodyInsertar}
       </Modal>
+      <div className={style.addEmail}>
+      <AddCircle className={style.add} fontSize="large" onClick={AbrirCerrar} />
+      </div>
+    </div>
     </div>
     </div>
   );
