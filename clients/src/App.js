@@ -14,6 +14,11 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
+import GrupoPP from "./Componentes/Admin/pairPrograming/logic"
+import Grupos from "./Componentes/Admin/gruposCRUD/logic"
+
+
+
 import Pair from "./Componentes/pairprogramming/Pair";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
@@ -51,6 +56,17 @@ function App() {
         <ProtectedAdminRoute exact path="/admin" component={Admin} />
         <ProtectedAdminRoute path="/calendarioadmin" component={Calenadmin} />
         <ProtectedAdminRoute path="/admin/perfil" component={Perfil} />
+
+        <Route path="/test">
+          <Grupos/>
+        </Route>
+        
+
+
+        <Route path="/test2/:grupo">
+          <GrupoPP/>
+        </Route>
+        
       </Switch>
     </div>
   );

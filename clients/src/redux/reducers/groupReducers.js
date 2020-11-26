@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  allGroups: [],
+  allGroups: {},
   group: {},
   message: "",
 };
@@ -17,7 +17,7 @@ const groupReducers = (state = initialState, action) => {
     case actionTypes.GET_ALL_GROUP:
       return {
         ...state,
-        allGroups: action.allGroups,
+        allGroups: action.payload,
       };
 
     case actionTypes.PUT_GROUP:

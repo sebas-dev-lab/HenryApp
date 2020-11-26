@@ -20,8 +20,8 @@ const Perfil = ({ userData, toggle }) => {
 	
   const cohorts = useSelector((store) => store.cohort.allCohort);
   const groups = useSelector((store) => store.group.allGroups);
-	const user = useSelector((store) => store.student.student);
-
+  const user = useSelector((store) => store.student.student);  
+  
 	const [migrar, setMigrar] = useState(false);
 	const [migrarGroup, setMigrarGroup] = useState(false);
 
@@ -244,7 +244,9 @@ const Perfil = ({ userData, toggle }) => {
                     </Typography>
 
                     <label>Nombre PM´s</label>
-                    <Typography>Tus PM´s en esta etapa seran:</Typography>
+                    <Typography>Tus PM´s en esta etapa seran:
+                    {user.group && user.group.pms.map((pm) => <p>{pm.name}</p>)}
+                    </Typography>
                   </div>
                 </div>
               </div>
@@ -257,3 +259,4 @@ const Perfil = ({ userData, toggle }) => {
 };
 
 export default Perfil;
+

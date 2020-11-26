@@ -30,7 +30,7 @@ export const getOneGroup = (name) => (dispatch) => {
 export const postGroup = (newGroup) => (dispatch) => {
   axios
     .post(`${url}/group/create`, {
-      newGroup: newGroup,
+      newGroup: newGroup
     })
     .then((res) => {
       dispatch({

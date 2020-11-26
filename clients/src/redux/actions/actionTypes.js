@@ -48,7 +48,20 @@ export const PUT_EMAIL = "PUT_EMAIL";
 export const CREATE_EMAIL = "CREATE_EMAIL";
 export const DELETE_EMAIL = "DELETE_EMAIL";
 
+
+/*==== Pair actionTypes =====*/
+export const GET_ALL_PAIRS = "GET_ALL_PAIRS";
+export const POST_PP = "POST_PP";
+export const GET_PAIR_BY_ID = "GET_PAIR_BY_ID";
+
+
 /* ======= Calendario ======== */
 export const CREATE_EVENT = "CREATE_EVENT";
 export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
 export const DELETE_EVENT = "DELETE_EVENT";
+
+/* ======= ALUMN-COHORT-GLOBAL ======== */
+export const ALUMN_COHORT_GLOBAL = "ALUMN_COHORT_GLOBAL"
+export const ALUMN_GRUPO_GLOBAL = "ALUMN_GRUPO_GLOBAL"
+
+

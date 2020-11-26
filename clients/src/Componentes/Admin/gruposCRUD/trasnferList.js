@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -8,21 +8,23 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
-import { update_Cohort } from "../../../redux/actions/adminActions";
-import { getAllStudents } from "../../../redux/actions/studentActions";
-import SearchAlumn from './searchAlumn'
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { alumnosGrupoGlobal } from "../../../redux/actions/alum-cohort-action";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "auto",
+  root:{
+    marginTop:"15px",
+    marginBottom:"15px"
   },
   paper: {
     width: 200,
     height: 230,
-    overflow: "auto",
+    overflow: 'auto'
+    
   },
   button: {
     margin: theme.spacing(0.5, 0),
@@ -39,21 +41,24 @@ function intersection(a, b) {
 
 export default function TransferList(props) {
   const dispatch = useDispatch();
-  const { nameRow, users } = props;
   const classes = useStyles();
+  const alumnos = useSelector(store=>store.alumnCohort.alumnsCohort)
 
-  const [checked, setChecked] = React.useState([]);
 
-  const [left, setLeft] = React.useState([]);
 
-  const [right, setRight] = React.useState([]);
-
+  const [checked, setChecked] = useState([]);
+  const [left, setLeft] = useState([]);
+  const [right, setRight] = useState([]);
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  useEffect(() => {
-    setLeft(users);
-  }, []);
+  const tranducirAlumno= async()=>{
+    return alumnos.map(alum=>{return {name:alum.name,
+    code:alum.code}})
+  }
+
+
+ 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -67,18 +72,23 @@ export default function TransferList(props) {
 
   const handleAllRight = () => {
     setRight(right.concat(left));
+    dispatch(alumnosGrupoGlobal(right.concat(left)))
     setLeft([]);
+    
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
     setRight([]);
+   
   };
 
   const handleCheckedRight = () => {
     setRight(right.concat(leftChecked));
+    dispatch(alumnosGrupoGlobal(right.concat(leftChecked)))
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
+    
   };
 
   const handleCheckedLeft = () => {
@@ -87,23 +97,20 @@ export default function TransferList(props) {
     setChecked(not(checked, rightChecked));
   };
 
-  const agregarACohorte = (nameCode) => {
-    dispatch(update_Cohort(nameCode, nameRow));
-  };
 
-  const enviarAlumnos = () => {
-    right.map((alumno) => {
-      agregarACohorte(alumno.code);
-    });
-    props.handleOpen();
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: `¡El alumno se agregó correctamente!`,
-      showConfirmButton: false,
-      timer: 2000,
-    });
-  };
+ 
+  useEffect(() => {
+    tranducirAlumno().then((res)=>{
+      console.log(res)
+      setLeft(res)})
+      
+    }, []);
+  
+
+    const ejecutar=()=>{
+      handleAllRight()
+    }
+  
 
   const customList = (items) => (
     <Paper className={classes.paper}>
@@ -143,9 +150,9 @@ export default function TransferList(props) {
       justify="center"
       alignItems="center"
       className={classes.root}
-      style={{ backgroundColor: "white", width: "60%", marginTop: "15%" }}
+      style={{ backgroundColor: "white", width: "60%" }}
     >
-      <SearchAlumn/>
+      
       <Grid item>{customList(left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
@@ -163,8 +170,9 @@ export default function TransferList(props) {
             variant="outlined"
             size="small"
             className={classes.button}
-            onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
+            onClick={handleCheckedRight}
+            
             aria-label="move selected right"
           >
             &gt;
@@ -185,6 +193,7 @@ export default function TransferList(props) {
             className={classes.button}
             onClick={handleAllLeft}
             disabled={right.length === 0}
+            
             aria-label="move all left"
           >
             ≪
@@ -192,15 +201,6 @@ export default function TransferList(props) {
         </Grid>
       </Grid>
       <Grid item>{customList(right)}</Grid>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={enviarAlumnos}
-        aria-label="mostrar"
-      >
-        Agregar Alumnos
-      </Button>
     </Grid>
   );
 }

@@ -32,6 +32,7 @@ import Cohortes from "./CohortPanel/cohortePanel";
 import Email from "./email/Email";
 import Calenadmin from '../Calenadmin/calendarioadmin'
 
+
 import Module from "../modulo/NewModule";
 import AlumnosXCohorte from "./alumnosCRUD/alumnosXcohorte"
 import { logout, verifySession } from "../../redux/actions/authActions";
@@ -222,6 +223,7 @@ export default function AdminPanel({ user }) {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
+
             {activeTab === "usuarios" && <Alumnos />}
             {activeTab === "usuariosXCohorte" && <AlumnosXCohorte cohortFilter={cohortFilter} />}  
 

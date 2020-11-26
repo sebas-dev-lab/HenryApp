@@ -29,7 +29,11 @@ router.get("/:code", (req, res) => {
     .populate("cohorte")
     .populate("PP")
     .populate("module")
-    .populate("group")
+    .populate({
+      path: "group",
+      populate: {
+        path: "pms"
+      }})
     .then((user) => {
       res.status(200).json({ msg: "OK", user });
     })

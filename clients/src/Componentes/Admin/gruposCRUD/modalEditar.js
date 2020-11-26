@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import Transfer from "./trasnferList";
+import Formco from "./formEditar";
 import Button from "@material-ui/core/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllStudents } from "../../../redux/actions/studentActions";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -33,28 +31,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal(props) {
-  const dispatch = useDispatch();
-  const { nameRow } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-
-  const users = useSelector((state) => state.student.allStudents);
-
-  //filtra los alumnos que no tienen cohorte asignado
-  const [usersClean, setUsersClean] = useState([]);
- 
-
-  const filter = (users) => {
-    const filtered = users.filter((user) => !user.cohorte);
-    return filtered;
-  };
-
-  useEffect(() => {
-    dispatch(getAllStudents());
-    setUsersClean(filter(users));
-  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -62,13 +42,8 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        onClick={handleOpen}
-      >
-        Agregar alumno
+      <Button variant="contained" color="primary" onClick={handleOpen}>
+        Editar
       </Button>
       <Modal
         open={open}
@@ -76,11 +51,7 @@ export default function SimpleModal(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <Transfer
-          nameRow={nameRow}
-          users={usersClean}
-          handleOpen={handleOpen}
-        />
+        <Formco open={open} handleOpen={handleOpen} />
       </Modal>
     </div>
   );

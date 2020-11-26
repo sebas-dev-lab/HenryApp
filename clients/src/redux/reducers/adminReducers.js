@@ -8,7 +8,6 @@ const initialState = {
 };
 
 const adminReducers = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.POST_USER_ADMIN:
       return {
