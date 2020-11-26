@@ -30,8 +30,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
     border: "2px solid #000",
+    borderRadius: "20px",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(2),
     top: "50%",
     left: "50px",
     transform: "translate (-50%, -50%)",
@@ -82,8 +83,9 @@ export default function Emails() {
   };
 
   const bodyInsertar = (
+    
     <div className={styles.modal}>
-      <h3>Agregar Nuevo email</h3>
+      <h3 className={style.h3}>Agregar Nuevo email</h3>
       <TextField
         className={style.inputMaterial}
         label="Email"
@@ -109,6 +111,8 @@ export default function Emails() {
   );
 
   return (
+    <div className={style.cont_email}>
+      <h1>Agregar Nuevo Correo</h1>
     <div className={style.emails}>
       <br />
       <AddCircle className={style.add} fontSize="large" onClick={AbrirCerrar} />
@@ -161,6 +165,7 @@ export default function Emails() {
       <Modal open={modalInsertar} onClose={AbrirCerrar}>
         {bodyInsertar}
       </Modal>
+    </div>
     </div>
   );
 }

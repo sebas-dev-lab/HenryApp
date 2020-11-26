@@ -23,6 +23,7 @@ export const PUT_INSTRUCTOR = "PUT_INSTRUCTOR";
 export const AUTH_LOGIN_LOCAL = "AUTH_LOGIN_LOCAL";
 export const LOGOUT = "LOGOUT";
 export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
+export const VERIFY_LOGUIN = "VERIFY_LOGUIN";
 
 /*==== Group actionTypes =====*/
 export const GET_ALL_GROUP = "GET_ALL_GROUP";
@@ -37,6 +38,8 @@ export const PUT_TOASIGN_COHORT_GROUP = "PUT_TOASIGN_COHORT_GROUP";
 export const GET_ALL_COHORT = "GET_ALL_COHORT";
 export const PUT_COHORT = "PUT_COHORT";
 export const POST_COHORT = "POST_COHORT";
+export const GET_ONE_COHORT = "GET_ONE_COHORT";
+export const FILTER_COHORT = "FILTER_COHORT";
 
 /*==== Email actionTypes =====*/
 export const GET_EMAIL = "GET_EMAIL";

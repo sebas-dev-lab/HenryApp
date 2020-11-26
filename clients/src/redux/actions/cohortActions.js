@@ -29,6 +29,20 @@ export const updateCohort = (name, values) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getOneCohort = (id) => (dispatch) => {
+  axios
+    .get(`${url}/cohort/${id}`)
+    .then((res) => {
+      dispatch({
+        type: actionTypes.GET_ONE_COHORT,
+        cohort: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const postCohort = (name, startDate) => (dispatch) => {
   return axios
     .post(
@@ -42,11 +56,27 @@ export const postCohort = (name, startDate) => (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res, 'cohortres');
-      dispatch({        
+      console.log(res, "cohortres");
+      dispatch({
         type: actionTypes.POST_COHORT,
         cohort: res.data,
       });
     })
     .catch((err) => console.log(err));
 };
+
+export const filterCohort = (cohort) => async (dispatch) => {
+  try {
+    await axios
+      .get(`${url}/cohort/students?cohort=${cohort}`,{withCredentials: true})
+      .then((res) => {    
+        dispatch({
+          type: actionTypes.FILTER_COHORT,
+          payload: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  } catch(err) {
+    console.log("error", err);
+  }   
+}
