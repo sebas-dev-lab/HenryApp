@@ -14,17 +14,12 @@ router.get("/all", (req, res, next) => {
   });
 });
 
-router.put("/:name", (req, res) => {
+router.put("/:name", async (req, res) => {
   const { name } = req.params;
   const body = req.body;
 
-  Cohort.update({ name }, body)
-    .then(() => {
-      res.status(200).json({ msg: "Ok" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const newCohort = await Cohort.findOneAndUpdate({ name }, body);
+  res.status(200).json({ msg: "Ok", cohort: newCohort });
 });
 
 // router.get("/:id", (req, res) => {
