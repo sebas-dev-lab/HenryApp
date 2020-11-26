@@ -50,6 +50,14 @@ const Navbar = ({ user }) => {
                   {user && <div onClick={logoutSession}>Salir</div>}
                 </Typography>
               </>
+            ): user.role === "instructor" ? (
+              <>
+                <Avatar className={s.avatar}>{user && user.name[0]}</Avatar>
+                <Link to="/instructor/perfil" color="inherit">
+                  {" "}
+                  Mi Perfil{" "}
+                </Link>
+              </>
             ) : null}
           </Typography>
         </Toolbar>

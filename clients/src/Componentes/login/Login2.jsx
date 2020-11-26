@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Login2.css";
 import { authLogin } from "../../redux/actions/authActions";
 import { useHistory } from "react-router-dom";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import GoogleIcon from "../utils/google.ico";
 import Footer from "../Footer";
 import Bienvenida from "../Bienvenida";
 import { Mail, Lock } from "@material-ui/icons";
@@ -37,6 +35,9 @@ export default function Login() {
     }
     if (userLogin && userLogin.role === "student") {
       history.push("/alumnos");
+    }
+    if (userLogin && userLogin.role === "instructor") {
+      history.push("/instructor");
     }
   }, [userLogin]);
 

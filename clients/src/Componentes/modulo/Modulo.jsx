@@ -15,18 +15,20 @@ export default function Modulo() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    console.log(id);
+
     Axios.get(`http://localhost:3001/module/means/${id}`)
       .then((res) => {
+        console.log(res.data.means)
         setMeans(res.data.means);
         console.log(res.data.means);
       })
       .catch((err) => {
         console.log(err.message);
       });
+
   }, []);
 
-  useEffect(() => {}, [means]);
+  useEffect(() => { }, [means]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
