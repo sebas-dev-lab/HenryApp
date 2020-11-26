@@ -164,13 +164,20 @@ p {
   color: rgb(44, 44, 44);
   font-weight: 700;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  
 }
+
 
 #goog {
   background: #fff;
   opacity: 1;
   padding: 0px 0;
   color: #000;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-alternativo p {

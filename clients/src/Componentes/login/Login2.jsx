@@ -47,7 +47,7 @@ export default function Login() {
       <div className="grid">
         <form className="form login">
           <div className="form__field">
-            <label for="login__username">
+            <label for="login__username" className="cont_label">
               <Mail />
               <span className="hidden">Usuario</span>
             </label>
@@ -63,7 +63,7 @@ export default function Login() {
           </div>
 
           <div class="form__field">
-            <label for="login__password">
+            <label for="login__password" className="cont_label">
               <Lock />
               <span className="hidden">Contraseña</span>
             </label>
