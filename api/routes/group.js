@@ -61,7 +61,7 @@ router.put("/:group/pm/:pm", (req, res) => {
   const { group, pm } = req.params; 
 
   User.findOneAndUpdate(
-    { name: pm }, 
+    { code: pm }, 
     { $set: { isPM: true}}, 
     { new: true })
       .then((student) => {  

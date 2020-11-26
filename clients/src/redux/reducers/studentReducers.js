@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const studentReducers = (state = initialState, action) => {
-  console.log(action, "****action*****")
   switch (action.type) {
     case actionTypes.POST_STUDENT:
       return {

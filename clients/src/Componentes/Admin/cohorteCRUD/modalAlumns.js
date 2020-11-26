@@ -44,7 +44,7 @@ export default function SimpleModal(props) {
 
   //filtra los alumnos que no tienen cohorte asignado
   const [usersClean, setUsersClean] = useState([]);
-  console.log("filtro cohorte", usersClean);
+ 
 
   const filter = (users) => {
     const filtered = users.filter((user) => !user.cohorte);
