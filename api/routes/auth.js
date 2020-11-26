@@ -45,8 +45,8 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/",
-    session: false,
+    successRedirect: "http://localhost:3000/alumnos",
+    session: true,
   })
 );
 
