@@ -44,7 +44,6 @@ export default function NewModule() {
     Axios.get("http://localhost:3001/cohort/all")
       .then((res) => {
         setCohorts(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -75,12 +74,15 @@ export default function NewModule() {
   }, [module]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/module/${nombre}`)
-      .then((res) => setModule(res.data.id))
+    Axios.put("http://localhost:3001/module/asignate", {
+      _id: module,
+      students: selectedStudents,
+    })
+      .then((data) => {})
       .catch((err) => {
         console.log(err.message);
       });
-  }, [create]);
+  }, [module]);
 
   function filter(arr, coho) {
     var newarr = [{}];

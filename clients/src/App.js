@@ -14,6 +14,7 @@ import Calenadmin from "./Componentes/Calenadmin/calendarioadmin";
 import Modulo from "./Componentes/modulo/Modulo";
 import CrudModulo from "./Componentes/modulo/CrudModulo";
 import NewModule from "./Componentes/modulo/NewModule";
+import Pair from "./Componentes/pairprogramming/Pair";
 import ProtectedStudentRoute from "./Componentes/ProtectedRoutes/ProtectedStudentsRoutes";
 import ProtectedAdminRoute from "./Componentes/ProtectedRoutes/ProtectedAdminRoutes";
 import ProtectedInstructorRoute from "./Componentes/ProtectedRoutes/ProtectedInstructorRoute";
