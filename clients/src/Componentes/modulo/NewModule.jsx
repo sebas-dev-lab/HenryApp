@@ -85,7 +85,7 @@ export default function NewModule() {
     var newarr = [{}];
     console.log(arr);
     arr.map((a) => {
-      if (a.cohorte !== undefined) {
+      if (a.cohorte !== undefined && a.cohorte !== null) {
         if (a.cohorte.name === coho.name) {
           newarr.push(a);
         }
@@ -211,7 +211,7 @@ export default function NewModule() {
             Crear
           </Button>
         </form>
-        <Clases recursos={handleClases} />
+        {/* <Clases recursos={handleClases} /> */}
         <Chip recursos={handleRecursos} />
 
         <Tabla2 students={students2} selected={handleSelectedStudent} />
